@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3 meses juntos 💕</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --rose: #e8a0bf;
+      --rose-deep: #c77d9a;
+      --blush: #fff5f8;
+      --cream: #fdf8f4;
+      --ink: #3d2c35;
+      --gold: #d4a574;
+      --shadow: rgba(61, 44, 53, 0.12);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    .hearts-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .heart-float {
+      position: absolute;
+      font-size: 1.2rem;
+      opacity: 0.15;
+      animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.15;
+      }
+
+      90% {
+        opacity: 0.15;
+      }
+
+      100% {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.4rem 1.2rem;
+      border: 1px solid var(--rose);
+      border-radius: 999px;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rose-deep);
+      margin-bottom: 1.5rem;
+      animation: fadeIn 1s ease;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 10vw, 4.5rem);
+      font-weight: 600;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+      animation: fadeIn 1s ease 0.2s both;
+    }
+
+    .hero h1 span {
+      color: var(--rose-deep);
+      font-style: italic;
+    }
+
+    .names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      font-style: italic;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      animation: fadeIn 1s ease 0.4s both;
+    }
+
+    .hero p {
+      max-width: 420px;
+      font-size: 1.05rem;
+      color: #6b5560;
+      animation: fadeIn 1s ease 0.6s both;
+    }
+
+    .scroll-hint {
+      margin-top: 3rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--rose);
+      animation: bounce 2s ease infinite;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(8px);
+      }
+    }
+
+    @keyframes confeti {
+      to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 4rem;
+      animation: fadeIn 0.8s ease both;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 2px;
+      background: var(--rose);
+      margin: 0.75rem auto 0;
+    }
+
+    /* Live counter */
+    .counter-card {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 20px 60px var(--shadow);
+    }
+
+    .live-counter {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .live-counter .unit {
+      background: var(--blush);
+      border-radius: 16px;
+      padding: 1rem 0.5rem;
+    }
+
+    .live-counter .value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 6vw, 2.8rem);
+      font-weight: 600;
+      color: var(--rose-deep);
+      line-height: 1;
+    }
+
+    .live-counter .label {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #8a7580;
+      margin-top: 0.35rem;
+    }
+
+    .counter-date {
+      font-style: italic;
+      color: var(--gold);
+      font-size: 0.95rem;
+    }
+
+    .countdown-next {
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--blush);
+      font-size: 0.9rem;
+      color: #6b5560;
+    }
+
+    .countdown-next strong {
+      color: var(--rose-deep);
+      font-weight: 500;
+    }
+
+    /* Music button */
+    .music-btn {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 52px;
+      height: 52px;
+      border: none;
+      border-radius: 50%;
+      background: white;
+      color: var(--rose-deep);
+      font-size: 1.4rem;
+      cursor: pointer;
+      box-shadow: 0 8px 30px var(--shadow);
+      z-index: 100;
+      transition: transform 0.2s;
+    }
+
+    .music-btn:hover {
+      transform: scale(1.08);
+    }
+
+    .music-btn.playing {
+      animation: pulse 1.5s ease infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 8px 30px var(--shadow);
+      }
+
+      50% {
+        box-shadow: 0 8px 30px rgba(199, 125, 154, 0.4);
+      }
+    }
+
+    /* Mini timeline */
+    .mini-timeline-wrap {
+      overflow-x: auto;
+      padding: 0.5rem 0 1rem;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .mini-timeline {
+      display: flex;
+      gap: 0;
+      min-width: max-content;
+      position: relative;
+      padding: 2rem 1rem 0;
+    }
+
+    .mini-timeline::before {
+      content: '';
+      position: absolute;
+      top: 2.35rem;
+      left: 1.5rem;
+      right: 1.5rem;
+      height: 2px;
+      background: linear-gradient(90deg, var(--rose), var(--gold));
+      z-index: 0;
+    }
+
+    .mini-event {
+      flex: 0 0 130px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      padding: 0 0.5rem;
+    }
+
+    .mini-event .dot {
+      width: 14px;
+      height: 14px;
+      background: white;
+      border: 3px solid var(--rose-deep);
+      border-radius: 50%;
+      margin: 0 auto 0.75rem;
+    }
+
+    .mini-event.highlight .dot {
+      background: var(--rose-deep);
+      box-shadow: 0 0 0 4px var(--blush);
+    }
+
+    .mini-event .date {
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--rose-deep);
+      margin-bottom: 0.25rem;
+    }
+
+    .mini-event h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      margin-bottom: 0.2;
+    }
+
+    .mini-event p {
+      font-size: 0.75rem;
+      color: #8a7580;
+      line-height: 1.4;
+    }
+
+    /* 50 reasons carousel */
+    .reasons-intro {
+      text-align: center;
+      color: #6b5560;
+      font-size: 0.95rem;
+      margin: -1rem 0 1.5rem;
+    }
+
+    .reasons-carousel {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 20px 60px var(--shadow);
+    }
+
+    .reasons-carousel .carousel-track {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reason-slide {
+      min-width: 100%;
+      padding: 3rem 2.5rem 2.5rem;
+      min-height: 240px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(180deg, white 0%, var(--blush) 100%);
+    }
+
+    .reason-slide .big-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 12vw, 4.5rem);
+      font-weight: 600;
+      color: var(--rose);
+      line-height: 1;
+      margin-bottom: 1rem;
+      opacity: 0.85;
+    }
+
+    .reason-slide .reason-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.15rem, 4vw, 1.45rem);
+      font-style: italic;
+      line-height: 1.55;
+      color: #4a3842;
+      max-width: 420px;
+    }
+
+    .reasons-carousel .carousel-btn {
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    .reasons-footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 0.75rem 1rem 1.25rem;
+      background: white;
+    }
+
+    .reasons-counter {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      min-width: 5rem;
+      text-align: center;
+    }
+
+    .reasons-progress {
+      flex: 1;
+      max-width: 200px;
+      height: 4px;
+      background: var(--blush);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .reasons-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--rose), var(--rose-deep));
+      border-radius: 999px;
+      transition: width 0.5s ease;
+    }
+
+    /* Extras */
+    .extras-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .extra-card {
+      background: white;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 8px 30px var(--shadow);
+    }
+
+    .extra-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      color: var(--rose-deep);
+    }
+
+    .promises-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .promises-list li {
+      font-size: 0.95rem;
+      color: #6b5560;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .promises-list li::before {
+      content: '♥';
+      position: absolute;
+      left: 0;
+      color: var(--rose);
+      font-size: 0.8rem;
+    }
+
+    .surprise-btn {
+      display: block;
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--rose), var(--rose-deep));
+      color: white;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .surprise-btn:hover {
+      opacity: 0.9;
+    }
+
+    .surprise-msg {
+      display: none;
+      margin-top: 1rem;
+      padding: 1.25rem;
+      background: var(--blush);
+      border-radius: 12px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      text-align: center;
+      color: #4a3842;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .surprise-msg.show {
+      display: block;
+    }
+
+    /* Timeline */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .timeline-item {
+      background: white;
+      border-radius: 16px;
+      padding: 1.5rem 1.75rem;
+      box-shadow: 0 8px 30px var(--shadow);
+      border-left: 3px solid var(--rose);
+      transition: transform 0.3s ease;
+    }
+
+    .timeline-item:hover {
+      transform: translateX(6px);
+    }
+
+    .timeline-item .month {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--rose-deep);
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-item h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-item p {
+      font-size: 0.95rem;
+      color: #6b5560;
+    }
+
+    /* Carousel */
+    .carousel {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px var(--shadow);
+      background: white;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      position: relative;
+      aspect-ratio: 4/5;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .carousel-slide .slide-bg {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      opacity: 0.4;
+    }
+
+    .carousel-slide .slide-bg.bg-1 {
+      background: linear-gradient(135deg, #f8d7e3, #e8a0bf);
+    }
+
+    .carousel-slide .slide-bg.bg-2 {
+      background: linear-gradient(135deg, #fde8d0, #d4a574);
+    }
+
+    .carousel-slide .slide-bg.bg-3 {
+      background: linear-gradient(135deg, #e8dff5, #c77d9a);
+    }
+
+    .carousel-slide .slide-bg.bg-4 {
+      background: linear-gradient(135deg, #d4edda, #e8a0bf);
+    }
+
+    .carousel-slide .slide-bg.bg-5 {
+      background: linear-gradient(135deg, #fff5f8, #f0c9a0);
+    }
+
+    .slide-caption {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem 1.75rem;
+      background: linear-gradient(to top, rgba(61, 44, 53, 0.75) 0%, rgba(61, 44, 53, 0.2) 50%, transparent 100%);
+      color: white;
+    }
+
+    .slide-caption blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.2rem, 4vw, 1.6rem);
+      font-style: italic;
+      line-height: 1.5;
+      margin-bottom: 0.5rem;
+    }
+
+    .slide-caption cite {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-style: normal;
+      opacity: 0.85;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--rose-deep);
+      font-size: 1.4rem;
+      cursor: pointer;
+      box-shadow: 0 4px 20px var(--shadow);
+      transition: transform 0.2s, background 0.2s;
+      z-index: 2;
+      line-height: 1;
+    }
+
+    .carousel-btn:hover {
+      transform: translateY(-50%) scale(1.08);
+      background: white;
+    }
+
+    .carousel-btn.prev {
+      left: 12px;
+    }
+
+    .carousel-btn.next {
+      right: 12px;
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem 0 1.25rem;
+    }
+
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: none;
+      background: var(--rose);
+      opacity: 0.35;
+      cursor: pointer;
+      padding: 0;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .carousel-dot.active {
+      opacity: 1;
+      transform: scale(1.25);
+    }
+
+    .carousel-hint {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #8a7580;
+      margin-top: 0.75rem;
+    }
+
+    /* Letter */
+    .letter {
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 20px 60px var(--shadow);
+      position: relative;
+    }
+
+    .letter::before {
+      content: '✉';
+      position: absolute;
+      top: -12px;
+      right: 24px;
+      font-size: 2rem;
+    }
+
+    .letter p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      line-height: 1.9;
+      color: #4a3842;
+    }
+
+    .letter .signature {
+      margin-top: 2rem;
+      text-align: right;
+      font-style: italic;
+      color: var(--rose-deep);
+      font-size: 1.2rem;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      color: var(--rose-deep);
+    }
+
+    /* Portal Home Button */
+    .home-btn {
+      position: fixed;
+      top: 1.5rem;
+      left: 1.5rem;
+      background: white;
+      border: 1px solid var(--rose);
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      color: var(--rose-deep);
+      text-decoration: none;
+      box-shadow: 0 4px 15px var(--shadow);
+      z-index: 100;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .home-btn:hover {
+      transform: scale(1.05);
+      background-color: var(--blush);
+    }
+
+    @media (max-width: 480px) {
+      .live-counter {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .carousel-slide {
+        aspect-ratio: 3/4;
+      }
+
+      .carousel-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 1.2rem;
+      }
+
+      .reason-slide {
+        padding: 2.5rem 1.5rem 2rem;
+        min-height: 200px;
+      }
+    }
+
+    /* Welcome Screen */
+    #welcome-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: radial-gradient(circle at center, #ffd6e0 0%, #421c2e 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    #welcome-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    #welcome-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 2rem;
+      animation: wFadeIn 1s ease;
+    }
+
+    @keyframes wFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    #welcome-screen .w-hearts {
+      font-size: 4rem;
+      animation: pulseWelcome 2s ease-in-out infinite;
+    }
+
+    @keyframes pulseWelcome {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.15);
+      }
+    }
+
+    #welcome-screen h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      color: #ffd6e0;
+      text-shadow: 0 0 30px rgba(232, 160, 191, 0.7);
+    }
+
+    #enter-btn {
+      margin-top: 0.5rem;
+      padding: 1rem 3rem;
+      background: linear-gradient(135deg, var(--rose), var(--rose-deep));
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 500;
+      font-size: 1.25rem;
+      cursor: pointer;
+      box-shadow: 0 0 30px rgba(232, 160, 191, 0.5);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    #enter-btn:hover,
+    #enter-btn:active {
+      transform: scale(1.06);
+      box-shadow: 0 0 50px rgba(232, 160, 191, 0.8);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════ PANTALLA DE BIENVENIDA ══════════ -->
+  <div id="welcome-screen">
+    <div id="welcome-content">
+      <div class="w-hearts">💖</div>
+      <h2>Para Alexa 💕</h2>
+      <button id="enter-btn">Tres meses juntos y toda una vida por delante ✨</button>
+    </div>
+  </div>
+
+  <div class="hearts-bg" id="heartsBg"></div>
+
+  <!-- Botón para volver al portal principal -->
+  <a href="../index.html" class="home-btn">← Menú</a>
+
+  <button class="music-btn" id="musicBtn" aria-label="Reproducir música" title="Nuestra canción">🎵</button>
+  <audio id="bgMusic" loop preload="auto">
+    <source src="musica.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="container">
+
+    <header class="hero">
+      <span class="badge">Nuestro aniversario</span>
+      <h1><span>3</span> meses<br>juntos</h1>
+      <p class="names">GABRIEL & ALEXA</p>
+      <p>Tres meses de risas, abrazos y procesos que hemos aprendido mucho ambos.Gracias por darme esta gran
+        oportunidad♥️.</p>
+      <a href="#recuerdos" class="scroll-hint">↓ Descubre más</a>
+    </header>
+
+    <section id="contador">
+      <h2 class="section-title">El tiempo vuela</h2>
+      <div class="counter-card">
+        <div class="live-counter">
+          <div class="unit">
+            <div class="value" id="days">0</div>
+            <div class="label">días</div>
+          </div>
+          <div class="unit">
+            <div class="value" id="hours">0</div>
+            <div class="label">horas</div>
+          </div>
+          <div class="unit">
+            <div class="value" id="minutes">0</div>
+            <div class="label">minutos</div>
+          </div>
+          <div class="unit">
+            <div class="value" id="seconds">0</div>
+            <div class="label">segundos</div>
+          </div>
+        </div>
+        <p class="counter-date">Juntos desde el <span id="startDateLabel">[día] de [mes] de [año]</span></p>
+        <p class="countdown-next">Faltan <strong id="nextCountdown">—</strong> para nuestro <strong>3.er mes</strong>
+        </p>
+      </div>
+    </section>
+
+    <section id="mini-linea">
+      <h2 class="section-title">Nuestra historia</h2>
+      <div class="mini-timeline-wrap">
+        <div class="mini-timeline">
+          <div class="mini-event">
+            <div class="dot"></div>
+            <h4>Primer mensaje</h4>
+            <p>✨29 de Enero del 2025✨</p>
+          </div>
+          <div class="mini-event">
+            <div class="dot"></div>
+            <h4>Primera salida como amigos</h4>
+            <p>💛13 de Febrero del 2025💛</p>
+          </div>
+          <div class="mini-event">
+            <div class="dot"></div>
+            <h4>Nuestros abrazos</h4>
+            <p>En los cuales me siento protegida y feliz</p>
+          </div>
+          <div class="mini-event">
+            <div class="dot"></div>
+            <div class="date">Mes 1</div>
+            <h4>Oficialmente</h4>
+            <p>Empezamos juntos
+              ✨23 de Abril del 2026✨
+            </p>
+          </div>
+          <div class="mini-event">
+            <div class="dot"></div>
+            <div class="date">Mes 2</div>
+            <h4>Más cerca</h4>
+            <p>Conociéndonos de verdad</p>
+          </div>
+          <div class="mini-event highlight">
+            <div class="dot"></div>
+            <div class="date">Hoy</div>
+            <h4>3 meses</h4>
+            <p>¡Lo logramos!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="recuerdos">
+      <h2 class="section-title">Nuestros recuerdos</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="month">Mes 1</div>
+          <h3>El comienzo</h3>
+          <p>Sin duda alguna al llevar nuestro primer mes aprendi que llevar una relacion es esfuerzo y dedicacion
+            ,gracias por ser esa persona con la que puedo aprender esto y deseo que solo seas tu✨❤️.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="month">Mes 2</div>
+          <h3>Conociéndonos más</h3>
+          <p>En estos momentos fue cuando me di cuenta que de verdad queria estar contigo, cuando me importabas de una
+            manera
+            diferente y que mi felicidad dependia de que estuvieras bien y feliz ,en este tiempo logramos cosas
+            increibles
+            que aun guardo en mi corazon y se que los dos estuvimos felices y lo logramos juntos♥️.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="month">Mes 3</div>
+          <h3>Hoy</h3>
+          <p>Quiero agradecerte por ser la persona con la que quiero compartir TODO. Por tu paciencia,
+            tu cariño, tus risas y porque me haces sentir el hombre más especial del mundo. Me encanta aprender contigo,
+            crecer juntos y saber que
+            tenemos toda una vida por delante a tu lado✨❤️.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="carrusel">
+      <h2 class="section-title">Momentos & frases</h2>
+      <div class="carousel" id="photoCarousel">
+        <div class="carousel-track" id="carouselTrack">
+          <!-- Las slides se generarán dinámicamente desde datos.js -->
+        </div>
+        <button class="carousel-btn prev" id="carouselPrev" aria-label="Anterior">‹</button>
+        <button class="carousel-btn next" id="carouselNext" aria-label="Siguiente">›</button>
+        <div class="carousel-dots" id="carouselDots"></div>
+      </div>
+      <p class="carousel-hint">
+        Fotos de lo que hemos vivido juntos! ✨❤️
+      </p>
+    </section>
+
+    <section id="razones">
+      <h2 class="section-title">100 razones por las que te amo</h2>
+      <div class="reasons-carousel" id="reasonsCarousel">
+        <div class="carousel-track" id="reasonsTrack"></div>
+        <button class="carousel-btn prev" id="reasonsPrev" aria-label="Razón anterior">‹</button>
+        <button class="carousel-btn next" id="reasonsNext" aria-label="Siguiente razón">›</button>
+        <div class="reasons-footer">
+          <span class="reasons-counter" id="reasonsCounter">1 / 50</span>
+          <div class="reasons-progress">
+            <div class="reasons-progress-bar" id="reasonsProgress" style="width: 2%"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="extras">
+      <h2 class="section-title">Y mucho más…</h2>
+      <div class="extras-grid">
+        <div class="extra-card">
+          <h3>Promesas para el futuro</h3>
+          <ul class="promises-list">
+            <li>Seguir eligiéndote cada mañana</li>
+            <li>Cuidar lo que tenemos con paciencia y cariño</li>
+            <li>Viajar juntos y coleccionar recuerdos</li>
+            <li>Celebrar cada mes como si fuera el primero</li>
+            <li>Construir algo bonito, paso a paso</li>
+          </ul>
+        </div>
+        <div class="extra-card">
+          <h3>Una sorpresa para ti</h3>
+          <button class="surprise-btn" id="surpriseBtn">Toca aquí 💌</button>
+          <div class="surprise-msg" id="surpriseMsg">
+            No necesito un motivo especial para amarte pero hoy tengo 100 razones y un corazón lleno de ganas de seguir
+            a tu lado. ✨
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">Para ti</h2>
+      <div class="letter">
+        <p>
+          Querida Alexa,
+          <br><br>
+          Hoy cumplimos tres meses y no puedo evitar sonreír al pensar en todo lo que hemos vivido. Eres luz en mis
+          días, calma en mis noches y la razón por la que creo en los finales felices.
+          <br><br>
+          Gracias por elegirme cada día. Te quiero más de lo que las palabras alcanzan.
+        </p>
+        <p class="signature">Con todo mi amor,<br>GABRIEL</p>
+      </div>
+    </section>
+
+    <footer id="footerEnd">
+      ♥ 3 meses y contando ♥
+    </footer>
+
+  </div>
+
+  <script src="datos.js"></script>
+  <script>
+    const bg = document.getElementById('heartsBg');
+    const hearts = ['♥', '♡', '💕', '✦'];
+    for (let i = 0; i < 18; i++) {
+      const el = document.createElement('span');
+      el.className = 'heart-float';
+      el.textContent = hearts[i % hearts.length];
+      el.style.left = Math.random() * 100 + '%';
+      el.style.animationDuration = (8 + Math.random() * 12) + 's';
+      el.style.animationDelay = Math.random() * 10 + 's';
+      bg.appendChild(el);
+    }
+
+    // Contador en vivo
+    (function () {
+      const start = new Date(CONFIG.startDate);
+      const next = new Date(CONFIG.nextMilestone);
+      const months = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+      document.getElementById('startDateLabel').textContent =
+        start.getDate() + ' de ' + months[start.getMonth()] + ' de ' + start.getFullYear();
+
+      function pad(n) { return String(n).padStart(2, '0'); }
+
+      function update() {
+        const now = new Date();
+        let diff = now - start;
+        if (diff < 0) diff = 0;
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        document.getElementById('days').textContent = d;
+        document.getElementById('hours').textContent = pad(h);
+        document.getElementById('minutes').textContent = pad(m);
+        document.getElementById('seconds').textContent = pad(s);
+
+        const until = next - now;
+        if (until > 0) {
+          const ud = Math.floor(until / 86400000);
+          const uh = Math.floor((until % 86400000) / 3600000);
+          document.getElementById('nextCountdown').textContent = ud + ' días y ' + uh + ' horas';
+        } else {
+          document.getElementById('nextCountdown').textContent = '¡Ya llegó!';
+        }
+      }
+      update();
+      setInterval(update, 1000);
+    })();
+
+    // Música de fondo y pantalla de bienvenida
+    (function () {
+      const audio = document.getElementById('bgMusic');
+      const btn = document.getElementById('musicBtn');
+      const enterBtn = document.getElementById('enter-btn');
+      const welcomeScreen = document.getElementById('welcome-screen');
+
+      audio.querySelector('source').src = CONFIG.musicFile;
+      audio.load();
+
+      enterBtn.addEventListener('click', () => {
+        audio.play().then(() => {
+          btn.textContent = '🎶';
+          btn.classList.add('playing');
+        }).catch(e => {
+          console.log('Autoplay blocked or audio missing');
+        });
+        welcomeScreen.classList.add('hidden');
+      });
+
+      btn.addEventListener('click', () => {
+        if (audio.paused) {
+          audio.play().then(() => {
+            btn.textContent = '🎶';
+            btn.classList.add('playing');
+          }).catch(() => alert('Agrega tu canción musica.mp3 en la carpeta 3ERMES/'));
+        } else {
+          audio.pause();
+          btn.textContent = '🎵';
+          btn.classList.remove('playing');
+        }
+      });
+    })();
+
+    // 50 razones — carrusel
+    (function () {
+      const track = document.getElementById('reasonsTrack');
+      const counter = document.getElementById('reasonsCounter');
+      const progress = document.getElementById('reasonsProgress');
+      const total = RAZONES.length;
+
+      RAZONES.forEach((text, i) => {
+        const slide = document.createElement('div');
+        slide.className = 'reason-slide';
+        slide.innerHTML =
+          '<div class="big-num">' + (i + 1) + '</div>' +
+          '<p class="reason-text">«' + text + '»</p>';
+        track.appendChild(slide);
+      });
+
+      let current = 0;
+      let autoplayTimer;
+
+      function updateUI() {
+        track.style.transform = 'translateX(-' + current * 100 + '%)';
+        counter.textContent = (current + 1) + ' / ' + total;
+        progress.style.width = ((current + 1) / total * 100) + '%';
+      }
+
+      function goTo(index) {
+        current = (index + total) % total;
+        updateUI();
+        resetAutoplay();
+      }
+
+      function resetAutoplay() {
+        clearInterval(autoplayTimer);
+        autoplayTimer = setInterval(() => goTo(current + 1), 4000);
+      }
+
+      document.getElementById('reasonsPrev').addEventListener('click', () => goTo(current - 1));
+      document.getElementById('reasonsNext').addEventListener('click', () => goTo(current + 1));
+
+      let touchStartX = 0;
+      track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+      track.addEventListener('touchend', e => {
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
+      });
+
+      updateUI();
+      resetAutoplay();
+    })();
+
+    // Sorpresa
+    document.getElementById('surpriseBtn').addEventListener('click', () => {
+      document.getElementById('surpriseMsg').classList.add('show');
+    });
+
+    // Confeti al llegar al footer
+    (function () {
+      let fired = false;
+      const footer = document.getElementById('footerEnd');
+      const observer = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting && !fired) {
+          fired = true;
+          for (let i = 0; i < 40; i++) {
+            const c = document.createElement('span');
+            c.textContent = ['♥', '💕', '✦', '♡'][i % 4];
+            c.style.cssText = 'position:fixed;left:' + Math.random() * 100 + 'vw;top:-20px;font-size:' + (12 + Math.random() * 16) + 'px;pointer-events:none;z-index:999;animation:confeti ' + (2 + Math.random() * 2) + 's ease-in forwards;animation-delay:' + Math.random() * 0.5 + 's';
+            document.body.appendChild(c);
+            setTimeout(() => c.remove(), 4000);
+          }
+        }
+      }, { threshold: 0.5 });
+      observer.observe(footer);
+    })();
+
+    // Carrusel de fotos dinámico
+    const track = document.getElementById('carouselTrack');
+    const dotsContainer = document.getElementById('carouselDots');
+    const prevBtn = document.getElementById('carouselPrev');
+    const nextBtn = document.getElementById('carouselNext');
+    let currentSlide = 0;
+    let photoAutoplayTimer;
+
+    const photos = [
+      { url: 'FOTO1.jpeg', quote: '«Tres meses siendo el motivo de mis sonrisas más sinceras y felices. 🌸»', caption: 'Comenzando una historia juntos ' },
+      { url: 'FOTO2.jpeg', quote: '«A tu lado, el amor no se explica, simplemente se siente en cada abrazo. 💖»', caption: 'Un día cualquiera hecho especial' },
+      { url: 'FOTO3.jpeg', quote: '«Cada día descubro un nuevo detalle tuyo que me hace quererte aún más. ✨»', caption: 'Compartiendo sueños' },
+      { url: 'FOTO4.jpeg', quote: '«Lo mejor de mis días es saber que tengo tu mano para sostener la mía. 🤝»', caption: 'Una de nuestras tardes favoritas' },
+      { url: 'FOTO5.jpeg', quote: '«Tres meses de un amor que crece fuerte, sano y lleno de ilusión. 💕»', caption: 'Ya 3 meses:3 ' }
+    ];
+
+    function renderCarousel() {
+      track.innerHTML = '';
+      dotsContainer.innerHTML = '';
+
+      photos.forEach((item, i) => {
+        const slide = document.createElement('div');
+        slide.className = 'carousel-slide';
+        const bgClass = 'bg-' + ((i % 5) + 1);
+        slide.innerHTML = `
+          <img src="${item.url}" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="slide-bg ${bgClass}" style="display:none;">📷</div>
+          <div class="slide-caption">
+            <blockquote>${item.quote}</blockquote>
+            <cite>${item.caption}</cite>
+          </div>
+        `;
+        track.appendChild(slide);
+
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Ir a slide ' + (i + 1));
+        dot.addEventListener('click', () => goToSlide(i));
+        dotsContainer.appendChild(dot);
+      });
+
+      updateCarouselUI();
+      resetPhotoAutoplay();
+    }
+
+    function updateCarouselUI() {
+      const slides = track.querySelectorAll('.carousel-slide');
+      const dots = dotsContainer.querySelectorAll('.carousel-dot');
+      if (slides.length === 0) return;
+      track.style.transform = 'translateX(-' + currentSlide * 100 + '%)';
+      dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+    }
+
+    function goToSlide(index) {
+      currentSlide = (index + photos.length) % photos.length;
+      updateCarouselUI();
+      resetPhotoAutoplay();
+    }
+
+    function resetPhotoAutoplay() {
+      clearInterval(photoAutoplayTimer);
+      photoAutoplayTimer = setInterval(() => {
+        goToSlide(currentSlide + 1);
+      }, 5000);
+    }
+
+    prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
+    nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
+
+    let touchStartX = 0;
+    track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', e => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) goToSlide(diff > 0 ? currentSlide + 1 : currentSlide - 1);
+    });
+
+    renderCarousel();
+  </script>
+</body>
+
+</html>

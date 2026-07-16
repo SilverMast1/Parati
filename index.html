@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuestra Historia 💕</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Dancing+Script:wght@600;700&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --rose: #e8a0bf;
+      --rose-deep: #c77d9a;
+      --blush: #fff5f8;
+      --cream: #fdf8f4;
+      --ink: #3d2c35;
+      --gold: #d4a574;
+      --shadow: rgba(61, 44, 53, 0.12);
+      --deep-bg: #2d1822;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      color: #fff;
+      background: radial-gradient(circle at center, #421c2e 0%, var(--deep-bg) 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Floating hearts background */
+    .hearts-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .heart-float {
+      position: absolute;
+      font-size: 1.5rem;
+      opacity: 0.18;
+      animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.25; }
+      90% { opacity: 0.25; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+
+    .portal-container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 680px;
+      padding: 2rem;
+      text-align: center;
+      animation: fadeIn 1.2s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Header styling */
+    .portal-header h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(2.8rem, 8vw, 4.5rem);
+      color: #ffd6e0;
+      text-shadow: 0 0 25px rgba(232, 160, 191, 0.4);
+      margin-bottom: 0.5rem;
+    }
+
+    .portal-header p {
+      font-size: clamp(0.95rem, 3vw, 1.15rem);
+      color: #dfcbd5;
+      letter-spacing: 0.08em;
+      margin-bottom: 3.5rem;
+    }
+
+    /* Menu Cards */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 540px) {
+      .menu-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+    }
+
+    .menu-card {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(232, 160, 191, 0.2);
+      border-radius: 24px;
+      padding: 2.5rem 1.8rem;
+      text-decoration: none;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(232, 160, 191, 0.15), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: rgba(232, 160, 191, 0.5);
+      box-shadow: 0 20px 40px rgba(232, 160, 191, 0.15), 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .menu-card:hover::before {
+      opacity: 1;
+    }
+
+    .card-icon {
+      font-size: 3rem;
+      margin-bottom: 1.2rem;
+      filter: drop-shadow(0 0 10px rgba(232, 160, 191, 0.4));
+      animation: floatIcon 3s ease-in-out infinite;
+    }
+
+    .menu-card:nth-child(2) .card-icon {
+      animation-delay: 1.5s;
+    }
+
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #ffd6e0;
+      margin-bottom: 0.6rem;
+    }
+
+    .card-desc {
+      font-size: 0.88rem;
+      color: #dfcbd5;
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    .portal-footer {
+      margin-top: 3rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      color: var(--rose-deep);
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hearts-bg" id="heartsBg"></div>
+
+  <div class="portal-container">
+    <header class="portal-header">
+      <h1>Para Alexa <span style="font-size: 0.8em; vertical-align: middle;">❤️</span></h1>
+      <p>Elige una parte de nuestra historia para recordar</p>
+    </header>
+
+    <div class="menu-grid">
+      <a href="2DOMES/Index.HTML" class="menu-card">
+        <div class="card-icon">💕</div>
+        <h2 class="card-title">2do Mes</h2>
+        <p class="card-desc">Dos meses de amor, risas y momentos inolvidables construyendo nuestro camino.</p>
+      </a>
+
+      <a href="3ERMES/Index.HTML" class="menu-card">
+        <div class="card-icon">💖</div>
+        <h2 class="card-title">3er Mes</h2>
+        <p class="card-desc">Tres meses increíbles a tu lado, llenos de abrazos, promesas y sorpresas.</p>
+      </a>
+    </div>
+
+    <footer class="portal-footer">
+      ♥ Todo el tiempo del mundo contigo ♥
+    </footer>
+  </div>
+
+  <script>
+    // Floating hearts animation
+    const bg = document.getElementById('heartsBg');
+    const hearts = ['♥', '♡', '💕', '✦', '💖', '💗'];
+    for (let i = 0; i < 15; i++) {
+      const el = document.createElement('span');
+      el.className = 'heart-float';
+      el.textContent = hearts[i % hearts.length];
+      el.style.left = Math.random() * 100 + '%';
+      el.style.animationDuration = (8 + Math.random() * 12) + 's';
+      el.style.animationDelay = Math.random() * 10 + 's';
+      el.style.fontSize = (1.2 + Math.random() * 1.5) + 'rem';
+      bg.appendChild(el);
+    }
+  </script>
+</body>
+</html>
