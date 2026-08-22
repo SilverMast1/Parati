@@ -1280,7 +1280,7 @@
         slide.className = 'carousel-slide';
         const bgClass = 'bg-' + ((i % 5) + 1);
         slide.innerHTML = `
-          <img src="${item.url}" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <img src="${item.url}" alt="" onerror="if(!this.dataset.t1){this.dataset.t1=1;this.src='foto'+(i+1)+'.jpeg';}else if(!this.dataset.t2){this.dataset.t2=1;this.src='FOTO'+(i+1)+'.jpg';}else if(!this.dataset.t3){this.dataset.t3=1;this.src='foto'+(i+1)+'.jpg';}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
           <div class="slide-bg ${bgClass}" style="display:none;">📷</div>
           <div class="slide-caption">
             <blockquote>${item.quote}</blockquote>

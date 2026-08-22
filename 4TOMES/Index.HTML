@@ -459,10 +459,16 @@
   // Gallery
   (function(){
     const grid=document.getElementById('galleryGrid');
-    const photos=[{file:'FOTO1.jpg',cap:'tu y yo 💖'},{file:'FOTO2.jpg',cap:'de este día me acuerdo mucho'},{file:'FOTO3.jpg',cap:'esa sonrisa ✨'},{file:'FOTO4.jpg',cap:'nosotros jsjs 🤠'},{file:'FOTO5.jpg',cap:'4 meses 💖'}];
+    const photos=[
+      {file:'foto1.jpg',cap:'tu y yo 💖'},
+      {file:'foto2.jpg',cap:'de este día me acuerdo mucho'},
+      {file:'foto3.jpg',cap:'esa sonrisa ✨'},
+      {file:'foto4.jpg',cap:'nosotros jsjs 🤠'},
+      {file:'foto5.jpg',cap:'4 meses 💖'}
+    ];
     photos.forEach((p,i)=>{
       const item=document.createElement('div');item.className='gallery-item';
-      item.innerHTML=`<img src="${p.file}" alt="Foto ${i+1}" onerror="this.parentElement.style.background='linear-gradient(135deg,rgba(255,107,157,0.15),rgba(212,165,116,0.1))';this.style.display='none';"><div class="g-cap"><p>${p.cap}</p></div>`;
+      item.innerHTML=`<img src="${p.file}" alt="Foto ${i+1}" onerror="if(!this.dataset.triedUpper){this.dataset.triedUpper='1';this.src='FOTO'+(i+1)+'.jpg';}else if(!this.dataset.triedJpeg){this.dataset.triedJpeg='1';this.src='foto'+(i+1)+'.jpeg';}else{this.parentElement.style.background='linear-gradient(135deg,rgba(255,107,157,0.15),rgba(212,165,116,0.1))';this.style.display='none';}"><div class="g-cap"><p>${p.cap}</p></div>`;
       grid.appendChild(item);
     });
   })();

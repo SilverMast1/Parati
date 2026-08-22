@@ -738,10 +738,34 @@
       opacity: 1;
       transform: translateY(0);
     }
+    /* Portal Home Button */
+    .home-btn {
+      position: fixed;
+      top: 1.5rem;
+      left: 1.5rem;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid var(--rose);
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      color: #fff;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      z-index: 100;
+      backdrop-filter: blur(8px);
+      transition: transform 0.2s, background-color 0.2s;
+    }
+    .home-btn:hover {
+      transform: scale(1.05);
+      background-color: var(--rose);
+    }
   </style>
 </head>
 
 <body>
+
+  <!-- Botón para volver al portal principal -->
+  <a href="../index.html" class="home-btn">← Menú</a>
 
   <!-- ══════════ PANTALLA DE BIENVENIDA ══════════ -->
   <div id="welcome-screen">
