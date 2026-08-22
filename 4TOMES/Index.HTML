@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4 meses 🐱🤠🚀 Gabriel & Alexa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0014;
+      --pink:#ff6b9d;
+      --pink-soft:#ffa5c9;
+      --pink-glow:rgba(255,107,157,0.4);
+      --cowboy:#d4a574;
+      --cowboy-dark:#8b6914;
+      --space:#1a0a2e;
+      --stars-col:#ffeaa7;
+      --glass:rgba(255,107,157,0.06);
+      --glass-border:rgba(255,107,157,0.15);
+      --text:#fce4ec;
+      --text-dim:#c9a0b0;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Fredoka',sans-serif;font-weight:400;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;font-size:1.45rem}
+    img{max-width:100%;height:auto}
+    /* SPACE BG */
+    .space-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 30% 20%,rgba(255,107,157,0.08) 0%,transparent 60%),radial-gradient(ellipse at 70% 80%,rgba(212,165,116,0.06) 0%,transparent 50%),radial-gradient(circle at 50% 50%,#1a0a2e 0%,#0b0014 100%)}
+    .space-stars{position:fixed;inset:0;z-index:0;pointer-events:none}
+    .s-star{position:absolute;width:3px;height:3px;background:var(--stars-col);border-radius:50%;animation:sTwinkle var(--d) ease-in-out infinite alternate}
+    @keyframes sTwinkle{0%{opacity:.15;transform:scale(.7)}100%{opacity:1;transform:scale(1.4)}}
+    /* FLOATING CATS */
+    .float-cat{position:fixed;font-size:2.8rem;opacity:.15;animation:catFloat linear infinite;pointer-events:none;z-index:0}
+    @keyframes catFloat{0%{transform:translateY(110vh) rotate(0deg)}100%{transform:translateY(-10vh) rotate(360deg)}}
+    /* GATE */
+    #gate{position:fixed;inset:0;z-index:9999;background:radial-gradient(circle,#2d1040 0%,#0b0014 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2.2rem;transition:opacity 1s,visibility 1s;padding:1.5rem}
+    #gate.open{opacity:0;visibility:hidden;pointer-events:none}
+    .gate-cat{font-size:6.5rem;animation:gateBounce 2s ease-in-out infinite}
+    .gate-cat svg{width:180px;height:180px}
+    @keyframes gateBounce{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-12px) rotate(3deg)}}
+    .gate-title{font-family:'Caveat',cursive;font-size:clamp(3.2rem,10vw,5.5rem);color:var(--pink-soft);text-align:center;padding:0 1rem}
+    .gate-sub{font-size:1.5rem;color:var(--text-dim);text-align:center}
+    #gate-btn{padding:1.5rem 3.8rem;background:linear-gradient(135deg,var(--pink),#ff8fab);border:none;border-radius:999px;color:white;font-family:'Fredoka',sans-serif;font-size:1.75rem;font-weight:600;cursor:pointer;transition:all .3s;box-shadow:0 0 40px var(--pink-glow)}
+    #gate-btn:hover{transform:scale(1.08);box-shadow:0 0 60px var(--pink-glow)}
+    /* NAV */
+    .top-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2.5rem;background:rgba(11,0,20,0.85);backdrop-filter:blur(15px);border-bottom:1px solid var(--glass-border)}
+    .nav-home{font-size:1.25rem;color:var(--text-dim);text-decoration:none;transition:color .3s;font-weight:500}
+    .nav-home:hover{color:var(--pink)}
+    .nav-title{font-family:'Space Mono',monospace;font-size:1.1rem;color:var(--cowboy);letter-spacing:.15em}
+    #musicToggle{width:58px;height:58px;border-radius:50%;border:1px solid var(--glass-border);background:transparent;color:var(--pink);font-size:1.5rem;cursor:pointer;transition:all .3s}
+    #musicToggle.playing{animation:mPulse 2s ease infinite}
+    @keyframes mPulse{0%,100%{box-shadow:0 0 0 0 var(--pink-glow)}50%{box-shadow:0 0 0 10px transparent}}
+    /* LAYOUT */
+    .page{position:relative;z-index:1;max-width:1150px;margin:0 auto;padding:0 2.5rem 7rem}
+    /* HERO */
+    .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 0}
+    .hero-emoji{margin-bottom:2rem;animation:gateBounce 3s ease-in-out infinite}
+    .hero-emoji svg{width:170px;height:170px}
+    .hero h1{font-family:'Caveat',cursive;font-size:clamp(5rem,15vw,8.8rem);line-height:1;color:var(--pink);margin-bottom:.6rem;text-shadow:0 0 50px var(--pink-glow)}
+    .hero .names{font-size:clamp(1.8rem,6vw,2.9rem);color:var(--cowboy);margin-bottom:2.2rem;font-weight:500}
+    .hero .tagline{font-size:1.55rem;color:var(--text-dim);max-width:720px;line-height:1.7}
+    .hero .scroll-down{margin-top:3.5rem;font-size:1.15rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;animation:float 3s ease-in-out infinite}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+    /* SECTIONS */
+    .sec-label{font-family:'Space Mono',monospace;font-size:1.05rem;letter-spacing:.3em;text-transform:uppercase;color:var(--pink);margin-bottom:.8rem}
+    .sec-title{font-family:'Caveat',cursive;font-size:clamp(3.1rem,9vw,5rem);margin-bottom:2.8rem;color:var(--pink-soft)}
+    /* COUNTER */
+    .counter-sec{padding:6rem 0}
+    .counter-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.6rem;margin-bottom:2.5rem}
+    .counter-unit{background:var(--glass);border:1px solid var(--glass-border);border-radius:24px;padding:2rem 1rem;text-align:center}
+    .counter-unit .val{font-family:'Space Mono',monospace;font-size:clamp(2.8rem,8vw,4.2rem);font-weight:700;color:var(--pink)}
+    .counter-unit .lbl{font-size:0.95rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-dim);margin-top:.5rem}
+    .counter-since{text-align:center;color:var(--cowboy);font-size:1.5rem}
+    .counter-next{text-align:center;margin-top:1.3rem;font-size:1.35rem;color:var(--text-dim)}
+    .counter-next strong{color:var(--pink)}
+    /* CONSTELLATION */
+    .constellation-sec{padding:6rem 0}
+    .constellation-wrap{position:relative;width:100%;aspect-ratio:16/10;background:var(--glass);border:1px solid var(--glass-border);border-radius:34px;overflow:hidden}
+    .constellation-wrap svg{position:absolute;inset:0;width:100%;height:100%}
+    .constellation-wrap svg line{stroke:rgba(255,107,157,0.3);stroke-width:2;stroke-dasharray:8 8}
+    .c-star{position:absolute;cursor:pointer;z-index:2;transform:translate(-50%,-50%);transition:transform .3s}
+    .c-star:hover{transform:translate(-50%,-50%) scale(1.3)}
+    .c-star .c-dot{width:36px;height:36px;border-radius:50%;background:var(--stars-col);box-shadow:0 0 18px rgba(255,234,167,0.8);transition:all .3s;font-size:16px;display:flex;align-items:center;justify-content:center}
+    .c-star.revealed .c-dot{background:var(--pink);box-shadow:0 0 25px var(--pink-glow)}
+    .c-star .c-label{position:absolute;left:calc(100% + 12px);top:50%;transform:translateY(-50%);font-size:1.05rem;color:var(--text-dim);white-space:nowrap;opacity:0;transition:opacity .3s;font-family:'Space Mono',monospace}
+    .c-star:hover .c-label{opacity:1}
+    .c-hint{text-align:center;margin-top:2rem;font-size:1.25rem;color:var(--text-dim)}
+    .c-progress{text-align:center;margin-top:.8rem;font-family:'Space Mono',monospace;font-size:1.05rem;color:var(--pink);letter-spacing:.1em}
+    /* POPUP */
+    .c-popup{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.9);background:rgba(11,0,20,0.95);border:2px solid var(--pink);border-radius:30px;padding:3rem;text-align:center;z-index:9000;opacity:0;visibility:hidden;transition:all .3s;backdrop-filter:blur(20px);max-width:520px;width:90%}
+    .c-popup.show{opacity:1;visibility:visible;transform:translate(-50%,-50%) scale(1)}
+    .c-popup .cp-emoji{font-size:4.2rem;margin-bottom:.8rem}
+    .c-popup .cp-title{font-family:'Caveat',cursive;font-size:2.5rem;color:var(--pink);margin-bottom:.8rem}
+    .c-popup .cp-text{font-size:1.4rem;color:var(--text-dim);line-height:1.7}
+    .c-popup .cp-close{margin-top:2rem;padding:.9rem 2.5rem;border:1px solid var(--pink);border-radius:999px;background:transparent;color:var(--pink);font-size:1.15rem;cursor:pointer;transition:all .3s;font-family:'Fredoka',sans-serif;font-weight:500}
+    .c-popup .cp-close:hover{background:var(--pink);color:white}
+    /* GALLERY */
+    .gallery-sec{padding:6rem 0}
+    .gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.8rem}
+    .gallery-item{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:1;border:1px solid var(--glass-border);transition:transform .4s,box-shadow .4s}
+    .gallery-item:first-child{grid-column:span 2;aspect-ratio:16/9}
+    .gallery-item:hover{transform:scale(1.02);box-shadow:0 18px 50px var(--pink-glow)}
+    .gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+    .gallery-item:hover img{transform:scale(1.06)}
+    .gallery-item .g-cap{position:absolute;bottom:0;left:0;right:0;padding:1.5rem;background:linear-gradient(to top,rgba(11,0,20,0.9),transparent);opacity:0;transition:opacity .3s}
+    .gallery-item:hover .g-cap{opacity:1}
+    .gallery-item .g-cap p{font-size:1.35rem;color:var(--pink-soft)}
+    /* SOBRES SECRETOS */
+    .sobres-sec{padding:6rem 0}
+    .sobres-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.8rem}
+    .sobre{position:relative;background:var(--glass);border:1px solid var(--glass-border);border-radius:24px;padding:3.2rem 2.2rem;text-align:center;cursor:pointer;transition:all .4s;overflow:hidden}
+    .sobre:hover{transform:translateY(-4px);border-color:var(--pink);box-shadow:0 12px 35px var(--pink-glow)}
+    .sobre .sobre-flap{font-size:3.6rem;margin-bottom:.8rem;transition:transform .4s}
+    .sobre:hover .sobre-flap{transform:rotateX(20deg)}
+    .sobre .sobre-label{font-size:1.15rem;color:var(--text-dim);letter-spacing:.1em;text-transform:uppercase}
+    .sobre .sobre-msg{display:none;margin-top:1.5rem;font-size:1.5rem;color:var(--pink-soft);line-height:1.7;animation:fadeMsg .5s ease}
+    .sobre.opened .sobre-msg{display:block}
+    .sobre.opened .sobre-flap{transform:rotateX(180deg)}
+    .sobre.opened .sobre-label{display:none}
+    @keyframes fadeMsg{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    /* LETTER */
+    .letter-sec{padding:6rem 0}
+    .letter-card{background:var(--glass);border:1px solid rgba(212,165,116,0.25);border-radius:34px;padding:4rem 3.5rem;position:relative}
+    .letter-card::before{content:'';position:absolute;top:-60px;right:25px;width:145px;height:145px;background:url(gato5.png) center/contain no-repeat}
+    .letter-card p{font-size:1.6rem;line-height:2.2;color:var(--text)}
+    .letter-card .signature{margin-top:2.5rem;text-align:right;font-family:'Caveat',cursive;font-size:2.3rem;color:var(--cowboy)}
+    /* PROMISES */
+    .promises-sec{padding:6rem 0}
+    .promises-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.8rem}
+    .promise-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:24px;padding:2.2rem;transition:transform .3s,border-color .3s}
+    .promise-card:hover{transform:translateY(-4px);border-color:var(--pink)}
+    .promise-card .p-icon{font-size:2.8rem;margin-bottom:.8rem}
+    .promise-card p{font-size:1.4rem;color:var(--text-dim);line-height:1.7}
+    /* FOOTER */
+    .page-footer{text-align:center;padding:5rem 0 4rem}
+    .page-footer .f-cat{margin-bottom:1.3rem;display:block;animation:gateBounce 3s ease-in-out infinite}
+    .page-footer .f-cat svg{width:100px;height:100px;display:inline-block}
+    .page-footer p{font-family:'Space Mono',monospace;font-size:1.1rem;letter-spacing:.2em;color:var(--text-dim)}
+
+    /* COMPREHENSIVE RESPONSIVE BREAKPOINTS */
+    @media (max-width: 900px) {
+      .page { padding: 0 1.8rem 5rem; }
+      .letter-card { padding: 3rem 2.2rem; }
+      .letter-card::before { width: 110px; height: 110px; top: -45px; right: 15px; }
+      .promises-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    }
+
+    @media (max-width: 680px) {
+      body { font-size: 1.15rem; }
+      .top-nav { padding: 0.8rem 1.2rem; }
+      .nav-home { font-size: 1rem; }
+      .nav-title { font-size: 0.85rem; }
+      #musicToggle { width: 44px; height: 44px; font-size: 1.2rem; }
+
+      .hero { min-height: 85vh; padding: 4rem 0 2rem; }
+      .hero .tagline { font-size: 1.25rem; }
+      .img-hero { width: 260px !important; height: 260px !important; }
+      .img-gate { width: 280px !important; height: 280px !important; }
+      #gate-btn { padding: 1.1rem 2.5rem; font-size: 1.3rem; }
+
+      .counter-sec, .constellation-sec, .gallery-sec, .sobres-sec, .letter-sec, .promises-sec { padding: 3.5rem 0; }
+      .counter-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+      .counter-unit .val { font-size: 2.2rem; }
+      .counter-unit .lbl { font-size: 0.8rem; }
+      .counter-since { font-size: 1.15rem; }
+      .counter-next { font-size: 1.1rem; }
+
+      .sobres-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+      .sobre { padding: 2.2rem 1.5rem; }
+      .sobre .sobre-msg { font-size: 1.2rem; }
+
+      .gallery-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+      .gallery-item:first-child { grid-column: span 1; aspect-ratio: 4/3; }
+
+      .constellation-wrap { aspect-ratio: 4/5; border-radius: 20px; }
+      .img-const { width: 120px !important; height: 120px !important; }
+      .c-hint { font-size: 1rem; }
+      .c-progress { font-size: 0.9rem; }
+      .c-star .c-dot { width: 30px; height: 30px; font-size: 14px; }
+      .c-star .c-label { font-size: 0.8rem; display: none; }
+      .c-star:hover .c-label { display: block; }
+
+      .letter-card { padding: 2.2rem 1.4rem; border-radius: 24px; }
+      .letter-card p { font-size: 1.2rem; line-height: 1.9; }
+      .letter-card .signature { font-size: 1.7rem; }
+      .letter-card::before { width: 85px; height: 85px; top: -35px; right: 10px; }
+
+      .promises-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+      .promise-card { padding: 1.6rem; }
+      .promise-card p { font-size: 1.15rem; }
+      .img-promises { width: 220px !important; height: 220px !important; }
+
+      .img-footer { width: 160px !important; height: 160px !important; }
+      .page-footer p { font-size: 0.85rem; }
+
+      .c-popup { width: 92%; padding: 2rem 1.2rem; }
+      .c-popup .cp-emoji { font-size: 3rem; }
+      .c-popup .cp-title { font-size: 1.8rem; }
+      .c-popup .cp-text { font-size: 1.1rem; }
+      .c-popup .cp-close { padding: 0.7rem 1.8rem; font-size: 0.95rem; }
+    }
+
+    @media (max-width: 400px) {
+      body { font-size: 1rem; }
+      .img-gate { width: 220px !important; height: 220px !important; }
+      .img-hero { width: 200px !important; height: 200px !important; }
+      #gate-btn { padding: 0.9rem 1.8rem; font-size: 1.1rem; }
+      .counter-grid { grid-template-columns: repeat(2, 1fr); gap: 0.7rem; }
+      .counter-unit { padding: 1.2rem 0.5rem; }
+      .counter-unit .val { font-size: 1.7rem; }
+      .letter-card p { font-size: 1.05rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="space-bg"></div>
+  <div class="space-stars" id="spaceStars"></div>
+
+  <!-- GATE -->
+  <div id="gate">
+    <div class="gate-cat"><img class="img-gate" src="gato3.png" alt="Gatito astronauta" style="width:400px;height:400px;object-fit:contain"></div>
+    <p class="gate-title">4 meses ya mi gatita espacial 🚀</p>
+    <p class="gate-sub">De mi para tú</p>
+    <button id="gate-btn">Ábreme 🐾</button>
+  </div>
+
+  <!-- NAV -->
+  <nav class="top-nav">
+    <a href="../index.html" class="nav-home">← Menú</a>
+    <span class="nav-title">🐱 MES 04 🤠</span>
+    <button id="musicToggle" aria-label="Música">🎵</button>
+  </nav>
+  <audio id="bgMusic" loop preload="auto"><source src="musica.mp3" type="audio/mpeg"></audio>
+
+  <div class="page">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-emoji"><img class="img-hero" src="gato2.png" alt="Gatito vaquero" style="width:360px;height:360px;object-fit:contain"></div>
+      <h1>4 meses</h1>
+      <p class="names"> Gabriel & Alexa </p>
+      <p class="tagline">Cuatro meses de nosotros, y la neta no me canso de ti. Somos como gatitos vaqueros en el espacio — raros, pero felices jsjs 💖</p>
+      <a href="#counter" class="scroll-down">↓ Baja pa ver</a>
+    </section>
+
+    <!-- COUNTER -->
+    <section class="counter-sec" id="counter">
+      <p class="sec-label">🚀 Llevamos juntos</p>
+      <h2 class="sec-title">Y se pasa volando</h2>
+      <div class="counter-grid">
+        <div class="counter-unit"><div class="val" id="cDays">0</div><div class="lbl">días</div></div>
+        <div class="counter-unit"><div class="val" id="cHours">00</div><div class="lbl">horas</div></div>
+        <div class="counter-unit"><div class="val" id="cMins">00</div><div class="lbl">min</div></div>
+        <div class="counter-unit"><div class="val" id="cSecs">00</div><div class="lbl">seg</div></div>
+      </div>
+      <p class="counter-since">Desde el <span id="sinceDate">23 de abril de 2026</span> 🚀</p>
+      <p class="counter-next">Pa'l siguiente mes faltan <strong id="nextCount">—</strong></p>
+    </section>
+
+    <!-- CONSTELLATION -->
+    <section class="constellation-sec">
+      <p class="sec-label">🌟 Nuestra constelación</p>
+      <h2 class="sec-title">Pícale a cada estrella 🤠</h2>
+      <div class="constellation-wrap" id="constWrap">
+        <svg id="constLines" xmlns="http://www.w3.org/2000/svg"></svg>
+      </div>
+      <p class="c-hint">Cada estrella tiene algo nuestro 🐱</p>
+      <div style="text-align:center;margin-top:1rem;opacity:.85">
+        <img class="img-const" src="gato4.png" alt="" style="width:170px;height:170px;object-fit:contain">
+      </div>
+      <p class="c-progress" id="cProg">0 / 8 estrellas descubiertas</p>
+    </section>
+    <div class="c-popup" id="cPopup">
+      <div class="cp-emoji" id="cpEmoji">🐱</div>
+      <div class="cp-title" id="cpTitle">—</div>
+      <p class="cp-text" id="cpText">—</p>
+      <button class="cp-close" id="cpClose">Cerrar 🐾</button>
+    </div>
+
+    <!-- GALLERY -->
+    <section class="gallery-sec">
+      <p class="sec-label">📸 Nosotros</p>
+      <h2 class="sec-title">Fotitos 📷</h2>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </section>
+
+    <!-- SOBRES SECRETOS -->
+    <section class="sobres-sec">
+      <p class="sec-label">💌 Sobres secretos</p>
+      <h2 class="sec-title">Ábreme si te atreves</h2>
+      <div class="sobres-grid">
+        <div class="sobre" onclick="this.classList.toggle('opened')">
+          <div class="sobre-flap">💌</div>
+          <p class="sobre-label">Toca pa abrir</p>
+          <p class="sobre-msg">A veces repito tus audios cuando te extraño mucho. No te lo había dicho jsjs 🙈</p>
+        </div>
+        <div class="sobre" onclick="this.classList.toggle('opened')">
+          <div class="sobre-flap">💌</div>
+          <p class="sobre-label">Toca pa abrir</p>
+          <p class="sobre-msg">Eres la primera persona en la que pienso cuando me despierto y la última antes de dormir diario. 💖</p>
+        </div>
+        <div class="sobre" onclick="this.classList.toggle('opened')">
+          <div class="sobre-flap">💌</div>
+          <p class="sobre-label">Toca pa abrir</p>
+          <p class="sobre-msg">Me encanta cuando te ríes bien fuerte y eres tu misma</p>
+        </div>
+        <div class="sobre" onclick="this.classList.toggle('opened')">
+          <div class="sobre-flap">💌</div>
+          <p class="sobre-label">Toca pa abrir</p>
+          <p class="sobre-msg">Gracias por elegirme a mí. No soy perfecto pero contigo quiero serlo cada día más. Te amo, gatita 🐱💖</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LETTER -->
+    <section class="letter-sec">
+      <p class="sec-label">💌 Pa ti</p>
+      <h2 class="sec-title">Léelo con cuidado y sola </h2>
+      <div class="letter-card">
+        <p>
+          Ey Alexa,
+          <br><br>
+          Ya son 4 meses y la verdad se siente como si hubiera sido ayer cuando empezamos. Pero al mismo tiempo siento que te conozco de toda la vida, es bien raro .
+          <br><br>
+          No soy el mejor con las palabras (ya lo sabes) pero quiero que sepas que eres la persona con la que quiero seguir haciendo todo. Las cosas buenas, las malas, las de masajes a las 10pm ,simplemente  todo.
+          <br><br>
+          Gracias por aguantarme, por quererme con todo y mis payasadas, y por ser la gatita más bonita de este universo. Te quiero bastante y no me voy a cansar de decírtelo aunque te seas penuda.
+          <br><br>
+          esto va por buen camino y la verdad contigo solo quiero dar lo mejor de mi ✨❤️.
+        </p>
+        <p class="signature">— Gabriel </p>
+      </div>
+    </section>
+
+    <!-- PROMISES -->
+    <section class="promises-sec">
+      <p class="sec-label">🗺️ Pendientes</p>
+      <h2 class="sec-title">Cosas que me encantaria hacer contigo</h2>
+      <div style="text-align:center;margin-bottom:2.5rem"><img class="img-promises" src="gato1.png" alt="" style="width:310px;height:310px;object-fit:contain;opacity:.9"></div>
+      <div class="promises-grid">
+        <div class="promise-card"><div class="p-icon">🪐</div><p>Irnos de viaje a donde sea, sin plan, nomas agarrar camino</p></div>
+        <div class="promise-card"><div class="p-icon">🌮</div><p>Encontrar los mejores tacos de Saltillo a las 2am</p></div>
+        <div class="promise-card"><div class="p-icon">📷</div><p>Tomarnos mil fotos más aunque salgas enojada en algunas jsjs</p></div>
+        <div class="promise-card"><div class="p-icon">🛌</div><p>Quedarnos dormidos en llamada otras mil noches</p></div>
+        <div class="promise-card"><div class="p-icon">♾️</div><p>Seguir molestandote con el "ya,ya,ya" siempre,bromis te quiero mucho✨❤️🥰</p></div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="page-footer">
+      <span class="f-cat"><img class="img-footer" src="gato6.png" alt="Gatito espacial" style="width:230px;height:230px;object-fit:contain"></span>
+      <p>4 MESES · Y APENAS ESTAMOS EMPEZANDO 🐱🤠</p>
+    </footer>
+  </div>
+
+  <script src="datos.js"></script>
+  <script>
+  // Stars background
+  (function(){
+    const c=document.getElementById('spaceStars');
+    for(let i=0;i<70;i++){
+      const s=document.createElement('span');s.className='s-star';
+      s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';
+      s.style.setProperty('--d',(2+Math.random()*4)+'s');
+      s.style.animationDelay=Math.random()*3+'s';
+      s.style.width=s.style.height=(1+Math.random()*2.5)+'px';
+      c.appendChild(s);
+    }
+  })();
+
+  // Floating cats
+  (function(){
+    const cats=['🐱','🐾','⭐','🤠','🚀','💖'];
+    for(let i=0;i<12;i++){
+      const el=document.createElement('span');el.className='float-cat';
+      el.textContent=cats[i%cats.length];
+      el.style.left=Math.random()*100+'%';
+      el.style.animationDuration=(10+Math.random()*15)+'s';
+      el.style.animationDelay=Math.random()*12+'s';
+      el.style.fontSize=(1.5+Math.random()*1)+'rem';
+      document.body.appendChild(el);
+    }
+  })();
+
+  // Gate
+  (function(){
+    const gate=document.getElementById('gate'),btn=document.getElementById('gate-btn'),audio=document.getElementById('bgMusic'),mb=document.getElementById('musicToggle');
+    btn.addEventListener('click',()=>{gate.classList.add('open');audio.play().then(()=>{mb.textContent='🎶';mb.classList.add('playing');}).catch(()=>{});});
+    mb.addEventListener('click',()=>{if(audio.paused){audio.play().then(()=>{mb.textContent='🎶';mb.classList.add('playing');}).catch(()=>alert('Agrega musica.mp3 en 4TOMES/'));}else{audio.pause();mb.textContent='🎵';mb.classList.remove('playing');}});
+  })();
+
+  // Counter
+  (function(){
+    const start=new Date(CONFIG.startDate),next=new Date(CONFIG.nextMilestone);
+    const ms=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+    document.getElementById('sinceDate').textContent=start.getDate()+' de '+ms[start.getMonth()]+' de '+start.getFullYear();
+    function pad(n){return String(n).padStart(2,'0');}
+    function tick(){
+      const now=new Date();let diff=Math.max(0,now-start);
+      document.getElementById('cDays').textContent=Math.floor(diff/864e5);
+      document.getElementById('cHours').textContent=pad(Math.floor((diff%864e5)/36e5));
+      document.getElementById('cMins').textContent=pad(Math.floor((diff%36e5)/6e4));
+      document.getElementById('cSecs').textContent=pad(Math.floor((diff%6e4)/1e3));
+      const until=next-now;
+      document.getElementById('nextCount').textContent=until>0?Math.floor(until/864e5)+' días, '+Math.floor((until%864e5)/36e5)+' hrs':'¡Ya llegó! 🎉';
+    }
+    tick();setInterval(tick,1000);
+  })();
+
+  // Constellation
+  (function(){
+    const stars=[
+      {x:15,y:18,emoji:'🎵',title:'Nuestra canción',text:'permiteme'},
+      {x:42,y:10,emoji:'😂',title:'El chiste interno',text:'ya,ya,ya,metemela por favor'},
+      {x:72,y:20,emoji:'🌮',title:'Nuestra comida',text:'Nuestras maruchans con dinamita'},
+      {x:22,y:45,emoji:'📍',title:'Nuestro lugar',text:'La banquita de esa placita donde todo comenzo'},
+      {x:55,y:38,emoji:'😳',title:'La vez más incómoda',text:'Que me viste encureado y no estaba en mis 5 sentidos'},
+      {x:82,y:48,emoji:'🥺',title:'Lo que más me costó decirte',text:'Que me gustabas demasiado y queria iniciar algo contigo'},
+      {x:35,y:72,emoji:'🏆',title:'Nuestro logro juntos',text:'Poder superar cualquie problema d ela relacion juntos'},
+      {x:65,y:75,emoji:'✨',title:'Lo que me imagino de nosotros',text:'Un amor de esos que desafían al tiempo y se quedan para siempre '}
+    ];
+    const connections=[[0,1],[1,2],[0,3],[3,4],[4,5],[2,5],[3,6],[6,7],[4,7]];
+    const wrap=document.getElementById('constWrap');
+    const svg=document.getElementById('constLines');
+    const popup=document.getElementById('cPopup');
+    const progEl=document.getElementById('cProg');
+    let revealed=0;
+
+    stars.forEach((s,i)=>{
+      const el=document.createElement('div');el.className='c-star';
+      el.style.left=s.x+'%';el.style.top=s.y+'%';
+      el.innerHTML=`<div class="c-dot">✦</div><span class="c-label">${s.title}</span>`;
+      el.addEventListener('click',()=>{
+        if(!el.classList.contains('revealed')){el.classList.add('revealed');revealed++;progEl.textContent=revealed===stars.length?'✨ ¡Constelación completa! Meow! 🐱':revealed+' / '+stars.length+' estrellas descubiertas';}
+        document.getElementById('cpEmoji').textContent=s.emoji;
+        document.getElementById('cpTitle').textContent=s.title;
+        document.getElementById('cpText').textContent=s.text;
+        popup.classList.add('show');
+      });
+      wrap.appendChild(el);
+    });
+
+    function drawLines(){
+      const w=wrap.offsetWidth,h=wrap.offsetHeight;
+      svg.setAttribute('viewBox',`0 0 ${w} ${h}`);svg.innerHTML='';
+      connections.forEach(([a,b])=>{
+        const l=document.createElementNS('http://www.w3.org/2000/svg','line');
+        l.setAttribute('x1',stars[a].x/100*w);l.setAttribute('y1',stars[a].y/100*h);
+        l.setAttribute('x2',stars[b].x/100*w);l.setAttribute('y2',stars[b].y/100*h);
+        svg.appendChild(l);
+      });
+    }
+    drawLines();window.addEventListener('resize',drawLines);
+    document.getElementById('cpClose').addEventListener('click',()=>popup.classList.remove('show'));
+    popup.addEventListener('click',e=>{if(e.target===popup)popup.classList.remove('show');});
+  })();
+
+  // Gallery
+  (function(){
+    const grid=document.getElementById('galleryGrid');
+    const photos=[{file:'FOTO1.jpg',cap:'tu y yo 💖'},{file:'FOTO2.jpg',cap:'de este día me acuerdo mucho'},{file:'FOTO3.jpg',cap:'esa sonrisa ✨'},{file:'FOTO4.jpg',cap:'nosotros jsjs 🤠'},{file:'FOTO5.jpg',cap:'4 meses 💖'}];
+    photos.forEach((p,i)=>{
+      const item=document.createElement('div');item.className='gallery-item';
+      item.innerHTML=`<img src="${p.file}" alt="Foto ${i+1}" onerror="this.parentElement.style.background='linear-gradient(135deg,rgba(255,107,157,0.15),rgba(212,165,116,0.1))';this.style.display='none';"><div class="g-cap"><p>${p.cap}</p></div>`;
+      grid.appendChild(item);
+    });
+  })();
+
+  // Scroll Reveal
+  (function(){
+    const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}});},{threshold:0.1});
+    document.querySelectorAll('.gallery-item,.promise-card,.letter-card,.constellation-wrap').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(25px)';el.style.transition='opacity .6s ease,transform .6s ease';obs.observe(el);});
+  })();
+  </script>
+</body>
+</html>
