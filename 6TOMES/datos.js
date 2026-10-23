@@ -33,7 +33,7 @@ Desde ese primer momento supe que contigo todo sería diferente: más brillante,
   {
     id: 2,
     mes: '2do Mes · Mayo / Junio',
-    titulo: 'Descubriendo Nuestro Ritmo 👣',
+    titulo: 'Descubriendonos juntos🙃',
     subtitulo: 'Las primeras salidas, risas y complicidad',
     color: '#ff9248',
     icono: '🧡',
@@ -129,10 +129,10 @@ const CARTA_FINAL = {
   parrafos: [
     'Hoy cumplimos 6 meses juntos... medio año entero desde aquel 23 de abril en el que empezó esta aventura tan bonita.',
     'Parece que fue ayer cuando hablábamos con nervios, y al mismo tiempo siento que te conozco de toda la vida. En estos 182 días me has demostrado lo que es tener a una verdadera compañera: alguien que me apoya en mis locuras y proyectos, que me hace reír con sus caras y su bullying cariñoso, y que me da una paz inmensa con solo escuchar su voz.',
-    'Me encanta todo de ti: desde ese "Buenos días ✨❤️" infaltable de cada mañana, las noches enteras de Roblox y desvelos en llamadas, hasta esos 5 minutos entre salones para verte y llevarte tus tareas o awita:3 pal calor. Cada segundo a tu lado vale oro.',
+    'Me encanta todo de ti: desde ese "Buenos días ✨❤️" infaltable de cada mañana, las noches enteras de Roblox y desvelos en llamadas, hasta esos 5 minutos entre salones para verte y llevarte tus tareas o awita:3 pal calor. Cada segundo a tu lado vale como si fueran diamantes porque necesitan de mucho esfuerzo y dedicacion❤️.',
     'Gracias por permitirme ser quien aprenda contigo, quien baile contigo aunque me equivoque y te pise, y quien te admire cada día recordándote lo hermosa que eres por dentro y por fuera.',
-    'Hoy celebramos medio año, pero nuestra historia apenas está en su prólogo. Estoy listo para los próximos 6 meses, para el primer año y para todo lo que el futuro tenga preparado para los dos.',
-    'Te amo con todo mi corazón, hoy, mañana y siempre. Feliz Medio Año, mi amor. ❤️'
+    'Hoy celebramos medio año, pero nuestra historia apenas está en su inicio:3. Estoy listo para los próximos 6 meses, para el primer año y para todo lo que el futuro tenga preparado para ambos.',
+    'Te amo muchísimo con todo mi corazón, hoy, mañana y siempre. Feliz Medio Año Alexa. ❤️'
   ],
-  firma: 'Siempre tuyo,\nGabriel ✨'
+  firma: 'Te ama, tu novio\nGabriel ✨'
 };

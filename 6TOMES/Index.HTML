@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>🎮 La Misión de los 6 Meses · Gabriel & Alexa 💕</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fredoka:wght@400;500;600;700&family=Outfit:wght@300;400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fredoka:wght@400;500;600;700&family=Outfit:wght@300;400;600;700&family=Press+Start+2P&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --primary: #ff4d88;
@@ -28,7 +32,8 @@
       -webkit-user-select: none;
     }
 
-    html, body {
+    html,
+    body {
       width: 100%;
       height: 100%;
       overflow: hidden;
@@ -73,8 +78,17 @@
     }
 
     @keyframes pulseBadge {
-      0%, 100% { transform: scale(1); box-shadow: 0 0 10px rgba(255,77,136,0.2); }
-      50% { transform: scale(1.04); box-shadow: 0 0 20px rgba(255,77,136,0.4); }
+
+      0%,
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(255, 77, 136, 0.2);
+      }
+
+      50% {
+        transform: scale(1.04);
+        box-shadow: 0 0 20px rgba(255, 77, 136, 0.4);
+      }
     }
 
     .start-title {
@@ -115,8 +129,13 @@
     }
 
     @keyframes floatAvatar {
-      from { transform: translateY(0); }
-      to { transform: translateY(-8px); }
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(-8px);
+      }
     }
 
     .start-instructions {
@@ -237,7 +256,7 @@
     /* ══════════ PROMPT DE INTERACCIÓN ══════════ */
     #interact-prompt {
       position: absolute;
-      bottom: 125px;
+      bottom: calc(var(--safe-bottom) + 24px);
       left: 50%;
       transform: translateX(-50%) translateY(20px);
       z-index: 150;
@@ -245,10 +264,10 @@
       color: #1a0826;
       font-family: 'Fredoka', sans-serif;
       font-weight: 700;
-      font-size: 1.05rem;
-      padding: 12px 24px;
+      font-size: 1.1rem;
+      padding: 14px 28px;
       border-radius: 999px;
-      box-shadow: 0 8px 25px rgba(255, 77, 136, 0.6);
+      box-shadow: 0 8px 30px rgba(255, 77, 136, 0.6);
       display: flex;
       align-items: center;
       gap: 10px;
@@ -266,102 +285,16 @@
     }
 
     @keyframes bouncePrompt {
-      0% { transform: translateX(-50%) translateY(0); }
-      100% { transform: translateX(-50%) translateY(-6px); }
+      0% {
+        transform: translateX(-50%) translateY(0);
+      }
+
+      100% {
+        transform: translateX(-50%) translateY(-6px);
+      }
     }
 
-    /* ══════════ CONTROLES MÓVILES (JOYSTICK TÁCTIL + ACCIÓN) ══════════ */
-    .mobile-controls {
-      position: absolute;
-      bottom: calc(var(--safe-bottom) + 16px);
-      left: 18px;
-      right: 18px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 120;
-      pointer-events: none;
-    }
 
-    /* JOYSTICK VIRTUAL DINÁMICO */
-    .joystick-zone {
-      pointer-events: auto;
-      position: relative;
-      width: 120px;
-      height: 120px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 2px solid rgba(255, 255, 255, 0.22);
-      border-radius: 50%;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.05);
-      touch-action: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .joystick-knob {
-      position: absolute;
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #ff4d88, #9d4edd);
-      border: 2.5px solid rgba(255, 255, 255, 0.85);
-      box-shadow: 0 4px 15px var(--primary-glow);
-      pointer-events: none;
-      transition: transform 0.08s ease-out;
-    }
-
-    .joystick-arrows {
-      position: absolute;
-      inset: 6px;
-      pointer-events: none;
-      opacity: 0.35;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.75rem;
-      color: #fff;
-    }
-
-    /* BOTÓN ACCIÓN */
-    .action-zone {
-      pointer-events: auto;
-    }
-
-    .btn-action {
-      width: 78px;
-      height: 78px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary) 0%, #ffd166 100%);
-      border: 2.5px solid rgba(255, 255, 255, 0.8);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: #1a0826;
-      cursor: pointer;
-      box-shadow: 0 8px 25px rgba(255, 77, 136, 0.6);
-      transition: transform 0.1s, box-shadow 0.1s;
-    }
-
-    .btn-action:active {
-      transform: scale(0.92);
-      box-shadow: 0 3px 12px rgba(255, 77, 136, 0.5);
-    }
-
-    .btn-action-icon {
-      font-size: 1.8rem;
-    }
-
-    .btn-action-label {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-top: -2px;
-    }
 
     /* ══════════ MODAL DE GEMA / RECUERDO (LIMPIO Y SIN RECORTE) ══════════ */
     .modal-overlay {
@@ -565,8 +498,15 @@
     }
 
     @keyframes victoryFadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .victory-badge {
@@ -640,7 +580,7 @@
       top: -20px;
       right: 25px;
       font-size: 2.2rem;
-      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
     }
 
     .letter-saludo {
@@ -704,6 +644,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- ══════════ PANTALLA DE INICIO (AUDIO UNLOCK) ══════════ -->
@@ -719,7 +660,8 @@
     </div>
 
     <div class="start-instructions">
-      Hola mi amor 💖 Explora los <b>6 reinos flotantes</b> y recolecta las <b>6 Gemas de Nuestros Meses</b>. Las fotos de nuestros recuerdos flotan a tu alrededor. Cuando las reúnas todas, ¡el <b>Gran Cofre de Medio Año</b> se abrirá para ti!
+      💖 Explora los <b>6 reinos flotantes</b> y recolecta las <b>6 Gemas de Nuestros Meses</b>. Las fotos de nuestros
+      recuerdos flotan a tu alrededor. Cuando las reúnas todas, ¡el <b>Gran Cofre de Medio Año</b> se abrirá para ti!
     </div>
 
     <button class="btn-start" id="btn-start-game">
@@ -758,27 +700,7 @@
       <span id="prompt-label">TOCAR GEMA</span>
     </div>
 
-    <!-- CONTROLES MÓVILES (JOYSTICK VIRTUAL + BOTÓN ACCIÓN) -->
-    <div class="mobile-controls">
-      <!-- Joystick Táctil Dinámico -->
-      <div class="joystick-zone" id="joystick-zone">
-        <div class="joystick-arrows">
-          <span>◀</span>
-          <span style="margin-top:-60px;">▲</span>
-          <span style="margin-top:60px;">▼</span>
-          <span>▶</span>
-        </div>
-        <div class="joystick-knob" id="joystick-knob"></div>
-      </div>
 
-      <!-- Botón Acción -->
-      <div class="action-zone">
-        <button class="btn-action" id="btn-action">
-          <span class="btn-action-icon">✨</span>
-          <span class="btn-action-label">ACCIÓN</span>
-        </button>
-      </div>
-    </div>
   </div>
 
   <!-- ══════════ MODAL DE GEMA / RECUERDO (LIMPIO Y ESPACIOSO) ══════════ -->
@@ -966,18 +888,18 @@
 
     // Ubicaciones de las fotos flotantes (Polaroids con recuerdos) en el mundo
     const FLOATING_POLAROIDS = [
-      { imgIdx: 0,  x: 140, y: 310, rot: -0.12, w: 90, h: 108, label: 'Mes 1 · El Sí' },
-      { imgIdx: 1,  x: 390, y: 440, rot: 0.14,  w: 90, h: 108, label: 'Nuestro inicio' },
-      { imgIdx: 2,  x: 430, y: 150, rot: -0.10, w: 92, h: 110, label: 'Mes 2 · Risas' },
-      { imgIdx: 3,  x: 620, y: 170, rot: 0.12,  w: 92, h: 110, label: 'Caminando juntos' },
-      { imgIdx: 4,  x: 880, y: 310, rot: -0.14, w: 94, h: 112, label: 'Mes 3 · Razones' },
-      { imgIdx: 5,  x: 680, y: 440, rot: 0.10,  w: 94, h: 112, label: 'Tus abrazos' },
-      { imgIdx: 6,  x: 870, y: 590, rot: -0.11, w: 92, h: 110, label: 'Mes 4 · Roblox' },
-      { imgIdx: 7,  x: 660, y: 730, rot: 0.13,  w: 92, h: 110, label: 'Noches de desvelo' },
-      { imgIdx: 8,  x: 580, y: 860, rot: -0.13, w: 92, h: 110, label: 'Mes 5 · Scrapbook' },
-      { imgIdx: 9,  x: 410, y: 820, rot: 0.09,  w: 92, h: 110, label: 'Buenos días ✨❤️' },
+      { imgIdx: 0, x: 140, y: 310, rot: -0.12, w: 90, h: 108, label: 'Mes 1 · El Sí' },
+      { imgIdx: 1, x: 390, y: 440, rot: 0.14, w: 90, h: 108, label: 'Nuestro inicio' },
+      { imgIdx: 2, x: 430, y: 150, rot: -0.10, w: 92, h: 110, label: 'Mes 2 · Risas' },
+      { imgIdx: 3, x: 620, y: 170, rot: 0.12, w: 92, h: 110, label: 'Caminando juntos' },
+      { imgIdx: 4, x: 880, y: 310, rot: -0.14, w: 94, h: 112, label: 'Mes 3 · Razones' },
+      { imgIdx: 5, x: 680, y: 440, rot: 0.10, w: 94, h: 112, label: 'Tus abrazos' },
+      { imgIdx: 6, x: 870, y: 590, rot: -0.11, w: 92, h: 110, label: 'Mes 4 · Roblox' },
+      { imgIdx: 7, x: 660, y: 730, rot: 0.13, w: 92, h: 110, label: 'Noches de desvelo' },
+      { imgIdx: 8, x: 580, y: 860, rot: -0.13, w: 92, h: 110, label: 'Mes 5 · Scrapbook' },
+      { imgIdx: 9, x: 410, y: 820, rot: 0.09, w: 92, h: 110, label: 'Buenos días ✨❤️' },
       { imgIdx: 10, x: 170, y: 580, rot: -0.15, w: 96, h: 115, label: 'Nuestra historia' },
-      { imgIdx: 11, x: 370, y: 740, rot: 0.12,  w: 96, h: 115, label: '¡Medio Año! 👑' }
+      { imgIdx: 11, x: 370, y: 740, rot: 0.12, w: 96, h: 115, label: '¡Medio Año! 👑' }
     ];
 
     // ── Estado del Juego ──
@@ -1024,12 +946,12 @@
 
     // ── Islas Reorganizadas en Distancias Cercanas y Armónicas ──
     const ISLANDS = [
-      { id: 1, name: 'Santuario del Inicio',    x: 280, y: 380, r: 105, theme: 'sakura',  gemColor: '#ff4d88', icon: '💎', title: 'Mes 1: El Primer Sí', subtitle: '23 de Abril' },
-      { id: 2, name: 'Valle de las Risas',      x: 520, y: 240, r: 105, theme: 'meadow',  gemColor: '#ff9248', icon: '🧡', title: 'Mes 2: Descubriéndonos', subtitle: 'Primeras fotos' },
-      { id: 3, name: 'Bosque de las Razones',   x: 760, y: 380, r: 110, theme: 'rose',    gemColor: '#e559b3', icon: '💖', title: 'Mes 3: 30 Razones', subtitle: 'Tus abrazos y paz' },
-      { id: 4, name: 'Galaxia Gamer & Michis',  x: 740, y: 660, r: 115, theme: 'neon',    gemColor: '#9d4edd', icon: '🐱', title: 'Mes 4: Roblox & Risas', subtitle: 'Noches de desvelo' },
-      { id: 5, name: 'Taller del Scrapbook',    x: 500, y: 760, r: 110, theme: 'warm',    gemColor: '#00b4d8', icon: '📎', title: 'Mes 5: Momentos de Amor', subtitle: 'Buenos días y apoyo' },
-      { id: 6, name: 'Templo de Medio Año',     x: 280, y: 660, r: 130, theme: 'gold',    gemColor: '#ffd166', icon: '⭐', title: 'Mes 6: ¡Medio Año!', subtitle: 'Cofre Dorado' }
+      { id: 1, name: 'Santuario del Inicio', x: 280, y: 380, r: 105, theme: 'sakura', gemColor: '#ff4d88', icon: '💎', title: 'Mes 1: El Primer Sí', subtitle: '23 de Abril' },
+      { id: 2, name: 'Valle de las Risas', x: 520, y: 240, r: 105, theme: 'meadow', gemColor: '#ff9248', icon: '🧡', title: 'Mes 2: Descubriéndonos', subtitle: 'Primeras fotos' },
+      { id: 3, name: 'Bosque de las Razones', x: 760, y: 380, r: 110, theme: 'rose', gemColor: '#e559b3', icon: '💖', title: 'Mes 3: 30 Razones', subtitle: 'Tus abrazos y paz' },
+      { id: 4, name: 'Galaxia Gamer & Michis', x: 740, y: 660, r: 115, theme: 'neon', gemColor: '#9d4edd', icon: '🐱', title: 'Mes 4: Roblox & Risas', subtitle: 'Noches de desvelo' },
+      { id: 5, name: 'Taller del Scrapbook', x: 500, y: 760, r: 110, theme: 'warm', gemColor: '#00b4d8', icon: '📎', title: 'Mes 5: Momentos de Amor', subtitle: 'Buenos días y apoyo' },
+      { id: 6, name: 'Templo de Medio Año', x: 280, y: 660, r: 130, theme: 'gold', gemColor: '#ffd166', icon: '⭐', title: 'Mes 6: ¡Medio Año!', subtitle: 'Cofre Dorado' }
     ];
 
     player.x = ISLANDS[0].x;
@@ -1083,22 +1005,20 @@
       }
     };
 
-    // ── SISTEMA DE CONTROL: JOYSTICK VIRTUAL + TECLADO (A PRUEBA DE BLOQUEOS) ──
+    // ── SISTEMA DE CONTROL: 100% PURO TÁCTIL (TOUCH & DRAG) + TECLADO OPCIONAL ──
     const keys = { up: false, down: false, left: false, right: false };
-    const joystickState = { active: false, dx: 0, dy: 0 };
+    let isPointerDragging = false;
+    let clickEffect = null;
 
     function clearAllInputs() {
       keys.up = false;
       keys.down = false;
       keys.left = false;
       keys.right = false;
-      joystickState.active = false;
-      joystickState.dx = 0;
-      joystickState.dy = 0;
-      const knob = document.getElementById('joystick-knob');
-      if (knob) knob.style.transform = 'translate(0px, 0px)';
+      isPointerDragging = false;
     }
 
+    // Teclado para PC
     window.addEventListener('keydown', (e) => {
       if (['ArrowUp', 'KeyW'].includes(e.code)) keys.up = true;
       if (['ArrowDown', 'KeyS'].includes(e.code)) keys.down = true;
@@ -1114,89 +1034,55 @@
       if (['ArrowRight', 'KeyD'].includes(e.code)) keys.right = false;
     });
 
-    const joystickZone = document.getElementById('joystick-zone');
-    const joystickKnob = document.getElementById('joystick-knob');
-    let joystickPointerId = null;
-
-    joystickZone.addEventListener('pointerdown', (e) => {
-      joystickPointerId = e.pointerId;
-      joystickZone.setPointerCapture(e.pointerId);
-      joystickState.active = true;
-      player.targetX = null;
-      player.targetY = null;
-      handleJoystickMove(e);
-    });
-
-    joystickZone.addEventListener('pointermove', (e) => {
-      if (!joystickState.active || e.pointerId !== joystickPointerId) return;
-      handleJoystickMove(e);
-    });
-
-    function endJoystick(e) {
-      if (e.pointerId === joystickPointerId) {
-        clearAllInputs();
-        joystickPointerId = null;
-      }
+    // Control Táctil Puro en Canvas (Tocar y Arrastrar con el dedo)
+    function getCanvasWorldPos(clientX, clientY) {
+      const rect = canvas.getBoundingClientRect();
+      const screenX = (clientX - rect.left) - width / 2;
+      const screenY = (clientY - rect.top) - height / 2;
+      const worldX = screenX / camera.zoom + camera.x;
+      const worldY = screenY / camera.zoom + camera.y;
+      return { worldX, worldY };
     }
 
-    joystickZone.addEventListener('pointerup', endJoystick);
-    joystickZone.addEventListener('pointercancel', endJoystick);
+    canvas.addEventListener('pointerdown', (e) => {
+      isPointerDragging = true;
+      const pos = getCanvasWorldPos(e.clientX, e.clientY);
+      player.targetX = pos.worldX;
+      player.targetY = pos.worldY;
 
-    window.addEventListener('pointerup', (e) => {
-      if (joystickPointerId === e.pointerId) endJoystick(e);
+      // Efecto de pulso en donde tocó
+      clickEffect = { x: pos.worldX, y: pos.worldY, r: 6, maxR: 28, alpha: 1 };
+
+      // Si tocó directamente sobre una isla o gema cercana, abrirla
+      ISLANDS.forEach(island => {
+        const distTouch = Math.hypot(pos.worldX - island.x, pos.worldY - island.y);
+        const distPlayer = Math.hypot(player.x - island.x, player.y - island.y);
+        if (distTouch < island.r && distPlayer < 90) {
+          openGemModal(island.id);
+        }
+      });
     });
+
+    canvas.addEventListener('pointermove', (e) => {
+      if (!isPointerDragging) return;
+      const pos = getCanvasWorldPos(e.clientX, e.clientY);
+      player.targetX = pos.worldX;
+      player.targetY = pos.worldY;
+    });
+
+    function stopPointer() {
+      isPointerDragging = false;
+    }
+
+    canvas.addEventListener('pointerup', stopPointer);
+    canvas.addEventListener('pointercancel', stopPointer);
+    window.addEventListener('pointerup', stopPointer);
     window.addEventListener('pointercancel', clearAllInputs);
-    window.addEventListener('touchend', (e) => {
-      if (e.touches.length === 0) clearAllInputs();
-    });
+    window.addEventListener('touchend', (e) => { if (e.touches.length === 0) stopPointer(); });
     window.addEventListener('touchcancel', clearAllInputs);
     window.addEventListener('blur', clearAllInputs);
 
-    function handleJoystickMove(e) {
-      const rect = joystickZone.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-
-      let deltaX = e.clientX - centerX;
-      let deltaY = e.clientY - centerY;
-      const dist = Math.hypot(deltaX, deltaY);
-      const maxRadius = 38;
-
-      if (dist > maxRadius) {
-        deltaX = (deltaX / dist) * maxRadius;
-        deltaY = (deltaY / dist) * maxRadius;
-      }
-
-      joystickKnob.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
-
-      if (dist > 5) {
-        joystickState.dx = deltaX / maxRadius;
-        joystickState.dy = deltaY / maxRadius;
-      } else {
-        joystickState.dx = 0;
-        joystickState.dy = 0;
-      }
-    }
-
-    let clickEffect = null;
-    canvas.addEventListener('pointerdown', (e) => {
-      if (e.clientY > height - 160 && e.clientX < 160) return;
-      if (e.clientY > height - 160 && e.clientX > width - 110) return;
-
-      const rect = canvas.getBoundingClientRect();
-      const screenX = (e.clientX - rect.left) - width / 2;
-      const screenY = (e.clientY - rect.top) - height / 2;
-
-      const worldX = screenX / camera.zoom + camera.x;
-      const worldY = screenY / camera.zoom + camera.y;
-
-      player.targetX = worldX;
-      player.targetY = worldY;
-
-      clickEffect = { x: worldX, y: worldY, r: 6, maxR: 26, alpha: 1 };
-    });
-
-    const btnAction = document.getElementById('btn-action');
+    // Prompt de interacción táctil
     const interactPrompt = document.getElementById('interact-prompt');
 
     function triggerAction() {
@@ -1205,10 +1091,6 @@
       }
     }
 
-    btnAction.addEventListener('pointerdown', (e) => {
-      e.preventDefault();
-      triggerAction();
-    });
     interactPrompt.addEventListener('click', triggerAction);
 
     // ── Loop de Actualización y Movimiento ──
@@ -1232,20 +1114,16 @@
       let dx = 0;
       let dy = 0;
 
-      if (joystickState.active && (joystickState.dx !== 0 || joystickState.dy !== 0)) {
-        dx = joystickState.dx;
-        dy = joystickState.dy;
-      } else {
-        if (keys.up) dy -= 1;
-        if (keys.down) dy += 1;
-        if (keys.left) dx -= 1;
-        if (keys.right) dx += 1;
+      // Movimiento por teclado
+      if (keys.up) dy -= 1;
+      if (keys.down) dy += 1;
+      if (keys.left) dx -= 1;
+      if (keys.right) dx += 1;
 
-        if (dx !== 0 && dy !== 0) {
-          const len = Math.hypot(dx, dy);
-          dx /= len;
-          dy /= len;
-        }
+      if (dx !== 0 && dy !== 0) {
+        const len = Math.hypot(dx, dy);
+        dx /= len;
+        dy /= len;
       }
 
       if (player.targetX !== null && player.targetY !== null && dx === 0 && dy === 0) {
@@ -1933,4 +1811,5 @@
     });
   </script>
 </body>
+
 </html>
