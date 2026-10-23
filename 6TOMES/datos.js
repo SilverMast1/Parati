@@ -49,7 +49,7 @@ Aprendí lo que significa querer de verdad: con detalles, con silencios cómodos
   {
     id: 3,
     mes: '3er Mes · Junio / Julio',
-    titulo: 'Las 30 Razones Para Amarte 🌸',
+    titulo: 'Las Miles De Razones Para Amarte 🌸',
     subtitulo: 'Por tu voz, tus abrazos y tu manera única de ser',
     color: '#e559b3',
     icono: '💖',
@@ -60,38 +60,38 @@ Aprendí lo que significa querer de verdad: con detalles, con silencios cómodos
 
 Por ser mi confidente, la guardiana de mis secretos y quien con un solo abrazo tiene el poder mágico de arreglarlo todo y darme paz. Eres mi hogar solo con escuchar tu voz.`,
     fraseClave: '«Por ser tan auténtica y por tu forma tan única de ver la vida con tu locura sin igual.»',
-    stats: '90 Días · 30 razones y miles de motivos más'
+    stats: '90 Días · miles razones y miles de motivos más'
   },
   {
     id: 4,
     mes: '4to Mes · Julio / Agosto',
-    titulo: 'Noches de Roblox, Michis & Risas 🎮🪐',
-    subtitulo: 'Desvelos en llamada, memes y bullying cariñoso',
+    titulo: 'Noches de Juegos',
+    subtitulo: 'Desvelos en llamada y jugandoo',
     color: '#9d4edd',
     icono: '🐱',
     foto: 'mes4.jpg',
     categoria: 'Aventuras',
     resumen: 'Nuestras madrugadas jugando y riéndonos',
-    texto: `Llegó el cuarto mes y con él nuestras mejores noches: "¿Si vamos a jugar Roblox o qué?". Horas y horas en llamada riéndonos de cualquier tontería hasta quedarnos dormidos, entre memes de gatitos y stickers chistosos.
+    texto: `Llegó el cuarto mes y con él nuestras mejores noches: "¿Si vamos a jugar Roblox o qué?". Horas y horas en llamada riéndonos de cualquier tontería hasta quedarnos dormidos, entre memes de el face y reels de insta.
 
-Tu clásico "¿por qué te awitas mijo?", tus preguntas de "- ¿No me quieres?" para hacerme sonreír, y ese "✌️ ahí queda mijo" que me mata de risa. Nuestra relación tiene esa chispa divertida y traviesa que no cambiaría por nada.`,
+Nuestra relación tiene esa chispa divertida y traviesa que no cambiaría por nada.`,
     fraseClave: '«Una constelación de risas donde nunca faltan las ganas de jugar juntos.»',
     stats: '120 Días · Incontables horas en llamada y Roblox'
   },
   {
     id: 5,
     mes: '5to Mes · Agosto / Septiembre',
-    titulo: 'El Scrapbook de Momentos Cotidianos 📓✂️',
-    subtitulo: 'Electrolits, "Buenos días" y apoyo incondicional',
+    titulo: 'El Scrapbook de Nosotros',
+    subtitulo: 'Apoyo incondicional y muchass cosas mas',
     color: '#00b4d8',
     icono: '📎',
     foto: 'mes5.jpg',
     categoria: 'Amor Diario',
     resumen: 'Estar presente en cada pequeño detalle',
-    texto: `Cinco meses recortando recuerdos. El "Buenos días ✨❤️" que nunca falta y me alegra desde temprano, ir contigo entre salones aunque sea cinco minutos, llevarte un electrolit para el calor o esperarte a la salida. Cinco minutos contigo valen por mil horas con cualquiera.
+    texto: `Cinco meses creando momentos juntos. El "Buenos días ✨❤️" que nunca falta y me alegra desde temprano, ir contigo a donde sea hasta tu trabajo, esperar a tu trabajo a que salgas de tus clases. Cinco minutos contigo valen por mil horas con cualquiera.
 
-Y sobre todo: saber que eres mi compañera fiel, la que me sigue y apoya en proyectos y locuras. Ser tu bailador, quien te pise, se equivoque y aprenda junto a ti.`,
-    fraseClave: '«Cinco meses recortando recuerdos... y apenas estamos empezando.»',
+Y sobre todo: saber que eres mi compañera fiel, la que me sigue y apoya en proyectos y locuras. Ser tu bailador, quien te se ria junto a ti, se equivoque y aprenda junto a ti.`,
+    fraseClave: '«Cinco meses creando momentos... y apenas estamos empezando.»',
     stats: '150 Días · Detalles reales que marcan la diferencia'
   },
   {
@@ -106,7 +106,8 @@ Y sobre todo: saber que eres mi compañera fiel, la que me sigue y apoya en proy
     resumen: 'Medio año de amor incondicional',
     texto: `¡Llegamos a los 6 meses, mi niña hermosa! Medio año compartiendo la vida, superando cualquier reto y demostrando que lo nuestro es real, fuerte y sincero.
 
-182 días en los que me has hecho la persona más afortunada del mundo. Gracias por elegirme cada día, por tu amor, por tus abrazos y por soñar a mi lado. Este medio año es solo la primera parada de una vida entera juntos.`,
+182 días en los que me has hecho la persona más afortunada del mundo. Gracias por elegirme cada día, por tu amor, por tus abrazos y por soñar a mi lado. Este medio año es solo la primera parada de una vida entera juntos.
+porque hemos aprendido de nuestros errores y mejorado para una relacion mas sana y mejor✨❤️`,
     fraseClave: '«Medio año a tu lado... ¡y ya quiero vivir todos los años que vienen contigo!»',
     stats: '182 Días · ¡Medio año oficial juntos!'
   }
@@ -128,7 +129,7 @@ const CARTA_FINAL = {
   saludo: 'Para mi niña hermosa, Alexa 💕',
   parrafos: [
     'Hoy cumplimos 6 meses juntos... medio año entero desde aquel 23 de abril en el que empezó esta aventura tan bonita.',
-    'Parece que fue ayer cuando hablábamos con nervios, y al mismo tiempo siento que te conozco de toda la vida. En estos 182 días me has demostrado lo que es tener a una verdadera compañera: alguien que me apoya en mis locuras y proyectos, que me hace reír con sus caras y su bullying cariñoso, y que me da una paz inmensa con solo escuchar su voz.',
+    'Parece que fue ayer cuando hablábamos como amigos, y al mismo tiempo siento que te conozco de toda la vida. En estos 182 días me has demostrado lo que es tener a una verdadera compañera: alguien que me apoya en mis locuras y proyectos, que me hace reír con sus caras y su bullying cariñoso, y que me da una paz inmensa con solo escuchar su voz.',
     'Me encanta todo de ti: desde ese "Buenos días ✨❤️" infaltable de cada mañana, las noches enteras de Roblox y desvelos en llamadas, hasta esos 5 minutos entre salones para verte y llevarte tus tareas o awita:3 pal calor. Cada segundo a tu lado vale como si fueran diamantes porque necesitan de mucho esfuerzo y dedicacion❤️.',
     'Gracias por permitirme ser quien aprenda contigo, quien baile contigo aunque me equivoque y te pise, y quien te admire cada día recordándote lo hermosa que eres por dentro y por fuera.',
     'Hoy celebramos medio año, pero nuestra historia apenas está en su inicio:3. Estoy listo para los próximos 6 meses, para el primer año y para todo lo que el futuro tenga preparado para ambos.',
