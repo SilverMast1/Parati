@@ -88,7 +88,7 @@ Nuestra relación tiene esa chispa divertida y traviesa que no cambiaría por na
     foto: 'mes5.jpg',
     categoria: 'Amor Diario',
     resumen: 'Estar presente en cada pequeño detalle',
-    texto: `Cinco meses creando momentos juntos. El "Buenos días ✨❤️" que nunca falta y me alegra desde temprano, ir contigo a donde sea hasta tu trabajo, esperar a tu trabajo a que salgas de tus clases. Cinco minutos contigo valen por mil horas con cualquiera.
+    texto: `Cinco meses creando momentos juntos. El "Buenos días ✨❤️" que nunca falta y me alegra desde temprano, ir contigo a donde sea, esperar a tu trabajo a que salgas de tus clases. Cinco minutos contigo valen por mil horas con cualquiera.
 
 Y sobre todo: saber que eres mi compañera fiel, la que me sigue y apoya en proyectos y locuras. Ser tu bailador, quien te se ria junto a ti, se equivoque y aprenda junto a ti.`,
     fraseClave: '«Cinco meses creando momentos... y apenas estamos empezando.»',
