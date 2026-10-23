@@ -128,8 +128,8 @@ const CARTA_FINAL = {
   saludo: 'Para mi niña hermosa, Alexa 💕',
   parrafos: [
     'Hoy cumplimos 6 meses juntos... medio año entero desde aquel 23 de abril en el que empezó esta aventura tan bonita.',
-    'Parece que fue ayer cuando hablábamos con nervios, y al mismo tiempo siento que te conozco de toda la vida. En estos 182 días me has demostrado lo que es tener a una verdadera compañera: alguien que me apoya en mis locuras y proyectos, que me hace reír con sus stickers y su bullying cariñoso, y que me da una paz inmensa con solo escuchar su voz.',
-    'Me encanta todo de ti: desde ese "Buenos días ✨❤️" infaltable de cada mañana, las noches enteras de Roblox y desvelo en llamada, hasta esos 5 minutos entre salones para verte y llevarte un electrolit pal calor. Cada segundo a tu lado vale oro.',
+    'Parece que fue ayer cuando hablábamos con nervios, y al mismo tiempo siento que te conozco de toda la vida. En estos 182 días me has demostrado lo que es tener a una verdadera compañera: alguien que me apoya en mis locuras y proyectos, que me hace reír con sus caras y su bullying cariñoso, y que me da una paz inmensa con solo escuchar su voz.',
+    'Me encanta todo de ti: desde ese "Buenos días ✨❤️" infaltable de cada mañana, las noches enteras de Roblox y desvelos en llamadas, hasta esos 5 minutos entre salones para verte y llevarte tus tareas o awita:3 pal calor. Cada segundo a tu lado vale oro.',
     'Gracias por permitirme ser quien aprenda contigo, quien baile contigo aunque me equivoque y te pise, y quien te admire cada día recordándote lo hermosa que eres por dentro y por fuera.',
     'Hoy celebramos medio año, pero nuestra historia apenas está en su prólogo. Estoy listo para los próximos 6 meses, para el primer año y para todo lo que el futuro tenga preparado para los dos.',
     'Te amo con todo mi corazón, hoy, mañana y siempre. Feliz Medio Año, mi amor. ❤️'

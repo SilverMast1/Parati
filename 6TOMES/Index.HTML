@@ -13,12 +13,10 @@
       --primary-glow: rgba(255, 77, 136, 0.5);
       --gold: #ffd166;
       --gold-glow: rgba(255, 209, 102, 0.5);
-      --bg-dark: #0f071e;
-      --bg-card: rgba(26, 14, 46, 0.92);
+      --bg-dark: #0d061a;
       --text-light: #ffffff;
       --text-dim: #c7b8db;
-      --accent-purple: #9d4edd;
-      --safe-bottom: env(safe-area-inset-bottom, 12px);
+      --safe-bottom: env(safe-area-inset-bottom, 16px);
     }
 
     * {
@@ -39,12 +37,12 @@
       color: var(--text-light);
     }
 
-    /* ══════════ PANTALLA DE INICIO / GATE ══════════ */
+    /* ══════════ PANTALLA DE INICIO (GATE) ══════════ */
     #start-screen {
       position: fixed;
       inset: 0;
       z-index: 9999;
-      background: radial-gradient(circle at center, #2b1042 0%, #0c0418 100%);
+      background: radial-gradient(circle at center, #2e1045 0%, #0d0418 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -92,7 +90,6 @@
       font-size: clamp(1rem, 3.8vw, 1.35rem);
       color: #dfcbd5;
       margin-bottom: 24px;
-      font-weight: 400;
     }
 
     .start-avatar-preview {
@@ -100,7 +97,7 @@
       align-items: center;
       justify-content: center;
       gap: 16px;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     .avatar-circle {
@@ -119,7 +116,7 @@
 
     @keyframes floatAvatar {
       from { transform: translateY(0); }
-      to { transform: translateY(-10px); }
+      to { transform: translateY(-8px); }
     }
 
     .start-instructions {
@@ -142,17 +139,17 @@
       background: linear-gradient(135deg, #ff4d88 0%, #ff758c 50%, #ffd166 100%);
       color: #1a0826;
       font-family: 'Fredoka', sans-serif;
-      font-size: 1.35rem;
+      font-size: 1.3rem;
       font-weight: 700;
-      padding: 16px 42px;
+      padding: 16px 40px;
       border: none;
       border-radius: 999px;
       cursor: pointer;
       box-shadow: 0 8px 30px var(--primary-glow);
-      transition: transform 0.2s, box-shadow 0.2s;
       display: inline-flex;
       align-items: center;
       gap: 12px;
+      transition: transform 0.15s;
     }
 
     .btn-start:active {
@@ -178,9 +175,9 @@
     /* ══════════ TOP BAR & HUD ══════════ */
     .top-hud {
       position: absolute;
-      top: 12px;
-      left: 12px;
-      right: 12px;
+      top: 14px;
+      left: 14px;
+      right: 14px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -190,10 +187,10 @@
 
     .hud-btn {
       pointer-events: auto;
-      background: rgba(26, 14, 46, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      background: rgba(26, 14, 46, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-radius: 999px;
       padding: 8px 16px;
       font-family: 'Fredoka', sans-serif;
@@ -204,7 +201,6 @@
       gap: 8px;
       cursor: pointer;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-      transition: transform 0.2s, background 0.2s;
     }
 
     .hud-btn:active {
@@ -214,15 +210,16 @@
     .hud-gems-meter {
       pointer-events: auto;
       cursor: pointer;
-      background: rgba(26, 14, 46, 0.88);
-      border: 1px solid rgba(255, 209, 102, 0.4);
-      backdrop-filter: blur(10px);
+      background: rgba(26, 14, 46, 0.9);
+      border: 1.5px solid rgba(255, 209, 102, 0.45);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-radius: 999px;
       padding: 6px 14px;
       display: flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 0 4px 20px rgba(255, 209, 102, 0.2);
+      box-shadow: 0 4px 20px rgba(255, 209, 102, 0.25);
     }
 
     .gem-dot {
@@ -233,8 +230,8 @@
 
     .gem-dot.collected {
       filter: grayscale(0) opacity(1);
-      transform: scale(1.18);
-      text-shadow: 0 0 10px var(--gold);
+      transform: scale(1.22);
+      text-shadow: 0 0 12px var(--gold);
     }
 
     /* ══════════ PROMPT DE INTERACCIÓN ══════════ */
@@ -273,94 +270,85 @@
       100% { transform: translateX(-50%) translateY(-6px); }
     }
 
-    /* ══════════ CONTROLES TÁCTILES PARA CELULAR ══════════ */
+    /* ══════════ CONTROLES MÓVILES (JOYSTICK TÁCTIL + ACCIÓN) ══════════ */
     .mobile-controls {
       position: absolute;
-      bottom: calc(var(--safe-bottom) + 12px);
-      left: 12px;
-      right: 12px;
+      bottom: calc(var(--safe-bottom) + 16px);
+      left: 18px;
+      right: 18px;
       display: flex;
       justify-content: space-between;
-      align-items: flex-end;
-      z-index: 100;
+      align-items: center;
+      z-index: 120;
       pointer-events: none;
     }
 
-    /* D-PAD VIRTUAL */
-    .dpad-container {
+    /* JOYSTICK VIRTUAL DINÁMICO */
+    .joystick-zone {
       pointer-events: auto;
       position: relative;
-      width: 140px;
-      height: 140px;
-    }
-
-    .dpad-btn {
-      position: absolute;
-      width: 44px;
-      height: 44px;
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(8px);
-      border-radius: 12px;
+      width: 120px;
+      height: 120px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 2px solid rgba(255, 255, 255, 0.22);
+      border-radius: 50%;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.05);
+      touch-action: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.35rem;
-      color: #fff;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-      transition: background 0.1s, transform 0.1s;
     }
 
-    .dpad-btn:active, .dpad-btn.pressed {
-      background: var(--primary);
-      border-color: #fff;
-      transform: scale(0.92);
-      box-shadow: 0 0 15px var(--primary-glow);
-    }
-
-    .dpad-up    { top: 0; left: 48px; }
-    .dpad-down  { bottom: 0; left: 48px; }
-    .dpad-left  { top: 48px; left: 0; }
-    .dpad-right { top: 48px; right: 0; }
-    .dpad-center {
-      top: 48px;
-      left: 48px;
-      width: 44px;
-      height: 44px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
+    .joystick-knob {
+      position: absolute;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff4d88, #9d4edd);
+      border: 2.5px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 4px 15px var(--primary-glow);
       pointer-events: none;
+      transition: transform 0.08s ease-out;
+    }
+
+    .joystick-arrows {
+      position: absolute;
+      inset: 6px;
+      pointer-events: none;
+      opacity: 0.35;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: #fff;
     }
 
     /* BOTÓN ACCIÓN */
-    .action-container {
+    .action-zone {
       pointer-events: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
     }
 
     .btn-action {
-      width: 82px;
-      height: 82px;
+      width: 78px;
+      height: 78px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), #9d4edd);
-      border: 2px solid rgba(255, 255, 255, 0.4);
+      background: linear-gradient(135deg, var(--primary) 0%, #ffd166 100%);
+      border: 2.5px solid rgba(255, 255, 255, 0.8);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      color: #fff;
+      color: #1a0826;
       cursor: pointer;
-      box-shadow: 0 6px 20px var(--primary-glow);
+      box-shadow: 0 8px 25px rgba(255, 77, 136, 0.6);
       transition: transform 0.1s, box-shadow 0.1s;
     }
 
     .btn-action:active {
-      transform: scale(0.9);
-      box-shadow: 0 2px 10px var(--primary-glow);
+      transform: scale(0.92);
+      box-shadow: 0 3px 12px rgba(255, 77, 136, 0.5);
     }
 
     .btn-action-icon {
@@ -368,25 +356,25 @@
     }
 
     .btn-action-label {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       margin-top: -2px;
     }
 
-    /* ══════════ MODAL DE GEMA / RECUERDO ══════════ */
+    /* ══════════ MODAL DE GEMA / RECUERDO (LIMPIO Y SIN RECORTE) ══════════ */
     .modal-overlay {
       position: fixed;
       inset: 0;
       z-index: 9000;
-      background: rgba(10, 4, 20, 0.85);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background: rgba(10, 4, 20, 0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 16px;
+      padding: 18px;
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.3s ease, visibility 0.3s;
@@ -405,7 +393,7 @@
       width: 100%;
       max-height: 88vh;
       overflow-y: auto;
-      padding: 24px;
+      padding: 26px 22px;
       box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7), 0 0 35px var(--gold-glow);
       position: relative;
       transform: scale(0.92);
@@ -422,7 +410,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
 
     .gem-tag {
@@ -449,55 +437,38 @@
       justify-content: center;
     }
 
-    .gem-photo-container {
-      width: 100%;
-      height: 220px;
-      border-radius: 18px;
-      overflow: hidden;
-      margin-bottom: 16px;
-      background: #140826;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-      position: relative;
-    }
-
-    .gem-photo-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
     .gem-title {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: 700;
       color: #fff;
       margin-bottom: 4px;
+      line-height: 1.25;
     }
 
     .gem-subtitle {
       font-size: 0.95rem;
       color: var(--gold);
-      margin-bottom: 14px;
-    }
-
-    .gem-text {
-      font-size: 0.98rem;
-      line-height: 1.6;
-      color: #f0e6ff;
-      white-space: pre-line;
       margin-bottom: 16px;
     }
 
+    .gem-text {
+      font-size: 1.02rem;
+      line-height: 1.65;
+      color: #f3ebff;
+      white-space: pre-line;
+      margin-bottom: 18px;
+    }
+
     .gem-quote {
-      background: rgba(255, 77, 136, 0.12);
+      background: rgba(255, 77, 136, 0.14);
       border-left: 4px solid var(--primary);
       border-radius: 0 12px 12px 0;
-      padding: 10px 14px;
+      padding: 12px 16px;
       font-style: italic;
       color: #ffb3c6;
-      font-size: 0.92rem;
-      margin-bottom: 20px;
+      font-size: 0.95rem;
+      margin-bottom: 22px;
+      line-height: 1.5;
     }
 
     .btn-save-gem {
@@ -506,12 +477,17 @@
       font-family: 'Fredoka', sans-serif;
       font-size: 1.15rem;
       font-weight: 700;
-      padding: 14px;
+      padding: 15px;
       border: none;
       border-radius: 16px;
       cursor: pointer;
       text-align: center;
       box-shadow: 0 6px 20px rgba(255, 209, 102, 0.3);
+      transition: transform 0.15s;
+    }
+
+    .btn-save-gem:active {
+      transform: scale(0.97);
     }
 
     /* ══════════ MODAL DE LA MOCHILA / INVENTARIO ══════════ */
@@ -690,52 +666,6 @@
       white-space: pre-line;
     }
 
-    /* CARRUSEL DE FOTOS */
-    .carousel-section {
-      margin-bottom: 30px;
-      text-align: left;
-    }
-
-    .carousel-title {
-      font-size: 1.35rem;
-      color: #fff;
-      margin-bottom: 12px;
-      text-align: center;
-    }
-
-    .carousel-track {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      gap: 14px;
-      padding-bottom: 10px;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .carousel-slide {
-      flex: 0 0 85%;
-      max-width: 320px;
-      scroll-snap-align: center;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 20px;
-      overflow: hidden;
-    }
-
-    .carousel-slide img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .carousel-slide-caption {
-      padding: 12px;
-      font-size: 0.9rem;
-      color: #ffd6e0;
-      text-align: center;
-    }
-
     .victory-buttons {
       display: flex;
       flex-direction: column;
@@ -765,22 +695,6 @@
       transform: scale(0.97);
     }
 
-    .btn-replay {
-      background: linear-gradient(135deg, var(--primary), #9d4edd);
-      color: #fff;
-      font-family: 'Fredoka', sans-serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-      padding: 14px;
-      border: none;
-      border-radius: 16px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
     /* CONFETTI CANVAS */
     #confetti-canvas {
       position: fixed;
@@ -805,7 +719,7 @@
     </div>
 
     <div class="start-instructions">
-      Hola mi amor 💖 Explora los <b>6 reinos flotantes</b> y recolecta las <b>6 Gemas de Nuestros Meses</b>. Cuando las reúnas todas, ¡el <b>Gran Cofre de Medio Año</b> se abrirá para ti!
+      Hola mi amor 💖 Explora los <b>6 reinos flotantes</b> y recolecta las <b>6 Gemas de Nuestros Meses</b>. Las fotos de nuestros recuerdos flotan a tu alrededor. Cuando las reúnas todas, ¡el <b>Gran Cofre de Medio Año</b> se abrirá para ti!
     </div>
 
     <button class="btn-start" id="btn-start-game">
@@ -844,19 +758,21 @@
       <span id="prompt-label">TOCAR GEMA</span>
     </div>
 
-    <!-- CONTROLES MÓVILES -->
+    <!-- CONTROLES MÓVILES (JOYSTICK VIRTUAL + BOTÓN ACCIÓN) -->
     <div class="mobile-controls">
-      <!-- D-Pad -->
-      <div class="dpad-container" id="dpad">
-        <button class="dpad-btn dpad-up" data-dir="up">▲</button>
-        <button class="dpad-btn dpad-left" data-dir="left">◀</button>
-        <div class="dpad-center"></div>
-        <button class="dpad-btn dpad-right" data-dir="right">▶</button>
-        <button class="dpad-btn dpad-down" data-dir="down">▼</button>
+      <!-- Joystick Táctil Dinámico -->
+      <div class="joystick-zone" id="joystick-zone">
+        <div class="joystick-arrows">
+          <span>◀</span>
+          <span style="margin-top:-60px;">▲</span>
+          <span style="margin-top:60px;">▼</span>
+          <span>▶</span>
+        </div>
+        <div class="joystick-knob" id="joystick-knob"></div>
       </div>
 
-      <!-- Action Button -->
-      <div class="action-container">
+      <!-- Botón Acción -->
+      <div class="action-zone">
         <button class="btn-action" id="btn-action">
           <span class="btn-action-icon">✨</span>
           <span class="btn-action-label">ACCIÓN</span>
@@ -865,16 +781,12 @@
     </div>
   </div>
 
-  <!-- ══════════ MODAL DE GEMA / RECUERDO ══════════ -->
+  <!-- ══════════ MODAL DE GEMA / RECUERDO (LIMPIO Y ESPACIOSO) ══════════ -->
   <div class="modal-overlay" id="gem-modal">
     <div class="gem-card">
       <div class="gem-badge-row">
         <span class="gem-tag" id="modal-gem-tag">Mes 1 · Abril</span>
         <button class="gem-close-btn" id="btn-close-modal">✕</button>
-      </div>
-
-      <div class="gem-photo-container">
-        <img src="" id="modal-gem-photo" alt="Foto del recuerdo" />
       </div>
 
       <h2 class="gem-title" id="modal-gem-title">Título</h2>
@@ -968,7 +880,22 @@
     //  MOTOR Y LÓGICA DE LA MISIÓN DE LOS 6 MESES
     // ══════════════════════════════════════════════════════════════
 
-    // ── Sonidos Retro con Web Audio API (Cero lags, funciona en cualquier celular) ──
+    // Helper para dibujar rectángulos redondeados compatible con cualquier navegador
+    function drawRoundRect(c, x, y, w, h, r) {
+      c.beginPath();
+      c.moveTo(x + r, y);
+      c.lineTo(x + w - r, y);
+      c.quadraticCurveTo(x + w, y, x + w, y + r);
+      c.lineTo(x + w, y + h - r);
+      c.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+      c.lineTo(x + r, y + h);
+      c.quadraticCurveTo(x, y + h, x, y + h - r);
+      c.lineTo(x, y + r);
+      c.quadraticCurveTo(x, y, x + r, y);
+      c.closePath();
+    }
+
+    // ── Sonidos Retro con Web Audio API ──
     const AudioEngine = {
       ctx: null,
       init() {
@@ -984,7 +911,7 @@
       },
       playGemChime() {
         if (!this.ctx) return;
-        const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+        const notes = [523.25, 659.25, 783.99, 1046.50];
         notes.forEach((freq, idx) => {
           const osc = this.ctx.createOscillator();
           const gain = this.ctx.createGain();
@@ -1004,12 +931,12 @@
         const gain = this.ctx.createGain();
         osc.type = 'sine';
         osc.frequency.setValueAtTime(140, this.ctx.currentTime);
-        gain.gain.setValueAtTime(0.04, this.ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.05);
+        gain.gain.setValueAtTime(0.03, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.04);
         osc.connect(gain);
         gain.connect(this.ctx.destination);
         osc.start();
-        osc.stop(this.ctx.currentTime + 0.06);
+        osc.stop(this.ctx.currentTime + 0.05);
       },
       playFanfare() {
         if (!this.ctx) return;
@@ -1029,6 +956,30 @@
       }
     };
 
+    // ── Pre-carga de Fotos de los 5 meses anteriores para flotar en el fondo ──
+    const MEMORY_PHOTOS = [];
+    for (let i = 1; i <= 12; i++) {
+      const img = new Image();
+      img.src = `recuerdos/recuerdo${i}.jpg`;
+      MEMORY_PHOTOS.push(img);
+    }
+
+    // Ubicaciones de las fotos flotantes (Polaroids con recuerdos) en el mundo
+    const FLOATING_POLAROIDS = [
+      { imgIdx: 0,  x: 140, y: 310, rot: -0.12, w: 90, h: 108, label: 'Mes 1 · El Sí' },
+      { imgIdx: 1,  x: 390, y: 440, rot: 0.14,  w: 90, h: 108, label: 'Nuestro inicio' },
+      { imgIdx: 2,  x: 430, y: 150, rot: -0.10, w: 92, h: 110, label: 'Mes 2 · Risas' },
+      { imgIdx: 3,  x: 620, y: 170, rot: 0.12,  w: 92, h: 110, label: 'Caminando juntos' },
+      { imgIdx: 4,  x: 880, y: 310, rot: -0.14, w: 94, h: 112, label: 'Mes 3 · Razones' },
+      { imgIdx: 5,  x: 680, y: 440, rot: 0.10,  w: 94, h: 112, label: 'Tus abrazos' },
+      { imgIdx: 6,  x: 870, y: 590, rot: -0.11, w: 92, h: 110, label: 'Mes 4 · Roblox' },
+      { imgIdx: 7,  x: 660, y: 730, rot: 0.13,  w: 92, h: 110, label: 'Noches de desvelo' },
+      { imgIdx: 8,  x: 580, y: 860, rot: -0.13, w: 92, h: 110, label: 'Mes 5 · Scrapbook' },
+      { imgIdx: 9,  x: 410, y: 820, rot: 0.09,  w: 92, h: 110, label: 'Buenos días ✨❤️' },
+      { imgIdx: 10, x: 170, y: 580, rot: -0.15, w: 96, h: 115, label: 'Nuestra historia' },
+      { imgIdx: 11, x: 370, y: 740, rot: 0.12,  w: 96, h: 115, label: '¡Medio Año! 👑' }
+    ];
+
     // ── Estado del Juego ──
     const GameState = {
       collectedGems: new Set(),
@@ -1038,7 +989,7 @@
       hasWon: false
     };
 
-    // ── Configuración del Mundo y Canvas ──
+    // ── Configuración de Canvas ──
     const canvas = document.getElementById('game-canvas');
     const ctx = canvas.getContext('2d');
     let width = 0;
@@ -1055,82 +1006,105 @@
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    // ── Jugador (Avatar de Alexa con acompañante Gabriel/Michi) ──
+    // ── Jugador (Alexa & Michi) ──
     const player = {
-      x: 0,
-      y: 0,
+      x: 280,
+      y: 390,
       targetX: null,
       targetY: null,
-      speed: 3.8,
+      speed: 4.2,
       vx: 0,
       vy: 0,
-      radius: 20,
+      radius: 18,
       direction: 'down',
       animStep: 0,
-      isMoving: false
+      isMoving: false,
+      stepParticles: []
     };
 
-    // ── Las 6 Islas Flotantes (Reinos de la Historia) ──
-    // Se colocan en un mapa armónico conectado por puentes
+    // ── Islas Reorganizadas en Distancias Cercanas y Armónicas ──
     const ISLANDS = [
-      { id: 1, name: 'Santuario del Comienzo', x: 200,  y: 350, r: 120, color: '#ff6b8b', gemColor: '#ff4d88', icon: '💎', title: 'Mes 1: El Primer Sí' },
-      { id: 2, name: 'Valle de las Risas',     x: 520,  y: 200, r: 125, color: '#ff9248', gemColor: '#ff9248', icon: '🧡', title: 'Mes 2: Descubriéndonos' },
-      { id: 3, name: 'Bosque de las Razones',  x: 840,  y: 350, r: 130, color: '#e559b3', gemColor: '#e559b3', icon: '💖', title: 'Mes 3: 30 Razones' },
-      { id: 4, name: 'Galaxia Gamer & Michis', x: 840,  y: 720, r: 135, color: '#9d4edd', gemColor: '#9d4edd', icon: '🐱', title: 'Mes 4: Roblox & Desvelos' },
-      { id: 5, name: 'Taller del Scrapbook',   x: 520,  y: 860, r: 130, color: '#00b4d8', gemColor: '#00b4d8', icon: '📎', title: 'Mes 5: Momentos de Amor' },
-      { id: 6, name: 'Templo de Medio Año',    x: 200,  y: 720, r: 145, color: '#ffd166', gemColor: '#ffd166', icon: '⭐', title: 'Mes 6: ¡Medio Año!' }
+      { id: 1, name: 'Santuario del Inicio',    x: 280, y: 380, r: 105, theme: 'sakura',  gemColor: '#ff4d88', icon: '💎', title: 'Mes 1: El Primer Sí', subtitle: '23 de Abril' },
+      { id: 2, name: 'Valle de las Risas',      x: 520, y: 240, r: 105, theme: 'meadow',  gemColor: '#ff9248', icon: '🧡', title: 'Mes 2: Descubriéndonos', subtitle: 'Primeras fotos' },
+      { id: 3, name: 'Bosque de las Razones',   x: 760, y: 380, r: 110, theme: 'rose',    gemColor: '#e559b3', icon: '💖', title: 'Mes 3: 30 Razones', subtitle: 'Tus abrazos y paz' },
+      { id: 4, name: 'Galaxia Gamer & Michis',  x: 740, y: 660, r: 115, theme: 'neon',    gemColor: '#9d4edd', icon: '🐱', title: 'Mes 4: Roblox & Risas', subtitle: 'Noches de desvelo' },
+      { id: 5, name: 'Taller del Scrapbook',    x: 500, y: 760, r: 110, theme: 'warm',    gemColor: '#00b4d8', icon: '📎', title: 'Mes 5: Momentos de Amor', subtitle: 'Buenos días y apoyo' },
+      { id: 6, name: 'Templo de Medio Año',     x: 280, y: 660, r: 130, theme: 'gold',    gemColor: '#ffd166', icon: '⭐', title: 'Mes 6: ¡Medio Año!', subtitle: 'Cofre Dorado' }
     ];
 
-    // Posición inicial del jugador (cerca de la Isla 1)
     player.x = ISLANDS[0].x;
-    player.y = ISLANDS[0].y + 20;
+    player.y = ISLANDS[0].y + 10;
 
-    // Conexiones / Puentes de Luz entre Islas
     const BRIDGES = [
-      [0, 1], // Isla 1 -> Isla 2
-      [1, 2], // Isla 2 -> Isla 3
-      [2, 3], // Isla 3 -> Isla 4
-      [3, 4], // Isla 4 -> Isla 5
-      [4, 5], // Isla 5 -> Isla 6
-      [5, 0]  // Isla 6 -> Isla 1 (Cierra el ciclo)
+      [0, 1], // 1 -> 2
+      [1, 2], // 2 -> 3
+      [2, 3], // 3 -> 4
+      [3, 4], // 4 -> 5
+      [4, 5], // 5 -> 6
+      [5, 0]  // 6 -> 1
     ];
 
-    // ── Partículas de Ambiente (Estrellas / Corazones flotantes) ──
-    const ambientParticles = [];
-    for (let i = 0; i < 45; i++) {
-      ambientParticles.push({
-        x: Math.random() * 1200,
-        y: Math.random() * 1200,
-        size: Math.random() * 3 + 1,
-        speedY: Math.random() * 0.4 + 0.2,
-        opacity: Math.random() * 0.7 + 0.3,
-        pulse: Math.random() * Math.PI
+    // Estrellas titilantes
+    const cosmicStars = [];
+    for (let i = 0; i < 65; i++) {
+      cosmicStars.push({
+        x: Math.random() * 1400 - 200,
+        y: Math.random() * 1400 - 200,
+        r: Math.random() * 2.2 + 0.8,
+        color: ['#ffffff', '#ffd6e0', '#ffd166', '#c7b8db', '#ff8fab'][Math.floor(Math.random() * 5)],
+        pulse: Math.random() * Math.PI * 2,
+        speed: Math.random() * 0.03 + 0.015
       });
     }
 
-    // ── Cámara que sigue al jugador en celular ──
+    // Pétalos flotantes
+    const floatingPetals = [];
+    for (let i = 0; i < 28; i++) {
+      floatingPetals.push({
+        x: Math.random() * 1200 - 100,
+        y: Math.random() * 1200 - 100,
+        vx: Math.random() * 0.6 + 0.3,
+        vy: Math.random() * 0.5 + 0.2,
+        rot: Math.random() * Math.PI,
+        size: Math.random() * 5 + 4
+      });
+    }
+
+    // Cámara con suave centrado dinámico
     const camera = {
-      x: 0,
-      y: 0,
+      x: player.x,
+      y: player.y,
+      zoom: 1.15,
       update() {
-        const targetX = player.x - width / 2;
-        const targetY = player.y - height / 2;
-        this.x += (targetX - this.x) * 0.1;
-        this.y += (targetY - this.y) * 0.1;
+        const targetX = player.x;
+        const targetY = player.y;
+        this.x += (targetX - this.x) * 0.12;
+        this.y += (targetY - this.y) * 0.12;
       }
     };
 
-    // ── Controles de Teclado y D-Pad ──
+    // ── SISTEMA DE CONTROL: JOYSTICK VIRTUAL + TECLADO (A PRUEBA DE BLOQUEOS) ──
     const keys = { up: false, down: false, left: false, right: false };
+    const joystickState = { active: false, dx: 0, dy: 0 };
+
+    function clearAllInputs() {
+      keys.up = false;
+      keys.down = false;
+      keys.left = false;
+      keys.right = false;
+      joystickState.active = false;
+      joystickState.dx = 0;
+      joystickState.dy = 0;
+      const knob = document.getElementById('joystick-knob');
+      if (knob) knob.style.transform = 'translate(0px, 0px)';
+    }
 
     window.addEventListener('keydown', (e) => {
       if (['ArrowUp', 'KeyW'].includes(e.code)) keys.up = true;
       if (['ArrowDown', 'KeyS'].includes(e.code)) keys.down = true;
       if (['ArrowLeft', 'KeyA'].includes(e.code)) keys.left = true;
       if (['ArrowRight', 'KeyD'].includes(e.code)) keys.right = true;
-      if (['Space', 'KeyE', 'Enter'].includes(e.code)) {
-        triggerAction();
-      }
+      if (['Space', 'KeyE', 'Enter'].includes(e.code)) triggerAction();
     });
 
     window.addEventListener('keyup', (e) => {
@@ -1140,45 +1114,88 @@
       if (['ArrowRight', 'KeyD'].includes(e.code)) keys.right = false;
     });
 
-    // Touch D-Pad Events (Multi-touch support)
-    const dpadButtons = document.querySelectorAll('.dpad-btn');
-    dpadButtons.forEach(btn => {
-      const dir = btn.getAttribute('data-dir');
-      const startPress = (e) => {
-        e.preventDefault();
-        keys[dir] = true;
-        btn.classList.add('pressed');
-        player.targetX = null;
-        player.targetY = null;
-      };
-      const endPress = (e) => {
-        e.preventDefault();
-        keys[dir] = false;
-        btn.classList.remove('pressed');
-      };
+    const joystickZone = document.getElementById('joystick-zone');
+    const joystickKnob = document.getElementById('joystick-knob');
+    let joystickPointerId = null;
 
-      btn.addEventListener('touchstart', startPress, { passive: false });
-      btn.addEventListener('touchend', endPress, { passive: false });
-      btn.addEventListener('mousedown', startPress);
-      btn.addEventListener('mouseup', endPress);
-      btn.addEventListener('mouseleave', endPress);
+    joystickZone.addEventListener('pointerdown', (e) => {
+      joystickPointerId = e.pointerId;
+      joystickZone.setPointerCapture(e.pointerId);
+      joystickState.active = true;
+      player.targetX = null;
+      player.targetY = null;
+      handleJoystickMove(e);
     });
 
-    // Tap/Click to Move on Canvas (Super cómodo para celular)
+    joystickZone.addEventListener('pointermove', (e) => {
+      if (!joystickState.active || e.pointerId !== joystickPointerId) return;
+      handleJoystickMove(e);
+    });
+
+    function endJoystick(e) {
+      if (e.pointerId === joystickPointerId) {
+        clearAllInputs();
+        joystickPointerId = null;
+      }
+    }
+
+    joystickZone.addEventListener('pointerup', endJoystick);
+    joystickZone.addEventListener('pointercancel', endJoystick);
+
+    window.addEventListener('pointerup', (e) => {
+      if (joystickPointerId === e.pointerId) endJoystick(e);
+    });
+    window.addEventListener('pointercancel', clearAllInputs);
+    window.addEventListener('touchend', (e) => {
+      if (e.touches.length === 0) clearAllInputs();
+    });
+    window.addEventListener('touchcancel', clearAllInputs);
+    window.addEventListener('blur', clearAllInputs);
+
+    function handleJoystickMove(e) {
+      const rect = joystickZone.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+
+      let deltaX = e.clientX - centerX;
+      let deltaY = e.clientY - centerY;
+      const dist = Math.hypot(deltaX, deltaY);
+      const maxRadius = 38;
+
+      if (dist > maxRadius) {
+        deltaX = (deltaX / dist) * maxRadius;
+        deltaY = (deltaY / dist) * maxRadius;
+      }
+
+      joystickKnob.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+
+      if (dist > 5) {
+        joystickState.dx = deltaX / maxRadius;
+        joystickState.dy = deltaY / maxRadius;
+      } else {
+        joystickState.dx = 0;
+        joystickState.dy = 0;
+      }
+    }
+
+    let clickEffect = null;
     canvas.addEventListener('pointerdown', (e) => {
-      // Ignorar toques sobre el D-Pad o botones flotantes
       if (e.clientY > height - 160 && e.clientX < 160) return;
       if (e.clientY > height - 160 && e.clientX > width - 110) return;
 
       const rect = canvas.getBoundingClientRect();
-      const clickX = e.clientX - rect.left + camera.x;
-      const clickY = e.clientY - rect.top + camera.y;
+      const screenX = (e.clientX - rect.left) - width / 2;
+      const screenY = (e.clientY - rect.top) - height / 2;
 
-      player.targetX = clickX;
-      player.targetY = clickY;
+      const worldX = screenX / camera.zoom + camera.x;
+      const worldY = screenY / camera.zoom + camera.y;
+
+      player.targetX = worldX;
+      player.targetY = worldY;
+
+      clickEffect = { x: worldX, y: worldY, r: 6, maxR: 26, alpha: 1 };
     });
 
-    // Botón de Acción
     const btnAction = document.getElementById('btn-action');
     const interactPrompt = document.getElementById('interact-prompt');
 
@@ -1188,10 +1205,13 @@
       }
     }
 
-    btnAction.addEventListener('click', triggerAction);
+    btnAction.addEventListener('pointerdown', (e) => {
+      e.preventDefault();
+      triggerAction();
+    });
     interactPrompt.addEventListener('click', triggerAction);
 
-    // ── Ciclo Principal del Juego ──
+    // ── Loop de Actualización y Movimiento ──
     let lastTime = performance.now();
     let stepSoundTimer = 0;
 
@@ -1212,13 +1232,22 @@
       let dx = 0;
       let dy = 0;
 
-      // Movimiento por teclado / D-Pad
-      if (keys.up) dy -= 1;
-      if (keys.down) dy += 1;
-      if (keys.left) dx -= 1;
-      if (keys.right) dx += 1;
+      if (joystickState.active && (joystickState.dx !== 0 || joystickState.dy !== 0)) {
+        dx = joystickState.dx;
+        dy = joystickState.dy;
+      } else {
+        if (keys.up) dy -= 1;
+        if (keys.down) dy += 1;
+        if (keys.left) dx -= 1;
+        if (keys.right) dx += 1;
 
-      // Movimiento por Tap/Touch
+        if (dx !== 0 && dy !== 0) {
+          const len = Math.hypot(dx, dy);
+          dx /= len;
+          dy /= len;
+        }
+      }
+
       if (player.targetX !== null && player.targetY !== null && dx === 0 && dy === 0) {
         const diffX = player.targetX - player.x;
         const diffY = player.targetY - player.y;
@@ -1233,25 +1262,18 @@
         }
       }
 
-      // Normalizar dirección diagonal
-      if (dx !== 0 && dy !== 0) {
-        const len = Math.hypot(dx, dy);
-        dx /= len;
-        dy /= len;
-      }
-
       player.vx = dx * player.speed;
       player.vy = dy * player.speed;
 
       player.x += player.vx;
       player.y += player.vy;
 
-      // Actualizar animación
-      player.isMoving = (dx !== 0 || dy !== 0);
+      player.isMoving = (Math.abs(dx) > 0.1 || Math.abs(dy) > 0.1);
+
       if (player.isMoving) {
-        player.animStep += 0.22;
+        player.animStep += 0.24;
         stepSoundTimer += 1;
-        if (stepSoundTimer % 24 === 0) {
+        if (stepSoundTimer % 22 === 0) {
           AudioEngine.playStep();
         }
 
@@ -1260,9 +1282,25 @@
         } else {
           player.direction = dy > 0 ? 'down' : 'up';
         }
+
+        if (Math.random() < 0.28) {
+          player.stepParticles.push({
+            x: player.x + (Math.random() - 0.5) * 14,
+            y: player.y + 14,
+            r: Math.random() * 4 + 3,
+            alpha: 0.8,
+            symbol: ['💖', '✨', '🌸'][Math.floor(Math.random() * 3)]
+          });
+        }
       }
 
-      // Detección de proximidad a gemas / islas
+      for (let i = player.stepParticles.length - 1; i >= 0; i--) {
+        const p = player.stepParticles[i];
+        p.y -= 0.4;
+        p.alpha -= 0.025;
+        if (p.alpha <= 0) player.stepParticles.splice(i, 1);
+      }
+
       checkProximity();
     }
 
@@ -1294,168 +1332,307 @@
       }
     }
 
-    // ── Renderizado Gráfico en Canvas ──
+    // ── Renderizado Gráfico Hermoso y Encantador ──
     function render() {
       ctx.clearRect(0, 0, width, height);
 
+      drawCosmicSky();
+
       ctx.save();
-      // Aplicar desplazamiento de cámara
+      ctx.translate(width / 2, height / 2);
+      ctx.scale(camera.zoom, camera.zoom);
       ctx.translate(-camera.x, -camera.y);
 
-      // 1. Fondo de Estrellas y Nebulosas
-      drawBackground();
+      // 1. Fotos flotantes de los 5 meses en el fondo del mundo
+      drawFloatingPolaroids();
 
-      // 2. Puentes de Luz entre Islas
+      // 2. Puentes de estrellas
       drawBridges();
 
-      // 3. Islas Flotantes
+      // 3. Islas flotantes
       ISLANDS.forEach(island => drawIsland(island));
 
-      // 4. Gemas Flotantes / Cofre Dorado
+      // 4. Efecto de click
+      if (clickEffect) {
+        ctx.strokeStyle = `rgba(255, 107, 136, ${clickEffect.alpha})`;
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.arc(clickEffect.x, clickEffect.y, clickEffect.r, 0, Math.PI * 2);
+        ctx.stroke();
+        clickEffect.r += 1.2;
+        clickEffect.alpha -= 0.04;
+        if (clickEffect.alpha <= 0) clickEffect = null;
+      }
+
+      // 5. Gemas / Cofre Dorado
       ISLANDS.forEach(island => drawGem(island));
 
-      // 5. Jugador y Compañero
+      // 6. Jugador y Michi
       drawPlayer();
 
       ctx.restore();
+
+      drawPetals();
     }
 
-    function drawBackground() {
-      // Nebulosas suaves
-      const grad = ctx.createRadialGradient(500, 500, 50, 500, 500, 800);
-      grad.addColorStop(0, 'rgba(43, 16, 70, 0.4)');
-      grad.addColorStop(1, 'rgba(10, 4, 20, 0)');
-      ctx.fillStyle = grad;
-      ctx.fillRect(-200, -200, 1500, 1500);
+    function drawCosmicSky() {
+      const skyGrad = ctx.createRadialGradient(width / 2, height / 2, 80, width / 2, height / 2, Math.max(width, height));
+      skyGrad.addColorStop(0, '#1c0b30');
+      skyGrad.addColorStop(0.5, '#120524');
+      skyGrad.addColorStop(1, '#080210');
+      ctx.fillStyle = skyGrad;
+      ctx.fillRect(0, 0, width, height);
 
-      // Partículas flotantes
-      ambientParticles.forEach(p => {
-        p.y -= p.speedY;
-        p.pulse += 0.03;
-        if (p.y < 0) p.y = 1200;
-
-        ctx.fillStyle = `rgba(255, 230, 255, ${p.opacity * (0.6 + 0.4 * Math.sin(p.pulse))})`;
+      cosmicStars.forEach(s => {
+        s.pulse += s.speed;
+        const alpha = 0.35 + 0.55 * Math.sin(s.pulse);
+        ctx.fillStyle = s.color;
+        ctx.globalAlpha = Math.max(0.1, alpha);
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.arc(s.x % width, s.y % height, s.r, 0, Math.PI * 2);
         ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+    }
+
+    // ── DIBUJAR POLAROIDS FLOTANTES DE NUESTRA HISTORIA ──
+    function drawFloatingPolaroids() {
+      const time = performance.now() * 0.002;
+
+      FLOATING_POLAROIDS.forEach((mem, idx) => {
+        const img = MEMORY_PHOTOS[mem.imgIdx];
+        const bob = Math.sin(time + idx * 1.4) * 6;
+        const px = mem.x;
+        const py = mem.y + bob;
+
+        ctx.save();
+        ctx.translate(px, py);
+        ctx.rotate(mem.rot + Math.sin(time * 0.7 + idx) * 0.025);
+
+        // Sombra de la foto polaroid flotante
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.45)';
+        drawRoundRect(ctx, -mem.w / 2 + 5, -mem.h / 2 + 8, mem.w, mem.h, 8);
+        ctx.fill();
+
+        // Marco polaroid blanco/crema
+        ctx.fillStyle = '#fffdfa';
+        drawRoundRect(ctx, -mem.w / 2, -mem.h / 2, mem.w, mem.h, 8);
+        ctx.fill();
+
+        // Cinta adhesiva decorativa arriba
+        ctx.fillStyle = idx % 2 === 0 ? 'rgba(255, 180, 200, 0.8)' : 'rgba(255, 218, 160, 0.8)';
+        ctx.fillRect(-18, -mem.h / 2 - 4, 36, 9);
+
+        // Imagen recortada dentro del marco
+        const photoW = mem.w - 12;
+        const photoH = mem.h - 28;
+
+        if (img && img.complete && img.naturalWidth > 0) {
+          ctx.save();
+          drawRoundRect(ctx, -photoW / 2, -mem.h / 2 + 6, photoW, photoH, 4);
+          ctx.clip();
+          ctx.drawImage(img, -photoW / 2, -mem.h / 2 + 6, photoW, photoH);
+          ctx.restore();
+        } else {
+          ctx.fillStyle = '#e5dacf';
+          ctx.fillRect(-photoW / 2, -mem.h / 2 + 6, photoW, photoH);
+        }
+
+        // Borde interior fino
+        ctx.strokeStyle = 'rgba(0,0,0,0.06)';
+        ctx.lineWidth = 1;
+        drawRoundRect(ctx, -photoW / 2, -mem.h / 2 + 6, photoW, photoH, 4);
+        ctx.stroke();
+
+        // Pie de foto estilo manuscrito
+        ctx.fillStyle = '#4a3b32';
+        ctx.font = '600 11px Caveat, cursive';
+        ctx.textAlign = 'center';
+        ctx.fillText(mem.label, 0, mem.h / 2 - 6);
+
+        // Corazoncito en la esquina
+        ctx.font = '10px serif';
+        ctx.fillText('💖', mem.w / 2 - 9, -mem.h / 2 + 13);
+
+        ctx.restore();
+      });
+    }
+
+    function drawPetals() {
+      floatingPetals.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.rot += 0.02;
+
+        if (p.x > width + 20) p.x = -20;
+        if (p.y > height + 20) p.y = -20;
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        ctx.fillStyle = 'rgba(255, 182, 193, 0.45)';
+        ctx.beginPath();
+        ctx.ellipse(0, 0, p.size, p.size * 0.5, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
       });
     }
 
     function drawBridges() {
+      const time = performance.now() * 0.002;
       BRIDGES.forEach(([i1, i2]) => {
         const from = ISLANDS[i1];
         const to = ISLANDS[i2];
 
-        // Línea de brillo exterior
-        ctx.strokeStyle = 'rgba(255, 209, 102, 0.25)';
-        ctx.lineWidth = 14;
+        ctx.strokeStyle = 'rgba(255, 209, 102, 0.18)';
+        ctx.lineWidth = 18;
         ctx.lineCap = 'round';
         ctx.beginPath();
         ctx.moveTo(from.x, from.y);
         ctx.lineTo(to.x, to.y);
         ctx.stroke();
 
-        // Línea central de luz
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.7)';
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.85)';
         ctx.lineWidth = 4;
-        ctx.beginPath();
-        ctx.moveTo(from.x, from.y);
-        ctx.lineTo(to.x, to.y);
         ctx.stroke();
+
+        for (let t = 0.2; t <= 0.8; t += 0.2) {
+          const bx = from.x + (to.x - from.x) * t;
+          const by = from.y + (to.y - from.y) * t + Math.sin(time + t * 5) * 3;
+          ctx.fillStyle = '#ffd166';
+          ctx.beginPath();
+          ctx.arc(bx, by, 3.5, 0, Math.PI * 2);
+          ctx.fill();
+        }
       });
     }
 
     function drawIsland(island) {
-      // Sombra proyectada
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.35)';
+      const px = island.x;
+      const py = island.y;
+      const r = island.r;
+
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
       ctx.beginPath();
-      ctx.ellipse(island.x, island.y + 25, island.r, island.r * 0.65, 0, 0, Math.PI * 2);
+      ctx.ellipse(px, py + 34, r * 1.05, r * 0.55, 0, 0, Math.PI * 2);
       ctx.fill();
 
-      // Capa de tierra de la isla (profundidad 3D)
-      ctx.fillStyle = '#221133';
+      const rockGrad = ctx.createLinearGradient(px, py, px, py + 45);
+      rockGrad.addColorStop(0, '#2e1947');
+      rockGrad.addColorStop(1, '#160a24');
+      ctx.fillStyle = rockGrad;
       ctx.beginPath();
-      ctx.ellipse(island.x, island.y + 12, island.r, island.r * 0.75, 0, 0, Math.PI * 2);
+      ctx.ellipse(px, py + 18, r, r * 0.68, 0, 0, Math.PI * 2);
       ctx.fill();
 
-      // Superficie brillante de la isla
-      const islandGrad = ctx.createRadialGradient(island.x, island.y - 10, 10, island.x, island.y, island.r);
-      islandGrad.addColorStop(0, island.color);
-      islandGrad.addColorStop(0.7, '#2f1542');
-      islandGrad.addColorStop(1, '#1b0a28');
-
-      ctx.fillStyle = islandGrad;
-      ctx.beginPath();
-      ctx.ellipse(island.x, island.y, island.r, island.r * 0.75, 0, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Borde brillante de cristal
-      ctx.strokeStyle = island.gemColor;
-      ctx.lineWidth = 2.5;
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+      ctx.lineWidth = 2;
       ctx.stroke();
 
-      // Rótulo de la Isla
-      ctx.fillStyle = '#ffffff';
-      ctx.font = '600 13px Fredoka, sans-serif';
+      const topGrad = ctx.createRadialGradient(px, py - 10, 5, px, py, r);
+      if (island.theme === 'sakura') {
+        topGrad.addColorStop(0, '#ff758c');
+        topGrad.addColorStop(0.7, '#8f2d56');
+        topGrad.addColorStop(1, '#441432');
+      } else if (island.theme === 'meadow') {
+        topGrad.addColorStop(0, '#ff9966');
+        topGrad.addColorStop(0.7, '#a04820');
+        topGrad.addColorStop(1, '#461b0c');
+      } else if (island.theme === 'rose') {
+        topGrad.addColorStop(0, '#e559b3');
+        topGrad.addColorStop(0.7, '#7b287d');
+        topGrad.addColorStop(1, '#3b1042');
+      } else if (island.theme === 'neon') {
+        topGrad.addColorStop(0, '#9d4edd');
+        topGrad.addColorStop(0.7, '#481d7a');
+        topGrad.addColorStop(1, '#1f0838');
+      } else if (island.theme === 'warm') {
+        topGrad.addColorStop(0, '#00b4d8');
+        topGrad.addColorStop(0.7, '#0077b6');
+        topGrad.addColorStop(1, '#032840');
+      } else { // gold
+        topGrad.addColorStop(0, '#ffd166');
+        topGrad.addColorStop(0.65, '#c98a1a');
+        topGrad.addColorStop(1, '#472d05');
+      }
+
+      ctx.fillStyle = topGrad;
+      ctx.beginPath();
+      ctx.ellipse(px, py, r, r * 0.68, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.strokeStyle = island.gemColor;
+      ctx.lineWidth = 2.8;
+      ctx.shadowColor = island.gemColor;
+      ctx.shadowBlur = 12;
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.12)';
+      ctx.beginPath();
+      ctx.ellipse(px, py, r * 0.55, r * 0.36, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.font = '700 13px Fredoka, sans-serif';
       ctx.textAlign = 'center';
-      ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
+      ctx.fillStyle = '#ffffff';
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
       ctx.shadowBlur = 6;
-      ctx.fillText(island.name, island.x, island.y + island.r * 0.6);
+      ctx.fillText(island.name, px, py + r * 0.52);
+
+      ctx.font = '500 11px Outfit, sans-serif';
+      ctx.fillStyle = '#ffd166';
+      ctx.fillText(island.subtitle, px, py + r * 0.52 + 15);
       ctx.shadowBlur = 0;
     }
 
     function drawGem(island) {
       const time = performance.now() * 0.003;
-      const bobbing = Math.sin(time + island.id) * 7;
+      const bobbing = Math.sin(time + island.id * 1.2) * 6;
       const isCollected = GameState.collectedGems.has(island.id);
+      const gx = island.x;
+      const gy = island.y - 12 + bobbing;
 
       if (island.id === 6) {
-        // COFRE DORADO DE MEDIO AÑO
-        const chestX = island.x;
-        const chestY = island.y - 15 + bobbing;
-
-        // Aura de luz dorada
-        const glowGrad = ctx.createRadialGradient(chestX, chestY, 10, chestX, chestY, 55);
-        glowGrad.addColorStop(0, 'rgba(255, 209, 102, 0.7)');
-        glowGrad.addColorStop(1, 'rgba(255, 209, 102, 0)');
-        ctx.fillStyle = glowGrad;
+        const glow = ctx.createRadialGradient(gx, gy, 8, gx, gy, 60);
+        glow.addColorStop(0, 'rgba(255, 209, 102, 0.8)');
+        glow.addColorStop(1, 'rgba(255, 209, 102, 0)');
+        ctx.fillStyle = glow;
         ctx.beginPath();
-        ctx.arc(chestX, chestY, 55, 0, Math.PI * 2);
+        ctx.arc(gx, gy, 60, 0, Math.PI * 2);
         ctx.fill();
 
-        // Icono de Cofre / Corona
-        ctx.font = '38px serif';
+        ctx.font = '40px serif';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillText(isCollected ? '👑' : '🎁', chestX, chestY);
+        ctx.fillText(isCollected ? '👑' : '🎁', gx, gy);
 
-        ctx.font = '700 11px Fredoka, sans-serif';
+        ctx.font = '700 12px Fredoka, sans-serif';
         ctx.fillStyle = '#ffd166';
-        ctx.fillText(isCollected ? '¡DESBLOQUEADO!' : 'COFRE DE MEDIO AÑO', chestX, chestY - 32);
+        ctx.shadowColor = '#000';
+        ctx.shadowBlur = 4;
+        ctx.fillText(isCollected ? '¡MEDIO AÑO ABIERTO!' : 'GRAN COFRE DE MEDIO AÑO', gx, gy - 34);
+        ctx.shadowBlur = 0;
       } else {
-        // GEMA FLOTANTE
-        const gemX = island.x;
-        const gemY = island.y - 15 + bobbing;
-
-        // Aura de luz de la gema
-        const aura = ctx.createRadialGradient(gemX, gemY, 5, gemX, gemY, 32);
-        aura.addColorStop(0, island.gemColor + 'bb');
+        const aura = ctx.createRadialGradient(gx, gy, 4, gx, gy, 35);
+        aura.addColorStop(0, island.gemColor + 'cc');
         aura.addColorStop(1, island.gemColor + '00');
         ctx.fillStyle = aura;
         ctx.beginPath();
-        ctx.arc(gemX, gemY, 32, 0, Math.PI * 2);
+        ctx.arc(gx, gy, 35, 0, Math.PI * 2);
         ctx.fill();
 
-        // Icono de la gema
-        ctx.font = isCollected ? '26px serif' : '30px serif';
+        ctx.font = isCollected ? '26px serif' : '32px serif';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillText(island.icon, gemX, gemY);
+        ctx.fillText(island.icon, gx, gy);
 
-        // Estado
         ctx.font = '600 11px Fredoka, sans-serif';
-        ctx.fillStyle = isCollected ? '#98f5e1' : '#ffd6e0';
-        ctx.fillText(isCollected ? '✓ Guardada' : island.title, gemX, gemY - 26);
+        ctx.fillStyle = isCollected ? '#98f5e1' : '#ffffff';
+        ctx.shadowColor = '#000';
+        ctx.shadowBlur = 4;
+        ctx.fillText(isCollected ? '✓ Guardada' : island.title, gx, gy - 28);
+        ctx.shadowBlur = 0;
       }
     }
 
@@ -1464,70 +1641,80 @@
       const px = player.x;
       const py = player.y;
 
-      // Sombra del jugador
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
+      player.stepParticles.forEach(p => {
+        ctx.font = `${p.r * 2.2}px serif`;
+        ctx.globalAlpha = p.alpha;
+        ctx.fillText(p.symbol, p.x, p.y);
+      });
+      ctx.globalAlpha = 1;
+
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.45)';
       ctx.beginPath();
-      ctx.ellipse(px, py + 16, 16, 8, 0, 0, Math.PI * 2);
+      ctx.ellipse(px, py + 16, 15, 8, 0, 0, Math.PI * 2);
       ctx.fill();
 
-      // Estela de partículas al caminar
-      if (player.isMoving && Math.random() < 0.4) {
-        ctx.fillStyle = 'rgba(255, 77, 136, 0.6)';
-        ctx.beginPath();
-        ctx.arc(px + (Math.random() - 0.5) * 12, py + 14, Math.random() * 3 + 2, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      // Dibujar a Alexa (Heroína)
-      // Cuerpo / Vestido rosa
+      // Personaje Alexa
       ctx.fillStyle = '#ff4d88';
       ctx.beginPath();
-      ctx.arc(px, py + 4 + bob, 14, 0, Math.PI * 2);
+      ctx.arc(px, py + 5 + bob, 14, 0, Math.PI * 2);
       ctx.fill();
 
-      // Cara
-      ctx.fillStyle = '#ffe0bd';
+      ctx.fillStyle = '#ffffff';
       ctx.beginPath();
-      ctx.arc(px, py - 6 + bob, 11, 0, Math.PI * 2);
+      ctx.ellipse(px, py - 1 + bob, 6, 3, 0, 0, Math.PI * 2);
       ctx.fill();
 
-      // Cabello
-      ctx.fillStyle = '#4a2511';
+      ctx.fillStyle = '#ffdfbf';
       ctx.beginPath();
-      ctx.arc(px, py - 9 + bob, 12, Math.PI, Math.PI * 2);
+      ctx.arc(px, py - 7 + bob, 11, 0, Math.PI * 2);
       ctx.fill();
 
-      // Moño / Lazo rosa en el cabello
-      ctx.fillStyle = '#ffd166';
+      ctx.fillStyle = 'rgba(255, 107, 136, 0.6)';
       ctx.beginPath();
-      ctx.arc(px + 7, py - 13 + bob, 4.5, 0, Math.PI * 2);
+      ctx.arc(px - 5, py - 4 + bob, 2.5, 0, Math.PI * 2);
+      ctx.arc(px + 5, py - 4 + bob, 2.5, 0, Math.PI * 2);
       ctx.fill();
 
-      // Ojos tiernos
-      ctx.fillStyle = '#222';
-      const eyeOffset = player.direction === 'left' ? -3 : player.direction === 'right' ? 3 : 0;
+      ctx.fillStyle = '#221122';
+      const eyeOffset = player.direction === 'left' ? -2.5 : player.direction === 'right' ? 2.5 : 0;
       ctx.beginPath();
-      ctx.arc(px - 3 + eyeOffset, py - 6 + bob, 1.8, 0, Math.PI * 2);
-      ctx.arc(px + 3 + eyeOffset, py - 6 + bob, 1.8, 0, Math.PI * 2);
+      ctx.arc(px - 3.5 + eyeOffset, py - 7 + bob, 1.8, 0, Math.PI * 2);
+      ctx.arc(px + 3.5 + eyeOffset, py - 7 + bob, 1.8, 0, Math.PI * 2);
       ctx.fill();
 
-      // Corona o detalle de princesa
-      ctx.font = '13px serif';
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(px - 4 + eyeOffset, py - 8 + bob, 0.7, 0, Math.PI * 2);
+      ctx.arc(px + 3 + eyeOffset, py - 8 + bob, 0.7, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = '#3a1f10';
+      ctx.beginPath();
+      ctx.arc(px, py - 10 + bob, 12, Math.PI * 0.9, Math.PI * 2.1);
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.ellipse(px - 10, py - 4 + bob, 4, 8, 0.2, 0, Math.PI * 2);
+      ctx.ellipse(px + 10, py - 4 + bob, 4, 8, -0.2, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.font = '14px serif';
       ctx.textAlign = 'center';
-      ctx.fillText('✨', px, py - 19 + bob);
+      ctx.fillText('👑', px, py - 20 + bob);
 
-      // Nombre arriba del personaje
       ctx.fillStyle = '#ffffff';
       ctx.font = '700 11px Fredoka, sans-serif';
       ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
-      ctx.shadowBlur = 4;
-      ctx.fillText('Alexa 💕', px, py - 24 + bob);
+      ctx.shadowBlur = 5;
+      ctx.fillText('Alexa 💕', px, py - 26 + bob);
       ctx.shadowBlur = 0;
 
-      // Michi compañero siguiendo a Alexa
-      const petX = px - (player.direction === 'right' ? 24 : -24);
-      const petY = py + 8 + Math.sin(player.animStep * 1.2) * 2;
-      ctx.font = '16px serif';
+      // Michi Compañero
+      const petOffset = player.direction === 'right' ? -24 : 24;
+      const petX = px + petOffset;
+      const petY = py + 8 + Math.sin(player.animStep * 1.3) * 2;
+
+      ctx.font = '18px serif';
       ctx.fillText('🐱', petX, petY);
     }
 
@@ -1542,6 +1729,7 @@
     let currentModalGemId = null;
 
     function openGemModal(gemId) {
+      clearAllInputs();
       const gema = GEMAS_HISTORIA.find(g => g.id === gemId);
       if (!gema) return;
 
@@ -1550,7 +1738,6 @@
       AudioEngine.playGemChime();
 
       document.getElementById('modal-gem-tag').textContent = `${gema.mes} · ${gema.categoria}`;
-      document.getElementById('modal-gem-photo').src = gema.foto;
       document.getElementById('modal-gem-title').textContent = gema.titulo;
       document.getElementById('modal-gem-subtitle').textContent = gema.subtitulo;
       document.getElementById('modal-gem-text').textContent = gema.texto;
@@ -1565,7 +1752,6 @@
         GameState.collectedGems.add(currentModalGemId);
         updateGemsMeter();
 
-        // Si recolectó la 6ta gema o todas, abrir victoria
         if (currentModalGemId === 6 || GameState.collectedGems.size === 6) {
           closeGemModal();
           triggerVictory();
@@ -1579,6 +1765,7 @@
       gemModal.classList.remove('open');
       GameState.isPaused = false;
       currentModalGemId = null;
+      clearAllInputs();
     }
 
     function updateGemsMeter() {
@@ -1592,15 +1779,16 @@
       }
     }
 
-    // Mochila / Inventario
     document.getElementById('btn-open-bag').addEventListener('click', openBag);
     document.getElementById('btn-backpack-icon').addEventListener('click', openBag);
     document.getElementById('btn-close-bag').addEventListener('click', () => {
       bagModal.classList.remove('open');
       GameState.isPaused = false;
+      clearAllInputs();
     });
 
     function openBag() {
+      clearAllInputs();
       GameState.isPaused = true;
       const grid = document.getElementById('inventory-grid');
       grid.innerHTML = '';
@@ -1634,9 +1822,9 @@
     function triggerVictory() {
       GameState.hasWon = true;
       GameState.isPaused = true;
+      clearAllInputs();
       AudioEngine.playFanfare();
 
-      // Inyectar párrafos de la carta
       const letterBody = document.getElementById('letter-body');
       letterBody.innerHTML = '';
       CARTA_FINAL.parrafos.forEach(p => {
@@ -1645,14 +1833,9 @@
         letterBody.appendChild(pEl);
       });
 
-
-
-      // Mostrar pantalla de victoria y lanzar confetti
       victoryScreen.classList.add('open');
       startConfetti();
     }
-
-
 
     // ══════════════════════════════════════════════════════════════
     //  SISTEMA DE CONFETTI LIGERO EN CANVAS
@@ -1710,14 +1893,6 @@
       if (!confettiAnim) updateConfetti();
     }
 
-    function stopConfetti() {
-      if (confettiAnim) {
-        cancelAnimationFrame(confettiAnim);
-        confettiAnim = null;
-      }
-      cCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
-    }
-
     // ══════════════════════════════════════════════════════════════
     //  INICIO Y CONTROL DE MÚSICA
     // ══════════════════════════════════════════════════════════════
@@ -1731,7 +1906,6 @@
       AudioEngine.init();
       startScreen.classList.add('hidden');
 
-      // Intentar reproducir música
       bgMusic.volume = 0.65;
       bgMusic.play().then(() => {
         GameState.musicPlaying = true;
@@ -1742,7 +1916,6 @@
         musicIcon.textContent = '🔇';
       });
 
-      // Iniciar game loop
       requestAnimationFrame(gameLoop);
     });
 
