@@ -1,0 +1,1763 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>🎮 La Misión de los 6 Meses · Gabriel & Alexa 💕</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fredoka:wght@400;500;600;700&family=Outfit:wght@300;400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ff4d88;
+      --primary-glow: rgba(255, 77, 136, 0.5);
+      --gold: #ffd166;
+      --gold-glow: rgba(255, 209, 102, 0.5);
+      --bg-dark: #0f071e;
+      --bg-card: rgba(26, 14, 46, 0.92);
+      --text-light: #ffffff;
+      --text-dim: #c7b8db;
+      --accent-purple: #9d4edd;
+      --safe-bottom: env(safe-area-inset-bottom, 12px);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: var(--bg-dark);
+      font-family: 'Fredoka', 'Outfit', sans-serif;
+      color: var(--text-light);
+    }
+
+    /* ══════════ PANTALLA DE INICIO / GATE ══════════ */
+    #start-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: radial-gradient(circle at center, #2b1042 0%, #0c0418 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+      transition: opacity 0.8s ease, visibility 0.8s;
+    }
+
+    #start-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .start-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 77, 136, 0.2);
+      border: 1px solid var(--primary);
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      color: #ff9ebb;
+      margin-bottom: 18px;
+      animation: pulseBadge 2s infinite;
+    }
+
+    @keyframes pulseBadge {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 10px rgba(255,77,136,0.2); }
+      50% { transform: scale(1.04); box-shadow: 0 0 20px rgba(255,77,136,0.4); }
+    }
+
+    .start-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(1.2rem, 5vw, 2.1rem);
+      line-height: 1.4;
+      color: #fff;
+      text-shadow: 0 4px 15px rgba(255, 77, 136, 0.6), 0 0 30px rgba(255, 209, 102, 0.4);
+      margin-bottom: 12px;
+    }
+
+    .start-subtitle {
+      font-size: clamp(1rem, 3.8vw, 1.35rem);
+      color: #dfcbd5;
+      margin-bottom: 24px;
+      font-weight: 400;
+    }
+
+    .start-avatar-preview {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .avatar-circle {
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff4d88, #9d4edd);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      border: 3px solid var(--gold);
+      box-shadow: 0 0 25px var(--gold-glow);
+      animation: floatAvatar 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatAvatar {
+      from { transform: translateY(0); }
+      to { transform: translateY(-10px); }
+    }
+
+    .start-instructions {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 18px;
+      padding: 14px 20px;
+      max-width: 380px;
+      font-size: 0.92rem;
+      color: var(--text-dim);
+      margin-bottom: 26px;
+      line-height: 1.5;
+    }
+
+    .start-instructions b {
+      color: var(--gold);
+    }
+
+    .btn-start {
+      background: linear-gradient(135deg, #ff4d88 0%, #ff758c 50%, #ffd166 100%);
+      color: #1a0826;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      padding: 16px 42px;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: 0 8px 30px var(--primary-glow);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-start:active {
+      transform: scale(0.96);
+    }
+
+    /* ══════════ CONTENEDOR PRINCIPAL DEL JUEGO ══════════ */
+    #game-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      touch-action: none;
+    }
+
+    #game-canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: #0d061a;
+    }
+
+    /* ══════════ TOP BAR & HUD ══════════ */
+    .top-hud {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      right: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      pointer-events: none;
+    }
+
+    .hud-btn {
+      pointer-events: auto;
+      background: rgba(26, 14, 46, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.95rem;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .hud-btn:active {
+      transform: scale(0.94);
+    }
+
+    .hud-gems-meter {
+      pointer-events: auto;
+      cursor: pointer;
+      background: rgba(26, 14, 46, 0.88);
+      border: 1px solid rgba(255, 209, 102, 0.4);
+      backdrop-filter: blur(10px);
+      border-radius: 999px;
+      padding: 6px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 20px rgba(255, 209, 102, 0.2);
+    }
+
+    .gem-dot {
+      font-size: 1.15rem;
+      filter: grayscale(1) opacity(0.35);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .gem-dot.collected {
+      filter: grayscale(0) opacity(1);
+      transform: scale(1.18);
+      text-shadow: 0 0 10px var(--gold);
+    }
+
+    /* ══════════ PROMPT DE INTERACCIÓN ══════════ */
+    #interact-prompt {
+      position: absolute;
+      bottom: 125px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      z-index: 150;
+      background: linear-gradient(135deg, #ff4d88, #ffd166);
+      color: #1a0826;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding: 12px 24px;
+      border-radius: 999px;
+      box-shadow: 0 8px 25px rgba(255, 77, 136, 0.6);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+    }
+
+    #interact-prompt.visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+      animation: bouncePrompt 1.4s infinite alternate;
+    }
+
+    @keyframes bouncePrompt {
+      0% { transform: translateX(-50%) translateY(0); }
+      100% { transform: translateX(-50%) translateY(-6px); }
+    }
+
+    /* ══════════ CONTROLES TÁCTILES PARA CELULAR ══════════ */
+    .mobile-controls {
+      position: absolute;
+      bottom: calc(var(--safe-bottom) + 12px);
+      left: 12px;
+      right: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      z-index: 100;
+      pointer-events: none;
+    }
+
+    /* D-PAD VIRTUAL */
+    .dpad-container {
+      pointer-events: auto;
+      position: relative;
+      width: 140px;
+      height: 140px;
+    }
+
+    .dpad-btn {
+      position: absolute;
+      width: 44px;
+      height: 44px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(8px);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      transition: background 0.1s, transform 0.1s;
+    }
+
+    .dpad-btn:active, .dpad-btn.pressed {
+      background: var(--primary);
+      border-color: #fff;
+      transform: scale(0.92);
+      box-shadow: 0 0 15px var(--primary-glow);
+    }
+
+    .dpad-up    { top: 0; left: 48px; }
+    .dpad-down  { bottom: 0; left: 48px; }
+    .dpad-left  { top: 48px; left: 0; }
+    .dpad-right { top: 48px; right: 0; }
+    .dpad-center {
+      top: 48px;
+      left: 48px;
+      width: 44px;
+      height: 44px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      pointer-events: none;
+    }
+
+    /* BOTÓN ACCIÓN */
+    .action-container {
+      pointer-events: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-action {
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), #9d4edd);
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 6px 20px var(--primary-glow);
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+
+    .btn-action:active {
+      transform: scale(0.9);
+      box-shadow: 0 2px 10px var(--primary-glow);
+    }
+
+    .btn-action-icon {
+      font-size: 1.8rem;
+    }
+
+    .btn-action-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-top: -2px;
+    }
+
+    /* ══════════ MODAL DE GEMA / RECUERDO ══════════ */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      background: rgba(10, 4, 20, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .gem-card {
+      background: linear-gradient(170deg, rgba(38, 20, 68, 0.98), rgba(20, 10, 36, 0.98));
+      border: 2px solid var(--gold);
+      border-radius: 28px;
+      max-width: 480px;
+      width: 100%;
+      max-height: 88vh;
+      overflow-y: auto;
+      padding: 24px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7), 0 0 35px var(--gold-glow);
+      position: relative;
+      transform: scale(0.92);
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-overlay.open .gem-card {
+      transform: scale(1);
+    }
+
+    .gem-badge-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .gem-tag {
+      background: rgba(255, 209, 102, 0.18);
+      color: var(--gold);
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--gold);
+    }
+
+    .gem-close-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #fff;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gem-photo-container {
+      width: 100%;
+      height: 220px;
+      border-radius: 18px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      background: #140826;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      position: relative;
+    }
+
+    .gem-photo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gem-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .gem-subtitle {
+      font-size: 0.95rem;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+
+    .gem-text {
+      font-size: 0.98rem;
+      line-height: 1.6;
+      color: #f0e6ff;
+      white-space: pre-line;
+      margin-bottom: 16px;
+    }
+
+    .gem-quote {
+      background: rgba(255, 77, 136, 0.12);
+      border-left: 4px solid var(--primary);
+      border-radius: 0 12px 12px 0;
+      padding: 10px 14px;
+      font-style: italic;
+      color: #ffb3c6;
+      font-size: 0.92rem;
+      margin-bottom: 20px;
+    }
+
+    .btn-save-gem {
+      background: linear-gradient(135deg, var(--gold), #ff8fab);
+      color: #1a0826;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      padding: 14px;
+      border: none;
+      border-radius: 16px;
+      cursor: pointer;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(255, 209, 102, 0.3);
+    }
+
+    /* ══════════ MODAL DE LA MOCHILA / INVENTARIO ══════════ */
+    .inventory-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .inv-item {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .inv-item.unlocked {
+      border-color: var(--gold);
+      background: rgba(255, 209, 102, 0.12);
+    }
+
+    .inv-item.locked {
+      opacity: 0.45;
+      filter: grayscale(1);
+      cursor: not-allowed;
+    }
+
+    .inv-item-icon {
+      font-size: 2rem;
+      margin-bottom: 4px;
+    }
+
+    .inv-item-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .inv-item-status {
+      font-size: 0.72rem;
+      color: var(--gold);
+    }
+
+    /* ══════════ PANTALLA FINAL / COFRE DESBLOQUEADO ══════════ */
+    #victory-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      background: radial-gradient(circle at center, rgba(45, 16, 70, 0.98) 0%, rgba(12, 4, 24, 0.99) 100%);
+      overflow-y: auto;
+      padding: 24px 16px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.8s ease, visibility 0.8s;
+    }
+
+    #victory-screen.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .victory-box {
+      max-width: 620px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      animation: victoryFadeIn 1s ease-out;
+    }
+
+    @keyframes victoryFadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .victory-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #ffd166, #ff758c);
+      color: #1a0826;
+      font-weight: 700;
+      padding: 8px 24px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+      box-shadow: 0 0 25px rgba(255, 209, 102, 0.5);
+    }
+
+    .victory-title {
+      font-family: 'Fredoka', sans-serif;
+      font-size: clamp(2rem, 7vw, 3.2rem);
+      color: #ffd6e0;
+      text-shadow: 0 0 25px rgba(255, 77, 136, 0.6);
+      margin-bottom: 6px;
+    }
+
+    .victory-subtitle {
+      font-size: clamp(1.05rem, 4vw, 1.35rem);
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .stats-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 209, 102, 0.3);
+      border-radius: 18px;
+      padding: 14px 10px;
+    }
+
+    .stat-number {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    /* CARTA DE MEDIO AÑO */
+    .letter-paper {
+      background: #fff8f0;
+      color: #2b1d28;
+      border-radius: 24px;
+      padding: 28px 22px;
+      text-align: left;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 209, 102, 0.3);
+      border: 3px solid #f2d49c;
+      position: relative;
+      margin-bottom: 30px;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .letter-paper::before {
+      content: '💌';
+      position: absolute;
+      top: -20px;
+      right: 25px;
+      font-size: 2.2rem;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+    }
+
+    .letter-saludo {
+      font-family: 'Caveat', cursive;
+      font-size: 2rem;
+      color: #a62057;
+      margin-bottom: 14px;
+    }
+
+    .letter-text p {
+      font-size: 1.02rem;
+      line-height: 1.65;
+      margin-bottom: 14px;
+      color: #3f2e3c;
+    }
+
+    .letter-firma {
+      text-align: right;
+      font-family: 'Caveat', cursive;
+      font-size: 2.1rem;
+      color: #a62057;
+      margin-top: 18px;
+      white-space: pre-line;
+    }
+
+    /* CARRUSEL DE FOTOS */
+    .carousel-section {
+      margin-bottom: 30px;
+      text-align: left;
+    }
+
+    .carousel-title {
+      font-size: 1.35rem;
+      color: #fff;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .carousel-track {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 14px;
+      padding-bottom: 10px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .carousel-slide {
+      flex: 0 0 85%;
+      max-width: 320px;
+      scroll-snap-align: center;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .carousel-slide-caption {
+      padding: 12px;
+      font-size: 0.9rem;
+      color: #ffd6e0;
+      text-align: center;
+    }
+
+    .victory-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+    }
+
+    .btn-return-hub {
+      background: linear-gradient(135deg, var(--primary), #9d4edd);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      color: #fff;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      padding: 16px 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 6px 25px var(--primary-glow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-return-hub:active {
+      transform: scale(0.97);
+    }
+
+    .btn-replay {
+      background: linear-gradient(135deg, var(--primary), #9d4edd);
+      color: #fff;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      padding: 14px;
+      border: none;
+      border-radius: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    /* CONFETTI CANVAS */
+    #confetti-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 10000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════ PANTALLA DE INICIO (AUDIO UNLOCK) ══════════ -->
+  <div id="start-screen">
+    <div class="start-badge">✨ MEDIO AÑO · 23 DE OCTUBRE ✨</div>
+    <h1 class="start-title">LA MISIÓN DE LOS<br>6 MESES</h1>
+    <p class="start-subtitle">El viaje a través de nuestra historia 💕</p>
+
+    <div class="start-avatar-preview">
+      <div class="avatar-circle">👸🏻</div>
+      <div style="font-size: 1.8rem; color: var(--gold);">❤️</div>
+      <div class="avatar-circle">🤴🏻</div>
+    </div>
+
+    <div class="start-instructions">
+      Hola mi amor 💖 Explora los <b>6 reinos flotantes</b> y recolecta las <b>6 Gemas de Nuestros Meses</b>. Cuando las reúnas todas, ¡el <b>Gran Cofre de Medio Año</b> se abrirá para ti!
+    </div>
+
+    <button class="btn-start" id="btn-start-game">
+      <span>▶ EMPEZAR AVENTURA</span>
+    </button>
+  </div>
+
+  <!-- ══════════ JUEGO PRINCIPAL ══════════ -->
+  <div id="game-container">
+    <canvas id="game-canvas"></canvas>
+
+    <!-- TOP HUD -->
+    <div class="top-hud">
+      <button class="hud-btn" id="btn-music-toggle" aria-label="Música">
+        <span id="music-icon">🎵</span>
+      </button>
+
+      <div class="hud-gems-meter" id="btn-open-bag" title="Ver Mochila de Recuerdos">
+        <span style="font-size: 0.85rem; font-weight: 600; color: var(--gold);">Gemas:</span>
+        <span class="gem-dot" id="dot-1">💎</span>
+        <span class="gem-dot" id="dot-2">🧡</span>
+        <span class="gem-dot" id="dot-3">💖</span>
+        <span class="gem-dot" id="dot-4">🐱</span>
+        <span class="gem-dot" id="dot-5">📎</span>
+        <span class="gem-dot" id="dot-6">⭐</span>
+      </div>
+
+      <button class="hud-btn" id="btn-backpack-icon">
+        <span>🎒</span>
+      </button>
+    </div>
+
+    <!-- PROMPT INTERACTIVO FLOTANTE -->
+    <div id="interact-prompt">
+      <span style="font-size: 1.4rem;">✨</span>
+      <span id="prompt-label">TOCAR GEMA</span>
+    </div>
+
+    <!-- CONTROLES MÓVILES -->
+    <div class="mobile-controls">
+      <!-- D-Pad -->
+      <div class="dpad-container" id="dpad">
+        <button class="dpad-btn dpad-up" data-dir="up">▲</button>
+        <button class="dpad-btn dpad-left" data-dir="left">◀</button>
+        <div class="dpad-center"></div>
+        <button class="dpad-btn dpad-right" data-dir="right">▶</button>
+        <button class="dpad-btn dpad-down" data-dir="down">▼</button>
+      </div>
+
+      <!-- Action Button -->
+      <div class="action-container">
+        <button class="btn-action" id="btn-action">
+          <span class="btn-action-icon">✨</span>
+          <span class="btn-action-label">ACCIÓN</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ MODAL DE GEMA / RECUERDO ══════════ -->
+  <div class="modal-overlay" id="gem-modal">
+    <div class="gem-card">
+      <div class="gem-badge-row">
+        <span class="gem-tag" id="modal-gem-tag">Mes 1 · Abril</span>
+        <button class="gem-close-btn" id="btn-close-modal">✕</button>
+      </div>
+
+      <div class="gem-photo-container">
+        <img src="" id="modal-gem-photo" alt="Foto del recuerdo" />
+      </div>
+
+      <h2 class="gem-title" id="modal-gem-title">Título</h2>
+      <h3 class="gem-subtitle" id="modal-gem-subtitle">Subtítulo</h3>
+
+      <p class="gem-text" id="modal-gem-text">Texto del recuerdo...</p>
+
+      <div class="gem-quote" id="modal-gem-quote">Frase clave</div>
+
+      <button class="btn-save-gem" id="btn-confirm-gem">
+        ✨ Guardar Gema y Continuar
+      </button>
+    </div>
+  </div>
+
+  <!-- ══════════ MODAL DE LA MOCHILA / INVENTARIO ══════════ -->
+  <div class="modal-overlay" id="bag-modal">
+    <div class="gem-card">
+      <div class="gem-badge-row">
+        <span class="gem-tag">🎒 Mochila de Recuerdos</span>
+        <button class="gem-close-btn" id="btn-close-bag">✕</button>
+      </div>
+
+      <p style="font-size: 0.92rem; color: var(--text-dim); margin-bottom: 12px;">
+        Toca cualquier gema desbloqueada para volver a leer ese recuerdo:
+      </p>
+
+      <div class="inventory-grid" id="inventory-grid">
+        <!-- Renderizado dinámicamente -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ PANTALLA FINAL / COFRE DE MEDIO AÑO ══════════ -->
+  <div id="victory-screen">
+    <div class="victory-box">
+      <div class="victory-badge">👑 ¡MISIÓN COMPLETADA! 👑</div>
+      <h1 class="victory-title">¡FELIZ MEDIO AÑO!</h1>
+      <h2 class="victory-subtitle">Gabriel & Alexa · 6 Meses Inolvidables 💕</h2>
+
+      <!-- Estadísticas -->
+      <div class="stats-card-grid">
+        <div class="stat-card">
+          <div class="stat-number">182</div>
+          <div class="stat-label">Días Juntos</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">+4,368</div>
+          <div class="stat-label">Horas Compartidas</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">🎮 ∞</div>
+          <div class="stat-label">Roblox & Risas</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Amor y Complicidad</div>
+        </div>
+      </div>
+
+      <!-- La Gran Carta -->
+      <div class="letter-paper">
+        <div class="letter-saludo" id="letter-saludo">Para mi niña hermosa, Alexa 💕</div>
+        <div class="letter-text" id="letter-body">
+          <!-- Inyectado desde datos.js -->
+        </div>
+        <div class="letter-firma" id="letter-firma">Siempre tuyo,<br>Gabriel ✨</div>
+      </div>
+
+      <!-- Botón de Acción -->
+      <div class="victory-buttons">
+        <a href="../index.html" class="btn-return-hub">
+          <span>🏡 Menú Principal (Nuestra Historia)</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Audio de Fondo -->
+  <audio id="bg-music" src="musica.mp3" loop preload="auto"></audio>
+
+  <!-- Datos de los 6 meses -->
+  <script src="datos.js"></script>
+
+  <!-- Lógica y Motor del Juego -->
+  <script>
+    // ══════════════════════════════════════════════════════════════
+    //  MOTOR Y LÓGICA DE LA MISIÓN DE LOS 6 MESES
+    // ══════════════════════════════════════════════════════════════
+
+    // ── Sonidos Retro con Web Audio API (Cero lags, funciona en cualquier celular) ──
+    const AudioEngine = {
+      ctx: null,
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (AudioContext) {
+            this.ctx = new AudioContext();
+          }
+        }
+        if (this.ctx && this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      },
+      playGemChime() {
+        if (!this.ctx) return;
+        const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+        notes.forEach((freq, idx) => {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, this.ctx.currentTime + idx * 0.08);
+          gain.gain.setValueAtTime(0.2, this.ctx.currentTime + idx * 0.08);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + idx * 0.08 + 0.35);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start(this.ctx.currentTime + idx * 0.08);
+          osc.stop(this.ctx.currentTime + idx * 0.08 + 0.4);
+        });
+      },
+      playStep() {
+        if (!this.ctx) return;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(140, this.ctx.currentTime);
+        gain.gain.setValueAtTime(0.04, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.05);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start();
+        osc.stop(this.ctx.currentTime + 0.06);
+      },
+      playFanfare() {
+        if (!this.ctx) return;
+        const chord = [392.00, 523.25, 659.25, 783.99, 1046.50];
+        chord.forEach((freq, i) => {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(freq, this.ctx.currentTime + i * 0.06);
+          gain.gain.setValueAtTime(0.15, this.ctx.currentTime + i * 0.06);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 1.2);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start(this.ctx.currentTime + i * 0.06);
+          osc.stop(this.ctx.currentTime + 1.3);
+        });
+      }
+    };
+
+    // ── Estado del Juego ──
+    const GameState = {
+      collectedGems: new Set(),
+      activeGemNear: null,
+      isPaused: false,
+      musicPlaying: false,
+      hasWon: false
+    };
+
+    // ── Configuración del Mundo y Canvas ──
+    const canvas = document.getElementById('game-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = 0;
+    let height = 0;
+
+    function resizeCanvas() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      ctx.scale(dpr, dpr);
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // ── Jugador (Avatar de Alexa con acompañante Gabriel/Michi) ──
+    const player = {
+      x: 0,
+      y: 0,
+      targetX: null,
+      targetY: null,
+      speed: 3.8,
+      vx: 0,
+      vy: 0,
+      radius: 20,
+      direction: 'down',
+      animStep: 0,
+      isMoving: false
+    };
+
+    // ── Las 6 Islas Flotantes (Reinos de la Historia) ──
+    // Se colocan en un mapa armónico conectado por puentes
+    const ISLANDS = [
+      { id: 1, name: 'Santuario del Comienzo', x: 200,  y: 350, r: 120, color: '#ff6b8b', gemColor: '#ff4d88', icon: '💎', title: 'Mes 1: El Primer Sí' },
+      { id: 2, name: 'Valle de las Risas',     x: 520,  y: 200, r: 125, color: '#ff9248', gemColor: '#ff9248', icon: '🧡', title: 'Mes 2: Descubriéndonos' },
+      { id: 3, name: 'Bosque de las Razones',  x: 840,  y: 350, r: 130, color: '#e559b3', gemColor: '#e559b3', icon: '💖', title: 'Mes 3: 30 Razones' },
+      { id: 4, name: 'Galaxia Gamer & Michis', x: 840,  y: 720, r: 135, color: '#9d4edd', gemColor: '#9d4edd', icon: '🐱', title: 'Mes 4: Roblox & Desvelos' },
+      { id: 5, name: 'Taller del Scrapbook',   x: 520,  y: 860, r: 130, color: '#00b4d8', gemColor: '#00b4d8', icon: '📎', title: 'Mes 5: Momentos de Amor' },
+      { id: 6, name: 'Templo de Medio Año',    x: 200,  y: 720, r: 145, color: '#ffd166', gemColor: '#ffd166', icon: '⭐', title: 'Mes 6: ¡Medio Año!' }
+    ];
+
+    // Posición inicial del jugador (cerca de la Isla 1)
+    player.x = ISLANDS[0].x;
+    player.y = ISLANDS[0].y + 20;
+
+    // Conexiones / Puentes de Luz entre Islas
+    const BRIDGES = [
+      [0, 1], // Isla 1 -> Isla 2
+      [1, 2], // Isla 2 -> Isla 3
+      [2, 3], // Isla 3 -> Isla 4
+      [3, 4], // Isla 4 -> Isla 5
+      [4, 5], // Isla 5 -> Isla 6
+      [5, 0]  // Isla 6 -> Isla 1 (Cierra el ciclo)
+    ];
+
+    // ── Partículas de Ambiente (Estrellas / Corazones flotantes) ──
+    const ambientParticles = [];
+    for (let i = 0; i < 45; i++) {
+      ambientParticles.push({
+        x: Math.random() * 1200,
+        y: Math.random() * 1200,
+        size: Math.random() * 3 + 1,
+        speedY: Math.random() * 0.4 + 0.2,
+        opacity: Math.random() * 0.7 + 0.3,
+        pulse: Math.random() * Math.PI
+      });
+    }
+
+    // ── Cámara que sigue al jugador en celular ──
+    const camera = {
+      x: 0,
+      y: 0,
+      update() {
+        const targetX = player.x - width / 2;
+        const targetY = player.y - height / 2;
+        this.x += (targetX - this.x) * 0.1;
+        this.y += (targetY - this.y) * 0.1;
+      }
+    };
+
+    // ── Controles de Teclado y D-Pad ──
+    const keys = { up: false, down: false, left: false, right: false };
+
+    window.addEventListener('keydown', (e) => {
+      if (['ArrowUp', 'KeyW'].includes(e.code)) keys.up = true;
+      if (['ArrowDown', 'KeyS'].includes(e.code)) keys.down = true;
+      if (['ArrowLeft', 'KeyA'].includes(e.code)) keys.left = true;
+      if (['ArrowRight', 'KeyD'].includes(e.code)) keys.right = true;
+      if (['Space', 'KeyE', 'Enter'].includes(e.code)) {
+        triggerAction();
+      }
+    });
+
+    window.addEventListener('keyup', (e) => {
+      if (['ArrowUp', 'KeyW'].includes(e.code)) keys.up = false;
+      if (['ArrowDown', 'KeyS'].includes(e.code)) keys.down = false;
+      if (['ArrowLeft', 'KeyA'].includes(e.code)) keys.left = false;
+      if (['ArrowRight', 'KeyD'].includes(e.code)) keys.right = false;
+    });
+
+    // Touch D-Pad Events (Multi-touch support)
+    const dpadButtons = document.querySelectorAll('.dpad-btn');
+    dpadButtons.forEach(btn => {
+      const dir = btn.getAttribute('data-dir');
+      const startPress = (e) => {
+        e.preventDefault();
+        keys[dir] = true;
+        btn.classList.add('pressed');
+        player.targetX = null;
+        player.targetY = null;
+      };
+      const endPress = (e) => {
+        e.preventDefault();
+        keys[dir] = false;
+        btn.classList.remove('pressed');
+      };
+
+      btn.addEventListener('touchstart', startPress, { passive: false });
+      btn.addEventListener('touchend', endPress, { passive: false });
+      btn.addEventListener('mousedown', startPress);
+      btn.addEventListener('mouseup', endPress);
+      btn.addEventListener('mouseleave', endPress);
+    });
+
+    // Tap/Click to Move on Canvas (Super cómodo para celular)
+    canvas.addEventListener('pointerdown', (e) => {
+      // Ignorar toques sobre el D-Pad o botones flotantes
+      if (e.clientY > height - 160 && e.clientX < 160) return;
+      if (e.clientY > height - 160 && e.clientX > width - 110) return;
+
+      const rect = canvas.getBoundingClientRect();
+      const clickX = e.clientX - rect.left + camera.x;
+      const clickY = e.clientY - rect.top + camera.y;
+
+      player.targetX = clickX;
+      player.targetY = clickY;
+    });
+
+    // Botón de Acción
+    const btnAction = document.getElementById('btn-action');
+    const interactPrompt = document.getElementById('interact-prompt');
+
+    function triggerAction() {
+      if (GameState.activeGemNear) {
+        openGemModal(GameState.activeGemNear.id);
+      }
+    }
+
+    btnAction.addEventListener('click', triggerAction);
+    interactPrompt.addEventListener('click', triggerAction);
+
+    // ── Ciclo Principal del Juego ──
+    let lastTime = performance.now();
+    let stepSoundTimer = 0;
+
+    function gameLoop(currentTime) {
+      const dt = (currentTime - lastTime) / 1000;
+      lastTime = currentTime;
+
+      if (!GameState.isPaused) {
+        updatePlayer();
+        camera.update();
+      }
+
+      render();
+      requestAnimationFrame(gameLoop);
+    }
+
+    function updatePlayer() {
+      let dx = 0;
+      let dy = 0;
+
+      // Movimiento por teclado / D-Pad
+      if (keys.up) dy -= 1;
+      if (keys.down) dy += 1;
+      if (keys.left) dx -= 1;
+      if (keys.right) dx += 1;
+
+      // Movimiento por Tap/Touch
+      if (player.targetX !== null && player.targetY !== null && dx === 0 && dy === 0) {
+        const diffX = player.targetX - player.x;
+        const diffY = player.targetY - player.y;
+        const dist = Math.hypot(diffX, diffY);
+
+        if (dist > 6) {
+          dx = diffX / dist;
+          dy = diffY / dist;
+        } else {
+          player.targetX = null;
+          player.targetY = null;
+        }
+      }
+
+      // Normalizar dirección diagonal
+      if (dx !== 0 && dy !== 0) {
+        const len = Math.hypot(dx, dy);
+        dx /= len;
+        dy /= len;
+      }
+
+      player.vx = dx * player.speed;
+      player.vy = dy * player.speed;
+
+      player.x += player.vx;
+      player.y += player.vy;
+
+      // Actualizar animación
+      player.isMoving = (dx !== 0 || dy !== 0);
+      if (player.isMoving) {
+        player.animStep += 0.22;
+        stepSoundTimer += 1;
+        if (stepSoundTimer % 24 === 0) {
+          AudioEngine.playStep();
+        }
+
+        if (Math.abs(dx) > Math.abs(dy)) {
+          player.direction = dx > 0 ? 'right' : 'left';
+        } else {
+          player.direction = dy > 0 ? 'down' : 'up';
+        }
+      }
+
+      // Detección de proximidad a gemas / islas
+      checkProximity();
+    }
+
+    function checkProximity() {
+      let nearest = null;
+      let minDist = 75;
+
+      ISLANDS.forEach(island => {
+        const dist = Math.hypot(player.x - island.x, player.y - island.y);
+        if (dist < minDist) {
+          minDist = dist;
+          nearest = island;
+        }
+      });
+
+      if (nearest) {
+        GameState.activeGemNear = nearest;
+        const isCollected = GameState.collectedGems.has(nearest.id);
+        const promptLabel = document.getElementById('prompt-label');
+        if (nearest.id === 6 && GameState.collectedGems.size >= 5) {
+          promptLabel.textContent = isCollected ? 'ABRIR COFRE DE MEDIO AÑO 👑' : '¡DESBLOQUEAR MEDIO AÑO! ⭐';
+        } else {
+          promptLabel.textContent = isCollected ? `RELEER ${nearest.title.toUpperCase()}` : `DESCUBRIR ${nearest.title.toUpperCase()}`;
+        }
+        interactPrompt.classList.add('visible');
+      } else {
+        GameState.activeGemNear = null;
+        interactPrompt.classList.remove('visible');
+      }
+    }
+
+    // ── Renderizado Gráfico en Canvas ──
+    function render() {
+      ctx.clearRect(0, 0, width, height);
+
+      ctx.save();
+      // Aplicar desplazamiento de cámara
+      ctx.translate(-camera.x, -camera.y);
+
+      // 1. Fondo de Estrellas y Nebulosas
+      drawBackground();
+
+      // 2. Puentes de Luz entre Islas
+      drawBridges();
+
+      // 3. Islas Flotantes
+      ISLANDS.forEach(island => drawIsland(island));
+
+      // 4. Gemas Flotantes / Cofre Dorado
+      ISLANDS.forEach(island => drawGem(island));
+
+      // 5. Jugador y Compañero
+      drawPlayer();
+
+      ctx.restore();
+    }
+
+    function drawBackground() {
+      // Nebulosas suaves
+      const grad = ctx.createRadialGradient(500, 500, 50, 500, 500, 800);
+      grad.addColorStop(0, 'rgba(43, 16, 70, 0.4)');
+      grad.addColorStop(1, 'rgba(10, 4, 20, 0)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(-200, -200, 1500, 1500);
+
+      // Partículas flotantes
+      ambientParticles.forEach(p => {
+        p.y -= p.speedY;
+        p.pulse += 0.03;
+        if (p.y < 0) p.y = 1200;
+
+        ctx.fillStyle = `rgba(255, 230, 255, ${p.opacity * (0.6 + 0.4 * Math.sin(p.pulse))})`;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    }
+
+    function drawBridges() {
+      BRIDGES.forEach(([i1, i2]) => {
+        const from = ISLANDS[i1];
+        const to = ISLANDS[i2];
+
+        // Línea de brillo exterior
+        ctx.strokeStyle = 'rgba(255, 209, 102, 0.25)';
+        ctx.lineWidth = 14;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(from.x, from.y);
+        ctx.lineTo(to.x, to.y);
+        ctx.stroke();
+
+        // Línea central de luz
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.7)';
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.moveTo(from.x, from.y);
+        ctx.lineTo(to.x, to.y);
+        ctx.stroke();
+      });
+    }
+
+    function drawIsland(island) {
+      // Sombra proyectada
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.35)';
+      ctx.beginPath();
+      ctx.ellipse(island.x, island.y + 25, island.r, island.r * 0.65, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Capa de tierra de la isla (profundidad 3D)
+      ctx.fillStyle = '#221133';
+      ctx.beginPath();
+      ctx.ellipse(island.x, island.y + 12, island.r, island.r * 0.75, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Superficie brillante de la isla
+      const islandGrad = ctx.createRadialGradient(island.x, island.y - 10, 10, island.x, island.y, island.r);
+      islandGrad.addColorStop(0, island.color);
+      islandGrad.addColorStop(0.7, '#2f1542');
+      islandGrad.addColorStop(1, '#1b0a28');
+
+      ctx.fillStyle = islandGrad;
+      ctx.beginPath();
+      ctx.ellipse(island.x, island.y, island.r, island.r * 0.75, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Borde brillante de cristal
+      ctx.strokeStyle = island.gemColor;
+      ctx.lineWidth = 2.5;
+      ctx.stroke();
+
+      // Rótulo de la Isla
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '600 13px Fredoka, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
+      ctx.shadowBlur = 6;
+      ctx.fillText(island.name, island.x, island.y + island.r * 0.6);
+      ctx.shadowBlur = 0;
+    }
+
+    function drawGem(island) {
+      const time = performance.now() * 0.003;
+      const bobbing = Math.sin(time + island.id) * 7;
+      const isCollected = GameState.collectedGems.has(island.id);
+
+      if (island.id === 6) {
+        // COFRE DORADO DE MEDIO AÑO
+        const chestX = island.x;
+        const chestY = island.y - 15 + bobbing;
+
+        // Aura de luz dorada
+        const glowGrad = ctx.createRadialGradient(chestX, chestY, 10, chestX, chestY, 55);
+        glowGrad.addColorStop(0, 'rgba(255, 209, 102, 0.7)');
+        glowGrad.addColorStop(1, 'rgba(255, 209, 102, 0)');
+        ctx.fillStyle = glowGrad;
+        ctx.beginPath();
+        ctx.arc(chestX, chestY, 55, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Icono de Cofre / Corona
+        ctx.font = '38px serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(isCollected ? '👑' : '🎁', chestX, chestY);
+
+        ctx.font = '700 11px Fredoka, sans-serif';
+        ctx.fillStyle = '#ffd166';
+        ctx.fillText(isCollected ? '¡DESBLOQUEADO!' : 'COFRE DE MEDIO AÑO', chestX, chestY - 32);
+      } else {
+        // GEMA FLOTANTE
+        const gemX = island.x;
+        const gemY = island.y - 15 + bobbing;
+
+        // Aura de luz de la gema
+        const aura = ctx.createRadialGradient(gemX, gemY, 5, gemX, gemY, 32);
+        aura.addColorStop(0, island.gemColor + 'bb');
+        aura.addColorStop(1, island.gemColor + '00');
+        ctx.fillStyle = aura;
+        ctx.beginPath();
+        ctx.arc(gemX, gemY, 32, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Icono de la gema
+        ctx.font = isCollected ? '26px serif' : '30px serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(island.icon, gemX, gemY);
+
+        // Estado
+        ctx.font = '600 11px Fredoka, sans-serif';
+        ctx.fillStyle = isCollected ? '#98f5e1' : '#ffd6e0';
+        ctx.fillText(isCollected ? '✓ Guardada' : island.title, gemX, gemY - 26);
+      }
+    }
+
+    function drawPlayer() {
+      const bob = Math.sin(player.animStep) * 3;
+      const px = player.x;
+      const py = player.y;
+
+      // Sombra del jugador
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
+      ctx.beginPath();
+      ctx.ellipse(px, py + 16, 16, 8, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Estela de partículas al caminar
+      if (player.isMoving && Math.random() < 0.4) {
+        ctx.fillStyle = 'rgba(255, 77, 136, 0.6)';
+        ctx.beginPath();
+        ctx.arc(px + (Math.random() - 0.5) * 12, py + 14, Math.random() * 3 + 2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Dibujar a Alexa (Heroína)
+      // Cuerpo / Vestido rosa
+      ctx.fillStyle = '#ff4d88';
+      ctx.beginPath();
+      ctx.arc(px, py + 4 + bob, 14, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Cara
+      ctx.fillStyle = '#ffe0bd';
+      ctx.beginPath();
+      ctx.arc(px, py - 6 + bob, 11, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Cabello
+      ctx.fillStyle = '#4a2511';
+      ctx.beginPath();
+      ctx.arc(px, py - 9 + bob, 12, Math.PI, Math.PI * 2);
+      ctx.fill();
+
+      // Moño / Lazo rosa en el cabello
+      ctx.fillStyle = '#ffd166';
+      ctx.beginPath();
+      ctx.arc(px + 7, py - 13 + bob, 4.5, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Ojos tiernos
+      ctx.fillStyle = '#222';
+      const eyeOffset = player.direction === 'left' ? -3 : player.direction === 'right' ? 3 : 0;
+      ctx.beginPath();
+      ctx.arc(px - 3 + eyeOffset, py - 6 + bob, 1.8, 0, Math.PI * 2);
+      ctx.arc(px + 3 + eyeOffset, py - 6 + bob, 1.8, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Corona o detalle de princesa
+      ctx.font = '13px serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('✨', px, py - 19 + bob);
+
+      // Nombre arriba del personaje
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '700 11px Fredoka, sans-serif';
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
+      ctx.shadowBlur = 4;
+      ctx.fillText('Alexa 💕', px, py - 24 + bob);
+      ctx.shadowBlur = 0;
+
+      // Michi compañero siguiendo a Alexa
+      const petX = px - (player.direction === 'right' ? 24 : -24);
+      const petY = py + 8 + Math.sin(player.animStep * 1.2) * 2;
+      ctx.font = '16px serif';
+      ctx.fillText('🐱', petX, petY);
+    }
+
+    // ══════════════════════════════════════════════════════════════
+    //  MODALES Y EXPERIENCIA INTERACTIVA
+    // ══════════════════════════════════════════════════════════════
+
+    const gemModal = document.getElementById('gem-modal');
+    const bagModal = document.getElementById('bag-modal');
+    const victoryScreen = document.getElementById('victory-screen');
+
+    let currentModalGemId = null;
+
+    function openGemModal(gemId) {
+      const gema = GEMAS_HISTORIA.find(g => g.id === gemId);
+      if (!gema) return;
+
+      currentModalGemId = gemId;
+      GameState.isPaused = true;
+      AudioEngine.playGemChime();
+
+      document.getElementById('modal-gem-tag').textContent = `${gema.mes} · ${gema.categoria}`;
+      document.getElementById('modal-gem-photo').src = gema.foto;
+      document.getElementById('modal-gem-title').textContent = gema.titulo;
+      document.getElementById('modal-gem-subtitle').textContent = gema.subtitulo;
+      document.getElementById('modal-gem-text').textContent = gema.texto;
+      document.getElementById('modal-gem-quote').textContent = gema.fraseClave;
+
+      gemModal.classList.add('open');
+    }
+
+    document.getElementById('btn-close-modal').addEventListener('click', closeGemModal);
+    document.getElementById('btn-confirm-gem').addEventListener('click', () => {
+      if (currentModalGemId) {
+        GameState.collectedGems.add(currentModalGemId);
+        updateGemsMeter();
+
+        // Si recolectó la 6ta gema o todas, abrir victoria
+        if (currentModalGemId === 6 || GameState.collectedGems.size === 6) {
+          closeGemModal();
+          triggerVictory();
+          return;
+        }
+      }
+      closeGemModal();
+    });
+
+    function closeGemModal() {
+      gemModal.classList.remove('open');
+      GameState.isPaused = false;
+      currentModalGemId = null;
+    }
+
+    function updateGemsMeter() {
+      for (let i = 1; i <= 6; i++) {
+        const dot = document.getElementById(`dot-${i}`);
+        if (GameState.collectedGems.has(i)) {
+          dot.classList.add('collected');
+        } else {
+          dot.classList.remove('collected');
+        }
+      }
+    }
+
+    // Mochila / Inventario
+    document.getElementById('btn-open-bag').addEventListener('click', openBag);
+    document.getElementById('btn-backpack-icon').addEventListener('click', openBag);
+    document.getElementById('btn-close-bag').addEventListener('click', () => {
+      bagModal.classList.remove('open');
+      GameState.isPaused = false;
+    });
+
+    function openBag() {
+      GameState.isPaused = true;
+      const grid = document.getElementById('inventory-grid');
+      grid.innerHTML = '';
+
+      GEMAS_HISTORIA.forEach(gema => {
+        const isUnlocked = GameState.collectedGems.has(gema.id);
+        const item = document.createElement('div');
+        item.className = `inv-item ${isUnlocked ? 'unlocked' : 'locked'}`;
+        item.innerHTML = `
+          <div class="inv-item-icon">${isUnlocked ? gema.icono : '🔒'}</div>
+          <div class="inv-item-title">${gema.mes}</div>
+          <div class="inv-item-status">${isUnlocked ? 'Toca para leer' : 'Por descubrir'}</div>
+        `;
+
+        if (isUnlocked) {
+          item.addEventListener('click', () => {
+            bagModal.classList.remove('open');
+            openGemModal(gema.id);
+          });
+        }
+        grid.appendChild(item);
+      });
+
+      bagModal.classList.add('open');
+    }
+
+    // ══════════════════════════════════════════════════════════════
+    //  GRAN FINAL: COFRE DESBLOQUEADO & CARTA DE MEDIO AÑO
+    // ══════════════════════════════════════════════════════════════
+
+    function triggerVictory() {
+      GameState.hasWon = true;
+      GameState.isPaused = true;
+      AudioEngine.playFanfare();
+
+      // Inyectar párrafos de la carta
+      const letterBody = document.getElementById('letter-body');
+      letterBody.innerHTML = '';
+      CARTA_FINAL.parrafos.forEach(p => {
+        const pEl = document.createElement('p');
+        pEl.textContent = p;
+        letterBody.appendChild(pEl);
+      });
+
+
+
+      // Mostrar pantalla de victoria y lanzar confetti
+      victoryScreen.classList.add('open');
+      startConfetti();
+    }
+
+
+
+    // ══════════════════════════════════════════════════════════════
+    //  SISTEMA DE CONFETTI LIGERO EN CANVAS
+    // ══════════════════════════════════════════════════════════════
+    const confettiCanvas = document.getElementById('confetti-canvas');
+    const cCtx = confettiCanvas.getContext('2d');
+    let confettiAnim = null;
+    let confettiPieces = [];
+
+    function resizeConfetti() {
+      confettiCanvas.width = window.innerWidth;
+      confettiCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeConfetti);
+    resizeConfetti();
+
+    function startConfetti() {
+      confettiPieces = [];
+      const colors = ['#ff4d88', '#ffd166', '#00b4d8', '#9d4edd', '#ffffff', '#ff9248'];
+      for (let i = 0; i < 90; i++) {
+        confettiPieces.push({
+          x: Math.random() * confettiCanvas.width,
+          y: Math.random() * -confettiCanvas.height,
+          w: Math.random() * 10 + 6,
+          h: Math.random() * 8 + 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          vx: Math.random() * 2 - 1,
+          vy: Math.random() * 3 + 2,
+          rot: Math.random() * 360,
+          vRot: Math.random() * 6 - 3
+        });
+      }
+
+      function updateConfetti() {
+        cCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+        confettiPieces.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.rot += p.vRot;
+
+          if (p.y > confettiCanvas.height) {
+            p.y = -10;
+            p.x = Math.random() * confettiCanvas.width;
+          }
+
+          cCtx.save();
+          cCtx.translate(p.x, p.y);
+          cCtx.rotate((p.rot * Math.PI) / 180);
+          cCtx.fillStyle = p.color;
+          cCtx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          cCtx.restore();
+        });
+        confettiAnim = requestAnimationFrame(updateConfetti);
+      }
+      if (!confettiAnim) updateConfetti();
+    }
+
+    function stopConfetti() {
+      if (confettiAnim) {
+        cancelAnimationFrame(confettiAnim);
+        confettiAnim = null;
+      }
+      cCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+    }
+
+    // ══════════════════════════════════════════════════════════════
+    //  INICIO Y CONTROL DE MÚSICA
+    // ══════════════════════════════════════════════════════════════
+    const bgMusic = document.getElementById('bg-music');
+    const btnStart = document.getElementById('btn-start-game');
+    const startScreen = document.getElementById('start-screen');
+    const btnMusicToggle = document.getElementById('btn-music-toggle');
+    const musicIcon = document.getElementById('music-icon');
+
+    btnStart.addEventListener('click', () => {
+      AudioEngine.init();
+      startScreen.classList.add('hidden');
+
+      // Intentar reproducir música
+      bgMusic.volume = 0.65;
+      bgMusic.play().then(() => {
+        GameState.musicPlaying = true;
+        musicIcon.textContent = '🎵';
+      }).catch(err => {
+        console.log('Autoplay blocked:', err);
+        GameState.musicPlaying = false;
+        musicIcon.textContent = '🔇';
+      });
+
+      // Iniciar game loop
+      requestAnimationFrame(gameLoop);
+    });
+
+    btnMusicToggle.addEventListener('click', () => {
+      if (bgMusic.paused) {
+        bgMusic.play().then(() => {
+          GameState.musicPlaying = true;
+          musicIcon.textContent = '🎵';
+        });
+      } else {
+        bgMusic.pause();
+        GameState.musicPlaying = false;
+        musicIcon.textContent = '🔇';
+      }
+    });
+  </script>
+</body>
+</html>
