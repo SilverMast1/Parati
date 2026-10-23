@@ -806,7 +806,7 @@
         <div class="letter-text" id="letter-body">
           <!-- Inyectado desde datos.js -->
         </div>
-        <div class="letter-firma" id="letter-firma">Siempre tuyo,<br>Gabriel ✨</div>
+        <div class="letter-firma" id="letter-firma">Te ama, tu novio<br>Gabriel ✨</div>
       </div>
 
       <!-- Botón de Acción -->
@@ -1820,6 +1820,11 @@
       clearAllInputs();
       AudioEngine.playFanfare();
 
+      const saludoEl = document.getElementById('letter-saludo');
+      if (saludoEl && CARTA_FINAL.saludo) {
+        saludoEl.textContent = CARTA_FINAL.saludo;
+      }
+
       const letterBody = document.getElementById('letter-body');
       letterBody.innerHTML = '';
       CARTA_FINAL.parrafos.forEach(p => {
@@ -1827,6 +1832,13 @@
         pEl.textContent = p;
         letterBody.appendChild(pEl);
       });
+
+      const firmaEl = document.getElementById('letter-firma');
+      if (firmaEl && CARTA_FINAL.firma) {
+        firmaEl.innerHTML = CARTA_FINAL.firma
+          .replace(/\\n/g, '<br>')
+          .replace(/\n/g, '<br>');
+      }
 
       victoryScreen.classList.add('open');
       startConfetti();
