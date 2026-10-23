@@ -933,15 +933,15 @@
 
     // Ubicaciones de las fotos flotantes (Polaroids con recuerdos) en el mundo
     const FLOATING_POLAROIDS = [
-      { imgIdx: 0, x: 140, y: 310, rot: -0.12, w: 90, h: 108, label: 'Mes 1 · El Sí' },
+      { imgIdx: 0, x: 140, y: 310, rot: -0.12, w: 90, h: 108, label: 'Mes 1 · El Sí ✨' },
       { imgIdx: 1, x: 390, y: 440, rot: 0.14, w: 90, h: 108, label: 'Nuestro inicio' },
-      { imgIdx: 2, x: 430, y: 150, rot: -0.10, w: 92, h: 110, label: 'Mes 2 · Risas' },
+      { imgIdx: 2, x: 430, y: 150, rot: -0.10, w: 92, h: 110, label: 'Mes 2 · Risas 🙃' },
       { imgIdx: 3, x: 620, y: 170, rot: 0.12, w: 92, h: 110, label: 'Caminando juntos' },
-      { imgIdx: 4, x: 880, y: 310, rot: -0.14, w: 94, h: 112, label: 'Mes 3 · Razones' },
-      { imgIdx: 5, x: 680, y: 440, rot: 0.10, w: 94, h: 112, label: 'Tus abrazos' },
-      { imgIdx: 6, x: 870, y: 590, rot: -0.11, w: 92, h: 110, label: 'Mes 4 · Roblox' },
-      { imgIdx: 7, x: 660, y: 730, rot: 0.13, w: 92, h: 110, label: 'Noches de desvelo' },
-      { imgIdx: 8, x: 580, y: 860, rot: -0.13, w: 92, h: 110, label: 'Mes 5 · Scrapbook' },
+      { imgIdx: 4, x: 880, y: 310, rot: -0.14, w: 94, h: 112, label: 'Mes 3 · Miles de Razones 🌸' },
+      { imgIdx: 5, x: 680, y: 440, rot: 0.10, w: 94, h: 112, label: 'Tus abrazos y paz' },
+      { imgIdx: 6, x: 870, y: 590, rot: -0.11, w: 92, h: 110, label: 'Mes 4 · Noches de Juegos 🎮' },
+      { imgIdx: 7, x: 660, y: 730, rot: 0.13, w: 92, h: 110, label: 'Desvelos en llamada' },
+      { imgIdx: 8, x: 580, y: 860, rot: -0.13, w: 92, h: 110, label: 'Mes 5 · Scrapbook de Nosotros 📓' },
       { imgIdx: 9, x: 410, y: 820, rot: 0.09, w: 92, h: 110, label: 'Buenos días ✨❤️' },
       { imgIdx: 10, x: 170, y: 580, rot: -0.15, w: 96, h: 115, label: 'Nuestra historia' },
       { imgIdx: 11, x: 370, y: 740, rot: 0.12, w: 96, h: 115, label: '¡Medio Año! 👑' }
@@ -1015,13 +1015,25 @@
 
     // ── Islas Reorganizadas en Distancias Cercanas y Armónicas ──
     const ISLANDS = [
-      { id: 1, name: 'Santuario del Inicio', x: 280, y: 380, r: 105, theme: 'sakura', gemColor: '#ff4d88', icon: '💎', title: 'Mes 1: El Primer Sí', subtitle: '23 de Abril' },
-      { id: 2, name: 'Valle de las Risas', x: 520, y: 240, r: 105, theme: 'meadow', gemColor: '#ff9248', icon: '🧡', title: 'Mes 2: Descubriéndonos', subtitle: 'Primeras fotos' },
-      { id: 3, name: 'Bosque de las Razones', x: 760, y: 380, r: 110, theme: 'rose', gemColor: '#e559b3', icon: '💖', title: 'Mes 3: 30 Razones', subtitle: 'Tus abrazos y paz' },
-      { id: 4, name: 'Galaxia Gamer & Michis', x: 740, y: 660, r: 115, theme: 'neon', gemColor: '#9d4edd', icon: '🐱', title: 'Mes 4: Roblox & Risas', subtitle: 'Noches de desvelo' },
-      { id: 5, name: 'Taller del Scrapbook', x: 500, y: 760, r: 110, theme: 'warm', gemColor: '#00b4d8', icon: '📎', title: 'Mes 5: Momentos de Amor', subtitle: 'Buenos días y apoyo' },
-      { id: 6, name: 'Templo de Medio Año', x: 280, y: 660, r: 130, theme: 'gold', gemColor: '#ffd166', icon: '⭐', title: 'Mes 6: ¡Medio Año!', subtitle: 'Cofre Dorado' }
+      { id: 1, name: 'La Chispa del Comienzo', x: 280, y: 380, r: 105, theme: 'sakura', gemColor: '#ff4d88', icon: '💎', title: 'Mes 1: La Chispa del Comienzo ✨', subtitle: '23 de Abril: El día que todo empezó' },
+      { id: 2, name: 'Descubriendonos juntos', x: 520, y: 240, r: 105, theme: 'meadow', gemColor: '#ff9248', icon: '🧡', title: 'Mes 2: Descubriendonos juntos 🙃', subtitle: 'Las primeras salidas, risas y complicidad' },
+      { id: 3, name: 'Miles De Razones', x: 760, y: 380, r: 110, theme: 'rose', gemColor: '#e559b3', icon: '💖', title: 'Mes 3: Miles De Razones Para Amarte 🌸', subtitle: 'Por tu voz, tus abrazos y tu manera única de ser' },
+      { id: 4, name: 'Noches de Juegos', x: 740, y: 660, r: 115, theme: 'neon', gemColor: '#9d4edd', icon: '🐱', title: 'Mes 4: Noches de Juegos 🎮', subtitle: 'Desvelos en llamada y jugandoo' },
+      { id: 5, name: 'Scrapbook de Nosotros', x: 500, y: 760, r: 110, theme: 'warm', gemColor: '#00b4d8', icon: '📎', title: 'Mes 5: El Scrapbook de Nosotros 📓', subtitle: 'Apoyo incondicional y muchass cosas mas' },
+      { id: 6, name: 'Templo de Medio Año', x: 280, y: 660, r: 130, theme: 'gold', gemColor: '#ffd166', icon: '⭐', title: 'Mes 6: ¡Medio Año!', subtitle: '23 de Octubre: 6 Meses construyendo un futuro' }
     ];
+
+    // Sincronizar dinámicamente títulos y subtítulos desde datos.js (GEMAS_HISTORIA)
+    if (typeof GEMAS_HISTORIA !== 'undefined') {
+      ISLANDS.forEach(island => {
+        const g = GEMAS_HISTORIA.find(item => item.id === island.id);
+        if (g) {
+          island.title = `Mes ${g.id}: ${g.titulo}`;
+          island.subtitle = g.subtitulo;
+          island.name = g.titulo.length > 25 ? g.titulo.substring(0, 24) + '...' : g.titulo;
+        }
+      });
+    }
 
     player.x = ISLANDS[0].x;
     player.y = ISLANDS[0].y + 10;
